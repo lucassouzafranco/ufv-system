@@ -1,40 +1,11 @@
-import React from 'react';
-import BackgroundHome from '../components/Background/Background';
-import styled from 'styled-components';
-import Logo from '../assets/img/logodaamostra.png';
-
-const HomeContainer = styled.div`
-  width: 100%;
-  height: 91%;
-`;
-
-const WelcomeCover = styled.div`
-  width: 40%;
-  height: 100%;
-  background-color: #682A2C;
-`;
-
-const CoverLogo = styled.div`
-  display: flex;
-  justify-content: center;
-  padding-top: 50%;
-
-  img{
-    width: 60%;
-  }
-`;
+import React, { Fragment } from 'react';
+import Register from '../components/Register';
 
 const Home = () => {
   return(
-    <HomeContainer>
-      <BackgroundHome>
-        <WelcomeCover>
-          <CoverLogo>
-            <img src={Logo}/>
-          </CoverLogo>
-        </WelcomeCover>
-      </BackgroundHome>
-    </HomeContainer>
+    <Fragment>
+      <Register/>
+    </Fragment>
   )
 }
 
