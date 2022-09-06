@@ -2,6 +2,7 @@ import React from 'react';
 import BackgroundHome from '../components/Background/Background';
 import styled from 'styled-components';
 import Logo from '../assets/img/logodaamostra.png';
+import Form from '../components/Form/Form';
 
 const HomeContainer = styled.div`
   width: 100%;
@@ -24,13 +25,14 @@ const CoverLogo = styled.div`
   }
 `;
 
+
 const Home = () => {
   return(
     <HomeContainer>
       <BackgroundHome>
         <WelcomeCover>
           <CoverLogo>
-            <img src={Logo}/>
+            <img src={Logo} alt='logotipo da amostra de profissões'/>
           </CoverLogo>
         </WelcomeCover>
       </BackgroundHome>
