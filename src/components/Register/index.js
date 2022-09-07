@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import LogoPNG from '../../assets/img/logodaamostra.png';
 import logoufv from '../../assets/img/ufv-logo.png';
 import Form from '../Form';
 import { Layout, Box, Logo, Main, UFVLogo } from './style';
 
-export default function Register(){
+const Register = () => {
   return(
-    <>
+    <Fragment>
       <Layout>
         <Box>
           <Logo src={LogoPNG} />
@@ -17,6 +17,8 @@ export default function Register(){
           <UFVLogo src={logoufv} />
         </Main>
       </Layout>
-    </>
+    </Fragment>
   )
 }
+
+export default Register;

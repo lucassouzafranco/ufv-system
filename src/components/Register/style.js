@@ -18,8 +18,8 @@ export const Box = styled.div`
 `
 
 export const Logo = styled.img`
-  width: 432px;
-  height: 181.58px;
+  width: 60%;
+  height: 24%;
 `
 
 export const Main = styled.main`

@@ -8,17 +8,17 @@ export const Form = styled.form`
 `
 
 export const Title = styled.h1`
-  font-weight: 800;
+  font-weight: 600;
   color: #682A2C;
-  font-size: 40px;
+  font-size: xxx-large;
   //box-shadow: 6px 6px 2px 0px #00000040 inset;
 `
 
 export const InputContainer = styled.div`
-  width: 312px;
-  height: 46px;
+  width: 65%;
+  height: 44px;
   background-color:#ECF0F1;
-  border-radius: 15px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   padding: 0.5em;
@@ -41,13 +41,19 @@ export const Input = styled.input`
 `
 
 export const Icon = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 7%;
+  height: 57%;
 `
 
 export const Label = styled.span`
   color: #FFFFFF;
-  font-weight: 400;
-  font-size: 13pt;
-  margin-top: 1em;
+  font-weight: 300;
+  font-size: medium;
+  margin-top: 7%;
+  width: 67%;
+  padding: 1%;
+  border-radius: 12px;
+  background: #682A2C;
+  padding-left: 3%;
+  opacity: 0.92; 
 `
