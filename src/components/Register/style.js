@@ -41,7 +41,7 @@ export const UFVLogo = styled.img`
   position: absolute;
   z-index: 1;
   width: 100px;
-  height: 73px;
-  bottom: 0;
+  height: 53px;
+  bottom: 2%;
   left: 85%;
 `

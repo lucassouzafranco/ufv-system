@@ -8,9 +8,9 @@ export const Form = styled.form`
 `
 
 export const Title = styled.h1`
-  font-weight: 600;
+  font-weight: 700;
   color: #682A2C;
-  font-size: xxx-large;
+  font-size: 28pt;
   //box-shadow: 6px 6px 2px 0px #00000040 inset;
 `
 
@@ -42,7 +42,7 @@ export const Input = styled.input`
 
 export const Icon = styled.img`
   width: 7%;
-  height: 57%;
+  height: 60%;
 `
 
 export const Label = styled.span`

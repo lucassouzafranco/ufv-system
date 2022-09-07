@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import Button from "../Button";
+import Button from '../Button';
 import {
   Form as FormC,
   Input,
@@ -17,21 +18,24 @@ import IconEmail from '../../assets/icons/email.png';
 import IconTel from '../../assets/icons/telefone.png';
 import IconEscola from '../../assets/icons/escola.png';
 
-export default function Form() {
+const Form = () => {
 
   const [name, setName] = useState('');
   const [city, setCity] = useState('');
   const [email, setEmail] = useState('');
   const [tel, setTel] = useState('');
   const [school, setSchool] = useState('');
-  const [PD, setPD] = useState('');
+  const [PCD, setPCD] = useState('');
+  
+  const navigate = useNavigate();
 
   async function handleSubmit(event) {
     event.preventDefault();
+    navigate('/cursos');
   }
 
   return (
-    <>
+    <Fragment>
       <FormC onSubmit={handleSubmit}>
         <Title>Cadastro</Title>
         <InputContainer>
@@ -41,7 +45,7 @@ export default function Form() {
             required
             value={name}
             type='text'
-            placeholder="Nome"
+            placeholder='Nome'
           />
         </InputContainer>
         <InputContainer>
@@ -51,7 +55,7 @@ export default function Form() {
             required
             value={city}
             type='text'
-            placeholder="Cidade"
+            placeholder='Cidade'
           />
         </InputContainer>
         <InputContainer>
@@ -60,7 +64,7 @@ export default function Form() {
             onChange={event => setEmail(event.target.value)}
             value={email}
             type='email'
-            placeholder="Email"
+            placeholder='Email'
           />
         </InputContainer>
         <InputContainer>
@@ -70,7 +74,7 @@ export default function Form() {
             required
             value={tel}
             type='tel'
-            placeholder="Telefone"
+            placeholder='Telefone'
           />
         </InputContainer>
         <InputContainer>
@@ -80,20 +84,21 @@ export default function Form() {
             required
             value={school}
             type='text'
-            placeholder="Escola"
+            placeholder='Escola'
           />
         </InputContainer>
         <Label>Você é portador de necessidades especiais? Se sim, qual?</Label>
         <InputContainer>
           <Input
-            onChange={event => setPD(event.target.value)}
-            value={PD}
-            required
+            onChange={event => setPCD(event.target.value)}
+            value={PCD}
             type='text'
           />
         </InputContainer>
         <Button type='submit'>Cadastrar</Button>
       </FormC>
-    </>
+    </Fragment>
   )
 }
+
+export default Form;

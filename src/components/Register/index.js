@@ -10,11 +10,11 @@ const Register = () => {
     <Fragment>
       <Layout>
         <Box>
-          <Logo src={LogoPNG} />
+          <Logo src={LogoPNG} alt='logo da amostra de profissões'/>
         </Box>
         <Main>
           <Form/>
-          <UFVLogo src={logoufv} />
+          <UFVLogo src={logoufv} alt='logo da UFV'/>
         </Main>
       </Layout>
     </Fragment>

@@ -10,6 +10,6 @@ export const Button = styled.button`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 18px;
   font-weight: 500;
-  color: #111;
+  color: white;
   font-size: medium;
 `
