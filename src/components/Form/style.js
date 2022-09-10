@@ -57,3 +57,9 @@ export const Label = styled.span`
   padding-left: 3%;
   opacity: 0.92; 
 `
+
+export const Error = styled.span`
+  font-weight: 500;
+  font-size: 12pt;
+  color: #ad1515;
+`
