@@ -15,6 +15,17 @@ export const Box = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+`
+
+export const Title = styled.div`
+  width: 52%;
+  height: 22%;
+  text-align: left;
+  justify-content: left;
+  color: white;
+  margin-top: -20%;
+  font-size: 90%;
 `
 
 export const Logo = styled.img`
