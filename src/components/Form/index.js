@@ -10,7 +10,7 @@ import {
   Icon,
   Label,
   Error
-} from './style';
+} from './styleForm';
 
 /* Icones */
 import IconPessoa from '../../assets/icons/pessoa.png';

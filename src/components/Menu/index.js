@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav, Title, Button } from './style';
+import { Nav, Title, Button } from './styleMenu';
 import { useNavigate } from 'react-router-dom';
 import Avatar from '../Avatar';
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Avatar as AvatarC, Name } from './style';
+import { Container, Avatar as AvatarC, Name } from './styleAvatar';
 
 export default function Avatar({name}){
   return(

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Main, Box, Button, Card, Title, Img, Fundo } from './style';
+import { Main, Box, Button, Card, Title, Img, Fundo } from './styleCourses';
 import { courses } from '../../utils/courses';
 import { useNavigate } from 'react-router-dom';
 
