@@ -2,10 +2,12 @@ import React, { Fragment, useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '../Button';
+import Dropdown from '../Dropdown';
 import {
   Form as FormC,
   Input,
   InputContainer,
+  SelectContainer,
   Title,
   Icon,
   Label,
@@ -121,13 +123,9 @@ const Form = () => {
         {erro.erroName && (<Error>Nome inválido</Error>)}
         <InputContainer>
           <Icon src={IconCidade} />
-          <Input
-            onChange={event => setCity(event.target.value)}
-            required
-            value={city}
-            type='text'
-            placeholder='Cidade'
-          />
+          <SelectContainer>
+            <Dropdown />
+          </SelectContainer>
         </InputContainer>
         <InputContainer>
           <Icon src={IconEmail} />

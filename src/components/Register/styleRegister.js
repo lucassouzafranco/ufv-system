@@ -20,7 +20,7 @@ export const Box = styled.div`
 
 export const Title = styled.div`
   width: 52%;
-  height: 22%;
+  height: 22%;  
   text-align: left;
   justify-content: left;
   color: white;

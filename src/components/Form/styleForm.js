@@ -40,6 +40,13 @@ export const Input = styled.input`
   }
 `
 
+export const SelectContainer = styled.select`
+  border-style: none;
+  padding-left: 2%;
+  color: gray;
+  background-color: #ECF0F1;
+`
+
 export const Icon = styled.img`
   width: 7%;
   height: 60%;
