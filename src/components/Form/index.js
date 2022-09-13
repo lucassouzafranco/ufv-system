@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect} from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '../Button';
@@ -7,7 +7,6 @@ import {
   Form as FormC,
   Input,
   InputContainer,
-  SelectContainer,
   Title,
   Icon,
   Label,
@@ -27,18 +26,19 @@ const Form = () => {
   const regExpEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
   const [name, setName] = useState('');
-  const [city, setCity] = useState('');
   const [email, setEmail] = useState('');
   const [tel, setTel] = useState('');
   const [school, setSchool] = useState('');
   const [PCD, setPCD] = useState('');
   const [erro, setErro] = useState(
     {
-      erroTel: false, 
-      erroName: false, 
-      erroMail: false
+      erroTel: false,
+      erroName: false,
+      erroMail: false,
+      erroCity: false
     }
   );
+  const [dpSelected, setDpSelected] = useState('Escolha uma cidade');
 
   const navigate = useNavigate();
 
@@ -57,48 +57,51 @@ const Form = () => {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("@USER_DATA"));
-    if(user){
+    if (user) {
       setName(user.name);
-      setCity(user.city);
+      setDpSelected(user.city);
       setEmail(user.email);
       setPCD(user.pcd);
       setSchool(user.school);
       setTel(user.tel.slice(4));
     }
-  },[])
+  }, [])
 
   async function handleSubmit(event) {
     event.preventDefault();
-    setErro({erroTel: false, erroName: false, erroMail: false})
+    setErro({ erroTel: false, erroName: false, erroMail: false, erroCity: false })
     const nameData = name.trim();
-    const cityData = city.trim();
     const emailData = email.trim();
     const telData = '+55 ' + tel.trim();
     const schoolData = school.trim();
     const pcdData = PCD.trim();
 
     if (!(regExpEmail.test(emailData))) {
-      setErro({erroMail: true});
+      setErro({ erroMail: true });
       return;
     }
 
-    if(!(regExpTel.test(telData))){
-      setErro({erroTel: true});
+    if (!(regExpTel.test(telData))) {
+      setErro({ erroTel: true });
       return;
     }
 
-    if(name.length < 3){
-      setErro({erroName: true});
+    if (name.length < 3) {
+      setErro({ erroName: true });
+      return;
+    }
+    if (dpSelected === 'Escolha uma cidade') {
+      setErro({ erroCity: true });
       return;
     }
 
     const data = {
       name: nameData,
-      city: cityData,
+      city: dpSelected,
       email: emailData,
       tel: telData,
       school: schoolData,
-      pcd: pcdData ? 'SIM' : 'NAO' 
+      pcd: pcdData ? 'SIM' : 'NAO'
     }
 
     await localStorage.setItem("@USER_DATA", JSON.stringify(data));
@@ -120,13 +123,12 @@ const Form = () => {
             placeholder='Nome'
           />
         </InputContainer>
-        {erro.erroName && (<Error>Nome inválido</Error>)}
+        {erro.erroName && (<Error>Nome inválido.</Error>)}
         <InputContainer>
           <Icon src={IconCidade} />
-          <SelectContainer>
-            <Dropdown />
-          </SelectContainer>
+          <Dropdown selected={dpSelected} setSelected={setDpSelected} />
         </InputContainer>
+        {erro.erroCity && (<Error>Escolha uma cidade por favor.</Error>)}
         <InputContainer>
           <Icon src={IconEmail} />
           <Input

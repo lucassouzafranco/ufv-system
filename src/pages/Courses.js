@@ -20,7 +20,7 @@ const Courses = () => {
 
   return (
     <>
-      <Menu user={user} />
+      <Menu user={user} variant='courses' />
       <CoursesC/>
     </>
   )

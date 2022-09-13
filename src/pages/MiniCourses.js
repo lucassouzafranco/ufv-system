@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Menu from "../components/Menu";
+import MiniCoursesC from "../components/MiniCourses";
 
 export default function MiniCourses() {
 
   const navigate = useNavigate();
   const [user, setUser] = useState({});
+  const [courses, setCourses] = useState([]);
   //const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -20,12 +22,14 @@ export default function MiniCourses() {
       }
     } else {
       setUser(user);
+      setCourses(courses);
     }
-  }, [navigate])
+  }, [navigate]);
 
   return (
     <>
-      <Menu user={user} />
+      <Menu user={user} variant='mini' />
+      <MiniCoursesC courses={courses} />
     </>
   )
 }
