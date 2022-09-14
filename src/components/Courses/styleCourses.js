@@ -15,7 +15,7 @@ export const Main = styled.main`
 `
 
 export const Box = styled.div`
-  width: 75%;
+  width: 85%;
   height: auto;
   background-color: #EFEFEF;
   border-radius: 15px;
@@ -65,7 +65,10 @@ export const Card = styled.div`
   position: relative;
   margin: 1em;
   cursor: pointer;
-  border: 100px solid ${props => props.active ? 'green' : 'none'};
+  border: 93px solid ${props => props.active ? '#682A2C' : 'none'};
+  border-radius: 10px;
+  transition: 0.2s;
+  box-shadow: 0 0 0 4px #682A2C;
 `
 
 export const Img = styled.img`
