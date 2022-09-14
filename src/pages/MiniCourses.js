@@ -7,29 +7,33 @@ export default function MiniCourses() {
 
   const navigate = useNavigate();
   const [user, setUser] = useState({});
-  const [courses, setCourses] = useState([]);
-  //const [loading, setLoading] = useState(false);
+  const [cou, setCou] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("@USER_DATA"));
-    const courses = JSON.parse(localStorage.getItem("@COURSES_DATA"));
-    if (!(user && courses)) {
-      if(!user){
-        navigate('/');
+    async function course() {
+      setLoading(true);
+      const user = await JSON.parse(localStorage.getItem("@USER_DATA"));
+      const courses = await JSON.parse(localStorage.getItem("@COURSES_DATA"));
+      if (!(user && courses)) {
+        if (!user) {
+          navigate('/');
+        }
+        if (!courses) {
+          navigate('/cursos');
+        }
+      } else {
+        setUser(user);
+        setCou(courses);
       }
-      if(!courses){
-        navigate('/cursos');
-      }
-    } else {
-      setUser(user);
-      setCourses(courses);
     }
+    course();
   }, [navigate]);
 
   return (
     <>
       <Menu user={user} variant='mini' />
-      <MiniCoursesC courses={courses} />
+      {loading && (<MiniCoursesC courses={cou} />)}
     </>
   )
 }

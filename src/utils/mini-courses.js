@@ -4,105 +4,21 @@ const mini_courses = [
     name: "teste",
     spots: 50,
     sala: "LAE 001",
-    time: '09:00'
+    time: '09:00',
   },
   {
     id: 2,
     name: "teste",
     spots: 50,
     sala: "LAE 001",
-    time: '09:00'
+    time: '09:30',
   },
   {
     id: 3,
     name: "teste",
     spots: 50,
     sala: "LAE 001",
-    time: '09:00'
-  },
-  {
-    id: 4,
-    name: "teste",
-    spots: 50,
-    sala: "LAE 001",
-    time: '09:00'
-  },
-  {
-    id: 5,
-    name: "teste",
-    spots: 50,
-    sala: "LAE 001",
-    time: '09:00'
-  },
-  {
-    id: 6,
-    name: "teste",
-    spots: 50,
-    sala: "LAE 001",
-    time: '09:00'
-  },
-  {
-    id: 7,
-    name: "teste",
-    spots: 50,
-    sala: "LAE 001",
-    time: '09:00'
-  },
-  {
-    id: 8,
-    name: "teste",
-    spots: 50,
-    sala: "LAE 001",
-    time: '09:00'
-  },
-  {
-    id: 8,
-    name: "teste",
-    spots: 50,
-    sala: "LAE 001",
-    time: '09:00'
-  },
-  {
-    id: 8,
-    name: "teste",
-    spots: 50,
-    sala: "LAE 001",
-    time: '09:00'
-  },
-  {
-    id: 8,
-    name: "teste",
-    spots: 50,
-    sala: "LAE 001",
-    time: '09:00'
-  },
-  {
-    id: 8,
-    name: "teste",
-    spots: 50,
-    sala: "LAE 001",
-    time: '09:00'
-  },
-  {
-    id: 8,
-    name: "teste",
-    spots: 50,
-    sala: "LAE 001",
-    time: '09:00'
-  },
-  {
-    id: 8,
-    name: "teste",
-    spots: 50,
-    sala: "LAE 001",
-    time: '09:00'
-  },
-  {
-    id: 8,
-    name: "teste",
-    spots: 50,
-    sala: "LAE 001",
-    time: '09:00'
+    time: '10:00',
   },
 ]
 

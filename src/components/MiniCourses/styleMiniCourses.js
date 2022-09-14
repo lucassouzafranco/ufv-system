@@ -52,7 +52,7 @@ export const Title = styled.div`
 `
 
 export const Name = styled.span`
-  color: #d9d9d9;
+  color: #fff;
   position: absolute;
   z-index: 3;
   font-weight: 800;
