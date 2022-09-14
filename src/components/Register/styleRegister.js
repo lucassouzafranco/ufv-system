@@ -16,19 +16,24 @@ export const Box = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  text-align: center;
 `
 
 export const Title = styled.div`
-  width: 52%;
-  height: 22%;  
-  text-align: left;
-  justify-content: left;
-  color: white;
-  margin-top: -20%;
-  font-size: 90%;
-`
+  h1 {
+    width: 60%;
+    height: 22%;
+    color: white;
+    margin-top: -20%;
+    margin-left: 11%;
+    font-size: 35pt;
+    font-family: 'Pacifico', cursive;
+
+  }
+  `
 
 export const Logo = styled.img`
+  margin-top: 5%;
   width: 60%;
   height: 24%;
 `
