@@ -6,6 +6,7 @@ import Courses from "./pages/Courses";
 import MiniCourses from "./pages/MiniCourses";
 import DashBoard from "./pages/Dashboard";
 import Auth from "./pages/Auth";
+import Subscription from "./pages/Subscription";
 
 const MyRoutes = () => {
 
@@ -19,6 +20,7 @@ const MyRoutes = () => {
           <Route path='/admin' element={<Auth />} />;
           <Route path='/admin/painel' element={<DashBoard />} />;
           <Route path='/admin/painel/cadastrar' element={<DashBoard />} />;
+          <Route path='/inscricao' element={<Subscription />} />;
         </Routes>
       </Router>
     </Fragment>
