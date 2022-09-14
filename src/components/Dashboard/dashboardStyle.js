@@ -57,11 +57,9 @@ export const HeaderTitle = styled.h1`
   padding-left: 1em;
   font-size: 20pt;
 `
-
 export const Content = styled.main`
   background-color: #F3F4F6;
-  height: auto;
-  padding-top: 2em;
+  padding: 1em 0;
 `
 export const CardContainer = styled.div`
   display: flex;
@@ -141,14 +139,14 @@ export const InscriptionCard = styled.div`
 `
 
 export const ItemsContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(6, auto);
+  display: grid;  
+  grid-template-columns: repeat(6, calc(100% / 6));
   flex: 1;
 `
 
 export const ItemsContainerMini = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(3, calc(100% / 3));
   flex: 1;
 `
 
@@ -158,7 +156,7 @@ export const InscriptionMenu = styled.div`
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   display: grid;
-  grid-template-columns: repeat(6, auto);
+  grid-template-columns: repeat(6, calc(100% / 6));
 `
 
 export const InscriptionItem = styled.span`
@@ -167,6 +165,7 @@ export const InscriptionItem = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   border-bottom: 1px solid #d9d9d9;
   padding: 0.7em;
 `

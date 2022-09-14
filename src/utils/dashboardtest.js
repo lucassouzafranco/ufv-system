@@ -4,7 +4,7 @@ export const inscrisoes = [
     nome: "Carlos Eduardo Maximo",
     curso: "Sistemas de Informação",
     mini_curso: 'Inteligencia Artifical',
-    escola: 'UFV',
+    escola: 'Escola Estudal Professo Antonio Ribeiro',
     cidade: 'Rio Paranaiba',
     data: '14/09/2022'
   },
