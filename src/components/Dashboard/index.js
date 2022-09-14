@@ -40,14 +40,17 @@ import {
 }
   from './dashboardStyle';
 import { AiOutlineLogout } from 'react-icons/ai';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { inscrisoes, mini_cursos } from '../../utils/dashboardtest';
+import { UseNvigate } from "react-router-dom";
 
 export default function DashBoardC() {
 
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const [name, setName] = useState('');
+  const [course, setCourse] = useState('');
   const [room, setRoom] = useState('');
   const [spots, setSpots] = useState('');
   const [time, setTime] = useState('');
@@ -55,6 +58,7 @@ export default function DashBoardC() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    navigate('/admin/painel');
   }
 
   return (
@@ -153,28 +157,38 @@ export default function DashBoardC() {
                 <Input type='text'
                   onChange={event => setName(event.target.value)}
                   value={name}
-                  placeholder="Nome do minicurso"
+                  placeholder="Nome/Título"
+                  required
+                />
+                <Input type='text'
+                  onChange={event => setCourse(event.target.value)}
+                  value={course}
+                  placeholder="Curso"
+                  required
                 />
                 <Input type='text'
                   onChange={event => setRoom(event.target.value)}
                   value={room}
                   placeholder="Sala"
-                />
-                <Input type='number'
-                  onChange={event => setSpots(event.target.value)}
-                  value={spots}
-                  placeholder="Vagas"
+                  required
                 />
                 <Input
                   onChange={event => setTime(event.target.value)}
                   value={time}
                   type='time'
+                  required
+                />
+                <Input type='number'
+                  onChange={event => setSpots(event.target.value)}
+                  value={spots}
+                  placeholder="Vagas"
+                  required
                 />
                 <Input
                   onChange={event => setResponsible(event.target.value)}
                   value={responsible}
                   type='text'
-                  placeholder='Reponsável'
+                  placeholder='Professor responsável'
                 />
                 <ButtonForm type='submit'>Cadastrar</ButtonForm>
               </Form>

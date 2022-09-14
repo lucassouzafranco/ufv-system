@@ -29,3 +29,17 @@ export const Button = styled.button`
   color: white;
   font-size: medium;
 `
+
+export const Area = styled.div `
+  height: 9%;
+  background-color: #682A2C;
+  display: flex;
+  justify-content: center;
+  align-itens: center;
+`
+
+export const AmostraLogo = styled.img `
+  margin-top: 1%;
+  height: 20%;
+  width: 20%;
+`

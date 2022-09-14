@@ -269,6 +269,7 @@ export const FormTitle = styled.h1`
   text-align: center;
   margin: 1em;
   font-weight: 500;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `
 
 export const Input = styled.input`
