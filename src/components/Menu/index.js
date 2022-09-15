@@ -1,8 +1,7 @@
 import React from 'react';
-import { Nav, Title, Button, Area, AmostraLogo} from './styleMenu';
+import { Nav, Title, Button, NavConfirm, Logo } from './styleMenu';
 import { useNavigate } from 'react-router-dom';
 import Avatar from '../Avatar';
-import Logo from '../../assets/img/logodaamostra.png'
 
 export default function Menu({ user, variant }) {
 
@@ -26,10 +25,10 @@ export default function Menu({ user, variant }) {
         </Nav>
       )}
 
-      { variant === 'confirm' && (
-        <Area>
-          <AmostraLogo url={Logo}/>
-        </Area>
+      {variant === 'confirm' && (
+        <NavConfirm>
+          <Logo src='/assets/img/logo.png' />
+        </NavConfirm>
       )}
     </>
   )

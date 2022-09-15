@@ -30,16 +30,18 @@ export const Button = styled.button`
   font-size: medium;
 `
 
-export const Area = styled.div `
-  height: 9%;
+export const NavConfirm = styled.nav`
+  width: 100%;
+  height: 82px;
   background-color: #682A2C;
+  padding: 1em;
+  text-align: center;
   display: flex;
+  align-items: center;
   justify-content: center;
-  align-itens: center;
 `
 
-export const AmostraLogo = styled.img `
-  margin-top: 1%;
-  height: 20%;
-  width: 20%;
+export const Logo = styled.img`
+  width: 150px;
+  height: 70px;
 `
