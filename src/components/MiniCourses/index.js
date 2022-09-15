@@ -31,7 +31,7 @@ export default function MiniCoursesC({ courses }) {
 
   function chosen(course) {
     console.log(selected);
-    if (selected.length === 0) {
+    if (selected.length === 0 || selectedVerfy(course) === false) {
       selected.push(course);
       console.log("Push Course = ", selected);
     } else {
@@ -42,12 +42,31 @@ export default function MiniCoursesC({ courses }) {
     selection();
   }
 
+  function selectedVerfy(object) {
+    for (let i = 0; i < selected.length; i++) {
+      if (selected[i] === object) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   function click(id) {
     const course = mini_courses.find(course => course.id === id);
     chosen(course);
-    console.log("clicou");
-    console.log("Selected = ", selected);
-    console.log("Disabled = ", disabled);
+    if (selected.length === 2) {
+      /*
+        console.log("clicou");
+        console.log("Selected = ", selected);
+        console.log("Disabled = ", disabled);
+      */
+      for(let i = 0; i < mini_courses.length; i++){
+        if((disabledVerfy(mini_courses[i]) === false) && (selectedVerfy(mini_courses[i]) === false)){
+          disabled.push(mini_courses[i]);
+        }
+      }
+    }
+    setBlock(disabled);
   }
 
   console.log("Blocked = ", blocked);
@@ -63,10 +82,19 @@ export default function MiniCoursesC({ courses }) {
         }
       }
     }
-    disabledVerify(disabled);
+    setBlock(disabled);
   }
 
-  function disabledVerify(disabled) {
+  function disabledVerfy(object){
+    for (let i = 0; i < disabled.length; i++) {
+      if (disabled[i] === object) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function setBlock(disabled) {
     let aux = {};
     for (let i = 1; i <= mini_courses.length; i++) {
       aux[i] = false;
@@ -100,7 +128,13 @@ export default function MiniCoursesC({ courses }) {
     a = parseInt(listObj[0].slice(0, 2));
     b = parseInt(listObj[0].slice(3));
     if (b === 30) {
-      aux.push(String(a) + ':00');
+      if (a < 10) {
+        a = '0' + String(a);
+      } else {
+        a = String(a);
+      }
+      aux.push(a + ':00');
+      a = parseInt(a);
       a = a + 1;
       if (a < 10) {
         a = '0' + String(a);
@@ -109,7 +143,13 @@ export default function MiniCoursesC({ courses }) {
       }
       aux.push(a + ':00');
     } else {
-      aux.push(String(a) + ':30');
+      if (a < 10) {
+        a = '0' + String(a);
+      } else {
+        a = String(a);
+      }
+      aux.push(a + ':30');
+      a = parseInt(a);
       a = a - 1;
       if (a < 10) {
         a = '0' + String(a);
@@ -119,15 +159,15 @@ export default function MiniCoursesC({ courses }) {
       aux.push(a + ':30');
     }
 
-    console.log("Aux tradeoff = ", aux);
-    console.log("List object tradeoff = ", listObj);
+    //console.log("Aux tradeoff = ", aux);
+    //console.log("List object tradeoff = ", listObj);
     for (let i = 0; i < aux.length; i++) {
       if (aux[i] === listObj[1] && aux[i] !== listObj[0]) {
-        console.log("Houve conflito");
+        //console.log("Houve conflito");
         return true;
       }
     }
-    console.log("Não houve conflito");
+    //console.log("Não houve conflito");
     return false;
   }
 
@@ -188,7 +228,11 @@ export default function MiniCoursesC({ courses }) {
                     <InfosContainer key={index}>
                       <RadioContainer>
                         <BoxRadio>
-                          <Radio type='radio' />
+                        <Radio
+                            disabled={blocked[item.id]}
+                            onClick={() => click(item.id)}
+                            type='checkbox'
+                          />
                         </BoxRadio>
                         <NameCourse>{item.name}</NameCourse>
                       </RadioContainer>
