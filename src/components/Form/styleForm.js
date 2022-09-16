@@ -40,6 +40,9 @@ export const Input = styled.input`
   }
 `
 
+export const InputCheck = styled.input`
+`
+
 export const SelectContainer = styled.select`
   border-style: none;
   padding-left: 2%;

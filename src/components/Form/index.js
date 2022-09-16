@@ -7,6 +7,7 @@ import {
   Form as FormC,
   Input,
   InputContainer,
+  InputCheck,
   Title,
   Icon,
   Label,
@@ -162,13 +163,11 @@ const Form = () => {
           />
         </InputContainer>
         <Label>Você é portador de necessidades especiais? Se sim, qual?</Label>
-        <InputContainer>
-          <Input
-            onChange={event => setPCD(event.target.value)}
-            value={PCD}
-            type='text'
-          />
-        </InputContainer>
+        <InputCheck
+          onChange={event => setPCD(event.target.value)}
+          value={PCD}
+          type='checkbox'
+        />
         <Button type='submit'>Cadastrar</Button>
       </FormC>
     </Fragment>

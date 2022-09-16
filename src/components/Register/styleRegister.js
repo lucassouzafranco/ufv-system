@@ -62,6 +62,15 @@ export const Logo = styled.img`
   }
 `
 
+export const Subtitle = styled.h3`
+  margin-top: 2%;
+  margin-left: 7%;
+  color: white;
+  font-style: italic;
+  font-weight: 200;
+  font-size: 10pt;
+`
+
 export const Main = styled.main`
   position: relative;
   z-index: 0;
