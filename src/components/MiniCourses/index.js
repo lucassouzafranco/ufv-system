@@ -18,18 +18,20 @@ import {
   CardContainer,
   BoxRadio,
   Box,
-  Button
+  Button,
+  Erro
 } from './styleMiniCourses';
 import { mini_courses } from '../../utils/mini-courses';
 
-let disabled = [];
-let selected = [];
+//let disabled = [];
+//let selected = [];
 
 export default function MiniCoursesC({ courses }) {
 
-  const [blocked, setBlocked] = useState({});
+  const [selected, setSelected] = useState([]);
+  const [erro, setErro] = useState({ erro2: false, erroTime: false });
 
-  function chosen(course) {
+  /*function chosen(course) {
     console.log(selected);
     if (selected.length === 0 || selectedVerfy(course) === false) {
       selected.push(course);
@@ -55,11 +57,10 @@ export default function MiniCoursesC({ courses }) {
     const course = mini_courses.find(course => course.id === id);
     chosen(course);
     if (selected.length === 2) {
-      /*
         console.log("clicou");
         console.log("Selected = ", selected);
         console.log("Disabled = ", disabled);
-      */
+
       for(let i = 0; i < mini_courses.length; i++){
         if((disabledVerfy(mini_courses[i]) === false) && (selectedVerfy(mini_courses[i]) === false)){
           disabled.push(mini_courses[i]);
@@ -118,12 +119,12 @@ export default function MiniCoursesC({ courses }) {
       }
     });
     //console.log("Ordenado = ",listObj);
-    /* 
+
       10:00 09:30 and 10:30
       09:30 10:00 and 09:00
 
       10:30 com 11:00
-    */
+
 
     a = parseInt(listObj[0].slice(0, 2));
     b = parseInt(listObj[0].slice(3));
@@ -169,6 +170,53 @@ export default function MiniCoursesC({ courses }) {
     }
     //console.log("Não houve conflito");
     return false;
+  }*/
+
+  function order(list) {
+    list.sort((a, b) => {
+      if (a.time < b.time) {
+        return -1;
+      } else {
+        return true;
+      }
+    })
+    return list;
+  }
+
+  console.log(selected);
+
+  async function handleSubmit1() {
+    setErro({ erro2: false, erroTime: false });
+    if (selected.length > 2 || selected.length < 2) {
+      setErro({ erro2: true });
+      return;
+    }
+    if(selected[0].time === '09:00'){
+      return;
+    }
+  }
+
+  function disabledVerfy(object) {
+    for (let i = 0; i < selected.length; i++) {
+      if (selected[i] === object) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function click(id) {
+    const curso = mini_courses.find(item => item.id === id);
+    let aux = [];
+    if(!(selected.length === 0)){
+      aux = order(selected);
+    }
+    if (disabledVerfy(curso)) {
+      aux.splice(aux.indexOf(curso));
+      setSelected(aux);
+    } else {
+      setSelected([...selected, curso]);
+    }
   }
 
   return (
@@ -194,7 +242,6 @@ export default function MiniCoursesC({ courses }) {
                       <RadioContainer>
                         <BoxRadio>
                           <Radio
-                            disabled={blocked[item.id]}
                             onClick={() => click(item.id)}
                             type='checkbox'
                           />
@@ -228,8 +275,7 @@ export default function MiniCoursesC({ courses }) {
                     <InfosContainer key={index}>
                       <RadioContainer>
                         <BoxRadio>
-                        <Radio
-                            disabled={blocked[item.id]}
+                          <Radio
                             onClick={() => click(item.id)}
                             type='checkbox'
                           />
@@ -246,7 +292,9 @@ export default function MiniCoursesC({ courses }) {
             </CardContainer>
           </Card>
         </Container>
-        <Button>Continuar</Button>
+        {erro.erro2 && (<Erro>Selecione no minimo 2 mini cursos</Erro>)}
+        {erro.erroTime && (<Erro>Horario inválido</Erro>)}
+        <Button onClick={() => handleSubmit1()}>Continuar</Button>
       </Box>
     </>
   )

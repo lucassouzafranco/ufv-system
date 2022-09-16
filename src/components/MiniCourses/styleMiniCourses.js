@@ -197,3 +197,10 @@ export const Button = styled.button`
   margin: 1em auto;
   margin-bottom: 0;
 `
+
+export const Erro = styled.span`
+  font-weight: 600;
+  font-size: 20pt;
+  //color: #ad1515;
+  color: #fff;
+`
