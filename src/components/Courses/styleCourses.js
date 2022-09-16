@@ -12,10 +12,16 @@ export const Main = styled.main`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  
+  @media (max-width: 414px) {
+    background: none;
+    height: 92vh;
+    flex-direction: column;
+  }
 `
 
 export const Box = styled.div`
-  width: 85%;
+  width: 88%;
   height: auto;
   background-color: #EFEFEF;
   border-radius: 15px;
@@ -24,6 +30,20 @@ export const Box = styled.div`
   align-items: center;
   flex-wrap: wrap;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  
+  @media (max-width: 414px) {
+    padding: 0.2em;
+    height: auto;
+    width: 70%;
+    opacity: 0.93;
+  }
+
+  @media (min-width: 768px) {
+    padding: 0.2em;
+    height: auto;
+    width: 88%;
+    opacity: 0.93;
+  }
 `
 
 export const Button = styled.button`
@@ -45,14 +65,17 @@ export const Button = styled.button`
   }
 `
 
-
 export const Fundo = styled.div`
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.4);
   border-radius: 15px;
   width: inherit;
   height: inherit;
   position: absolute;
   z-index: 2;
+
+  @media (max-width: 414px) {
+    
+  }
 `
 
 export const Card = styled.div`
@@ -69,6 +92,20 @@ export const Card = styled.div`
   border-radius: 10px;
   transition: 0.2s;
   box-shadow: 0 0 0 4px #682A2C;
+
+  @media (max-width: 414px) {
+    height: 80px;
+    width: 100px;
+    border: 52px solid ${props => props.active ? '#682A2C' : 'none'};
+    margin: 0.5em;
+    box-shadow: 0 0 0 0px #682A2C;
+  }
+
+  @media (min-width: 768px) {
+    height: 80px;
+    width: 100px;
+    border: 50px solid ${props => props.active ? '#682A2C' : 'none'};
+  }
 `
 
 export const Img = styled.img`
@@ -77,6 +114,10 @@ export const Img = styled.img`
   border-radius: 15px;
   z-index: 1;
   position: absolute;
+
+  @media (max-width: 414px) {
+    
+  }
 `
 
 export const Title = styled.h1`
@@ -84,5 +125,14 @@ export const Title = styled.h1`
   font-weight: 800;
   font-size: 13pt;
   z-index: 2;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  
+  @media (max-width: 414px) {
+    font-size: 9pt;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 9pt;
+  }
 
 `

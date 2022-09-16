@@ -54,6 +54,12 @@ export const Logo = styled.img`
     width: 100px;
     margin-top: 2%;
   }
+
+  @media(max-width: 375px) {
+    width: 50px;
+    height: 60px;
+    margin-top: 2%;
+  }
 `
 
 export const Main = styled.main`
