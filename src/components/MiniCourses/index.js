@@ -173,6 +173,7 @@ export default function MiniCoursesC({ courses }) {
   }*/
 
   function order(list) {
+    console.log("Ordenou");
     list.sort((a, b) => {
       if (a.time < b.time) {
         return -1;
@@ -191,9 +192,39 @@ export default function MiniCoursesC({ courses }) {
       setErro({ erro2: true });
       return;
     }
-    if(selected[0].time === '09:00'){
+    if (selected[0].time === '09:00') {
+      if (selected[1].time === '10:00' || selected[1].time === '10:30' || selected[1].time === '11:00' || selected[1].time === '11:30') {
+        setErro({ erroTime: true });
+        return;
+      }
+    } else if (selected[0].time === '09:30') {
+      if (selected[1].time === '10:30' || selected[1].time === '11:00' || selected[1].time === '11:30') {
+        setErro({ erroTime: true });
+        return;
+      }
+    } else if (selected[0].time === '10:00') {
+      if (selected[1].time === '09:30' || selected[1].time === '09:00' || selected[1].time === '11:00' || selected[1].time === '11:30') {
+        setErro({ erroTime: true });
+        return;
+      }
       return;
+    } else if (selected[0].time === '10:30') {
+      if (selected[1].time === '11:00' || selected[1].time === '11:30' || selected[1].time === '09:30' || selected[1].time === '10:00' || selected[1].time === '09:00') {
+        setErro({ erroTime: true });
+        return;
+      }
+    } else if (selected[0].time === '11:00') {
+      if (selected[1].time === '09:00' || selected[1].time === '09:30' || selected[1].time === '10:00' || selected[1].time === '10:30') {
+        setErro({ erroTime: true });
+        return;
+      }
+    } else if (selected[0].time === '11:30') {
+      if (selected[1].time === '09:00' || selected[1].time === '09:30' || selected[1].time === '10:00' || selected[1].time === '10:30') {
+        setErro({ erroTime: true });
+        return;
+      }
     }
+    console.log("Passou");
   }
 
   function disabledVerfy(object) {
@@ -207,13 +238,8 @@ export default function MiniCoursesC({ courses }) {
 
   function click(id) {
     const curso = mini_courses.find(item => item.id === id);
-    let aux = [];
-    if(!(selected.length === 0)){
-      aux = order(selected);
-    }
     if (disabledVerfy(curso)) {
-      aux.splice(aux.indexOf(curso));
-      setSelected(aux);
+      setSelected(selected.filter(item => item.id !== curso.id))
     } else {
       setSelected([...selected, curso]);
     }
