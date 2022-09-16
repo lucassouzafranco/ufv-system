@@ -17,7 +17,7 @@ export default function Login() {
       email: email.trim(),
       senha: password.trim()
     }
-    await axios.post('http://localhost:3001/auth', data)
+    await axios.post('http://200.17.76.41:3333/auth', data)
       .then(response => {
         const { token } = response.data;
         if(token){
