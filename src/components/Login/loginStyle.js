@@ -56,4 +56,5 @@ export const Button = styled.button`
   border-radius: 3px;
   text-transform: uppercase;
   font-weight: 500;
+  cursor: pointer;
 `
