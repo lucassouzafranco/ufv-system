@@ -60,9 +60,11 @@ export default function DashBoardC() {
   const [dpSelected, setDpSelected] = useState('Escolha um curso');
   const [loading, setLoading] = useState(true);
   const [loadingC, setLoadingC] = useState(true);
+  const [loadingIns, setLoadingIns] = useState(true);
   const [countMini, setCountMini] = useState(0);
   const [countInsc, setCountInsc] = useState(0);
   const [miniC, setMiniC] = useState(null);
+  const [insc, setInsc] = useState(null);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -104,14 +106,28 @@ export default function DashBoardC() {
   }, [pathname]);
 
   useEffect(() => {
+    async function getInscricoes() {
+      if (pathname === '/admin/painel') {
+        await axios.get('http://localhost:3001/inscricao/all')
+          .then(response => {
+            setInsc(response.data);
+          })
+          .catch(error => console.log(error))
+          .finally(() => setLoadingIns(false));
+      }
+    }
+    getInscricoes();
+  }, [pathname]);
+
+  useEffect(() => {
     async function getMini() {
       if (pathname === '/admin/painel') {
-        await axios.get('http://localhost:3001/mini/all') 
+        await axios.get('http://localhost:3001/mini/all')
           .then(response => {
             setMiniC(response.data);
           })
-            .catch(error => console.log(error))
-              .finally(() => setLoadingC(false));
+          .catch(error => console.log(error))
+          .finally(() => setLoadingC(false));
       }
     }
     getMini();
@@ -172,7 +188,7 @@ export default function DashBoardC() {
                 <MiniCoursesMenuItem>Vagas</MiniCoursesMenuItem>
               </MiniCoursesMenu>
               <ItemsContainerMini>
-                {loadingC ? "Carregando..." : 
+                {loadingC ? "Carregando..." :
                   <>
                     {miniC.map(item => (
                       <>
@@ -198,16 +214,18 @@ export default function DashBoardC() {
                 <InscriptionMenuItem>Data</InscriptionMenuItem>
               </InscriptionMenu>
               <ItemsContainer>
-                {inscrisoes.map(item => (
+                {loadingIns ? "Carregando" : 
                   <>
-                    <InscriptionItem>{item.nome}</InscriptionItem>
-                    <InscriptionItem>{item.curso}</InscriptionItem>
-                    <InscriptionItem>{item.mini_curso}</InscriptionItem>
-                    <InscriptionItem>{item.escola}</InscriptionItem>
-                    <InscriptionItem>{item.cidade}</InscriptionItem>
-                    <InscriptionItem>{item.data}</InscriptionItem>
+                    {insc.map(item =>(
+                      <>
+                        <InscriptionItem>{item.nome}</InscriptionItem>
+                        <InscriptionItem>{item.escola}</InscriptionItem>
+                        <InscriptionItem>{item.cidade}</InscriptionItem>
+                        <InscriptionItem>{item.create_at}</InscriptionItem>
+                      </>
+                    ))}
                   </>
-                ))}
+                }
               </ItemsContainer>
             </InscriptionCard>
           </InscriptionContainer>
