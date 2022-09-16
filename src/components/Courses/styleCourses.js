@@ -44,6 +44,13 @@ export const Box = styled.div`
     width: 88%;
     opacity: 0.93;
   }
+
+  @media (min-width: 900px) {
+    padding: 0.2em;s
+    height: auto;
+    width: 58%;
+    opacity: 0.93;
+  }
 `
 
 export const Button = styled.button`
