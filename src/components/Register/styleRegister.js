@@ -6,17 +6,27 @@ export const Layout = styled.div`
   align-items: center;
   width: 100%;
   height: 100vh;
+
+  @media(max-width: 767px) {
+    flex-direction: column;
+  }
 `
 
 export const Box = styled.div`
-  width: 40%;
+  width: 30%;
   height: 100%;
   background-color: #682A2C;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  text-align: center;
+
+  @media(max-width: 767px) {
+    flex-direction: column;
+    width: 100%;
+    height: 10%;
+    background-color: #3A92CE;
+  }
 `
 
 export const Title = styled.div`
@@ -24,18 +34,26 @@ export const Title = styled.div`
     width: 60%;
     height: 22%;
     color: white;
-    margin-top: -20%;
-    margin-left: 11%;
-    font-size: 35pt;
+    margin-top: -12%;
+    margin-left: 21%;
     font-family: 'Pacifico', cursive;
-
+    font-size: 28pt;
   }
-  `
+
+  @media(max-width: 767px) {
+    display: none;
+  }
+`
 
 export const Logo = styled.img`
-  margin-top: 5%;
-  width: 60%;
-  height: 24%;
+  width: auto;
+  min-width: 180px;
+  height: 78px;
+
+  @media(max-width: 767px) {
+    width: 100px;
+    margin-top: 2%;
+  }
 `
 
 export const Main = styled.main`
@@ -45,19 +63,15 @@ export const Main = styled.main`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  width: 60%;
+  width: 70%;
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+  flex-direction: column;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-`
 
-export const UFVLogo = styled.img`
-  position: absolute;
-  z-index: 1;
-  width: 100px;
-  height: 53px;
-  bottom: 2%;
-  left: 85%;
+  @media(max-width: 767px) {
+    width: 100%;
+  }
 `

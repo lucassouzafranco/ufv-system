@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 
 import LogoPNG from '../../assets/img/logodaamostra.png';
-import logoufv from '../../assets/img/ufv-logo.png';
 import Form from '../Form';
-import { Layout, Box, Title, Logo, Main, UFVLogo } from './styleRegister';
+import { Layout, Box, Title, Logo, Main } from './styleRegister';
+import Footer from '../Footer/footer';
 
 const Register = () => {
   return(
@@ -15,7 +15,7 @@ const Register = () => {
         </Box>
         <Main>
           <Form/>
-          <UFVLogo src={logoufv} alt='logo da UFV'/>
+          <Footer />
         </Main>
       </Layout>
     </Fragment>
