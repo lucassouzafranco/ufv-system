@@ -26,6 +26,10 @@ export const Card = styled.div`
   flex-direction: column;
   position: relative;
   z-index: 0;
+
+  @media (max-width: 414px) {
+    width: 45vw;
+  }
 `
 
 export const CardContainer = styled.div`
@@ -87,6 +91,10 @@ export const Item = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 414px) {
+    font-size: 20%;
+  }
 `
 
 export const Form = styled.div`
@@ -105,6 +113,7 @@ export const BoxRadio = styled.div`
   background-color: #C7C7C7;
   height: 100%;
   width: 17%;
+  
 `
 
 export const RadioContainer = styled.div`
@@ -130,6 +139,10 @@ export const NameCourse = styled.span`
   font-weight: 300;
   font-size: 12pt;
   color: #111;
+
+  @media (max-width: 414px) {
+    font-size: 20%;
+  }
 `
 
 export const Spots = styled.span`
@@ -138,6 +151,10 @@ export const Spots = styled.span`
   font-weight: 300;
   font-size: 12pt;
   color: #111;
+
+  @media (max-width: 414px) {
+    font-size: 20%;
+  }
 `
 
 export const Time = styled.span`
@@ -146,6 +163,10 @@ export const Time = styled.span`
   font-weight: 300;
   font-size: 12pt;
   color: #111;
+
+  @media (max-width: 414px) {
+    font-size: 20%;
+  }
 `
 
 export const Room = styled.span`
@@ -154,6 +175,10 @@ export const Room = styled.span`
   font-weight: 300;
   font-size: 12pt;
   color: #111;
+
+  @media (max-width: 414px) {
+    font-size: 20%;
+  }
 `
 
 export const Button = styled.button`

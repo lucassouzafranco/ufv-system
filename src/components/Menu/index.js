@@ -20,7 +20,7 @@ export default function Menu({ user, variant }) {
       {variant === 'mini' && (
         <Nav>
           <Button onClick={() => navigate('/cursos')}>Voltar</Button>
-          <Title>Escolha o que deseja fazer</Title>
+          <Title>Escolha 2 minicursos</Title>
           <Avatar name={user.name} />
         </Nav>
       )}
