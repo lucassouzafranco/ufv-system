@@ -36,13 +36,16 @@ import {
   Form,
   FormTitle,
   Input,
-  ButtonForm
+  ButtonForm,
+  InputContainer
 }
   from './dashboardStyle';
 import { AiOutlineLogout } from 'react-icons/ai';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { inscrisoes, mini_cursos } from '../../utils/dashboardtest';
-import { UseNvigate } from "react-router-dom";
+import Dropdown from "../Dropdown";
+import axios from 'axios';
+import { parseCookies } from 'nookies';
 
 export default function DashBoardC() {
 
@@ -50,16 +53,69 @@ export default function DashBoardC() {
   const navigate = useNavigate();
 
   const [name, setName] = useState('');
-  const [course, setCourse] = useState('');
   const [room, setRoom] = useState('');
   const [spots, setSpots] = useState('');
   const [time, setTime] = useState('');
   const [responsible, setResponsible] = useState('');
+  const [dpSelected, setDpSelected] = useState('Escolha um curso');
+  const [loading, setLoading] = useState(true);
+  const [loadingC, setLoadingC] = useState(true);
+  const [countMini, setCountMini] = useState(0);
+  const [countInsc, setCountInsc] = useState(0);
+  const [miniC, setMiniC] = useState(null);
 
   async function handleSubmit(event) {
     event.preventDefault();
-    navigate('/admin/painel');
+    const { react_auth_token } = parseCookies();
+    const data = {
+      nome: name.trim(),
+      sala: room.trim(),
+      curso: dpSelected,
+      vagas: parseInt(spots),
+      horario: time.trim()
+    }
+
+    await axios.post('http://localhost:3001/mini/create', data, {
+      headers: {
+        'Authorization': `Basic ${react_auth_token}`
+      }
+    })
+      .then(response => console.log(response))
+      .catch(error => console.log(error));
+
+    //navigate('/admin/painel');
   }
+
+  useEffect(() => {
+    async function getDados() {
+      if (pathname === '/admin/painel') {
+        await axios.get('http://localhost:3001/mini/dados')
+          .then(response => {
+            const { mini_cursos } = response.data;
+            const { inscrisoes } = response.data;
+            setCountInsc(inscrisoes);
+            setCountMini(mini_cursos);
+          })
+          .catch(error => console.log(error))
+          .finally(() => setLoading(false));
+      }
+    }
+    getDados();
+  }, [pathname]);
+
+  useEffect(() => {
+    async function getMini() {
+      if (pathname === '/admin/painel') {
+        await axios.get('http://localhost:3001/mini/all') 
+          .then(response => {
+            setMiniC(response.data);
+          })
+            .catch(error => console.log(error))
+              .finally(() => setLoadingC(false));
+      }
+    }
+    getMini();
+  }, [])
 
   return (
     <>
@@ -92,7 +148,9 @@ export default function DashBoardC() {
           <CardContainer>
             <Card>
               <MiniCoursesCardTitle>Mini Cursos</MiniCoursesCardTitle>
-              <MiniCoursesCardCount>0</MiniCoursesCardCount>
+              <MiniCoursesCardCount>
+                {loading ? "Carregando" : countMini}
+              </MiniCoursesCardCount>
             </Card>
             <Card>
               <CoursesCardTitle>Cursos</CoursesCardTitle>
@@ -100,7 +158,9 @@ export default function DashBoardC() {
             </Card>
             <Card>
               <InscriptionCardTitle>Inscrições</InscriptionCardTitle>
-              <InscriptionCardCount>0</InscriptionCardCount>
+              <InscriptionCardCount>
+                {loading ? "Carregando" : countInsc}
+              </InscriptionCardCount>
             </Card>
           </CardContainer>
           <MiniCoursesTitle>Mini cursos</MiniCoursesTitle>
@@ -112,13 +172,17 @@ export default function DashBoardC() {
                 <MiniCoursesMenuItem>Vagas</MiniCoursesMenuItem>
               </MiniCoursesMenu>
               <ItemsContainerMini>
-                {mini_cursos.map(item => (
+                {loadingC ? "Carregando..." : 
                   <>
-                    <MiniCoursesItem>{item.mini_curso}</MiniCoursesItem>
-                    <MiniCoursesItem>{item.sala}</MiniCoursesItem>
-                    <MiniCoursesItem>{item.vagas}</MiniCoursesItem>
+                    {miniC.map(item => (
+                      <>
+                        <MiniCoursesItem>{item.nome}</MiniCoursesItem>
+                        <MiniCoursesItem>{item.sala}</MiniCoursesItem>
+                        <MiniCoursesItem>{item.vagas}</MiniCoursesItem>
+                      </>
+                    ))}
                   </>
-                ))}
+                }
               </ItemsContainerMini>
             </MiniCoursesCard>
           </MiniCoursesContainer>
@@ -160,12 +224,9 @@ export default function DashBoardC() {
                   placeholder="Nome/Título"
                   required
                 />
-                <Input type='text'
-                  onChange={event => setCourse(event.target.value)}
-                  value={course}
-                  placeholder="Curso"
-                  required
-                />
+                <InputContainer>
+                  <Dropdown variant='dashboard' selected={dpSelected} setSelected={setDpSelected} />
+                </InputContainer>
                 <Input type='text'
                   onChange={event => setRoom(event.target.value)}
                   value={room}

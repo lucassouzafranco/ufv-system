@@ -305,3 +305,14 @@ export const ButtonForm = styled.button`
   font-size: small;
   margin: 1em auto;
 `
+
+export const InputContainer = styled.div`
+  background-color: #ECF0F1;
+  width: 40%;
+  height: 35px;
+  border-radius: 12px;
+  margin: 0.5em 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
