@@ -77,7 +77,7 @@ export default function DashBoardC() {
       horario: time.trim()
     }
 
-    await axios.post('http://localhost:3001/mini/create', data, {
+    await axios.post('http://200.17.76.41:3333/mini/create', data, {
       headers: {
         'Authorization': `Basic ${react_auth_token}`
       }
@@ -91,7 +91,7 @@ export default function DashBoardC() {
   useEffect(() => {
     async function getDados() {
       if (pathname === '/admin/painel') {
-        await axios.get('http://localhost:3001/mini/dados')
+        await axios.get('http://200.17.76.41:3333/mini/dados')
           .then(response => {
             const { mini_cursos } = response.data;
             const { inscrisoes } = response.data;
@@ -108,7 +108,7 @@ export default function DashBoardC() {
   useEffect(() => {
     async function getInscricoes() {
       if (pathname === '/admin/painel') {
-        await axios.get('http://localhost:3001/inscricao/all')
+        await axios.get('http://200.17.76.41:3333/inscricao/all')
           .then(response => {
             setInsc(response.data);
           })
@@ -122,7 +122,7 @@ export default function DashBoardC() {
   useEffect(() => {
     async function getMini() {
       if (pathname === '/admin/painel') {
-        await axios.get('http://localhost:3001/mini/all')
+        await axios.get('http://200.17.76.41:3333/mini/all')
           .then(response => {
             setMiniC(response.data);
           })
