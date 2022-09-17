@@ -11,12 +11,12 @@ const courses = [
   },
   {
     id: 3,
-    title: "Ciência Biológicas",
+    title: "Biologicas",
     src: '/assets/img/bio.png'
   },
   {
     id: 4,
-    title: "Ciências Contábeis",
+    title: "Contábeis",
     src: '/assets/img/conta.png'
   },
   {
@@ -41,7 +41,7 @@ const courses = [
   },
   {
     id: 9,
-    title: "Química",
+    title: "Quimica",
     src: '/assets/img/quimica.png'
   },
   {
