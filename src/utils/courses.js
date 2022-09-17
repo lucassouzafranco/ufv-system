@@ -11,7 +11,7 @@ const courses = [
   },
   {
     id: 3,
-    title: "Biologicas",
+    title: "Biologia",
     src: '/assets/img/bio.png'
   },
   {

@@ -32,6 +32,7 @@ export default function MiniCoursesC({ courses }) {
   const [selected, setSelected] = useState([]);
   const [erro, setErro] = useState({ erro2: false, erroTime: false });
   const [cursosDB, setCursosDB] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   /*function chosen(course) {
     console.log(selected);
@@ -185,6 +186,7 @@ export default function MiniCoursesC({ courses }) {
           .catch(error => console.log(error))
       })
     }
+    setLoading(false);
     get();
   }, [])
 
@@ -266,7 +268,10 @@ export default function MiniCoursesC({ courses }) {
                 <Item>Sala</Item>
               </Nav>
               <Form>
-                {mini_courses.map((item, index) => (
+                {loading ? "Carregando..." 
+                : 
+                <>
+                {cursosDB.map((item, index) => (
                   <>
                     <InfosContainer key={index}>
                       <RadioContainer>
@@ -276,14 +281,16 @@ export default function MiniCoursesC({ courses }) {
                             type='checkbox'
                           />
                         </BoxRadio>
-                        <NameCourse>{item.name}</NameCourse>
+                        <NameCourse>{item.nome}</NameCourse>
                       </RadioContainer>
-                      <Spots>{item.spots}</Spots>
-                      <Time>{item.time}</Time>
+                      <Spots>{item.vagas}</Spots>
+                      <Time>{item}</Time>
                       <Room>{item.sala}</Room>
                     </InfosContainer>
                   </>
                 ))}
+                </>
+                }
               </Form>
             </CardContainer>
           </Card>
