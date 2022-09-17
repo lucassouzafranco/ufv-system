@@ -22,7 +22,6 @@ export const Title = styled.h1`
 
   @media (min-width: 700px) {
     font-weight: 400;
-    margin-top: 28%;
   }
 `
 
