@@ -22,6 +22,7 @@ import {
   Erro
 } from './styleMiniCourses';
 import { mini_courses } from '../../utils/mini-courses';
+import axios from 'axios';
 
 //let disabled = [];
 //let selected = [];
@@ -30,6 +31,7 @@ export default function MiniCoursesC({ courses }) {
 
   const [selected, setSelected] = useState([]);
   const [erro, setErro] = useState({ erro2: false, erroTime: false });
+  const [cursos, setCursos] = useState([]);
 
   /*function chosen(course) {
     console.log(selected);
@@ -172,19 +174,17 @@ export default function MiniCoursesC({ courses }) {
     return false;
   }*/
 
-  function order(list) {
-    console.log("Ordenou");
-    list.sort((a, b) => {
-      if (a.time < b.time) {
-        return -1;
-      } else {
-        return true;
-      }
-    })
-    return list;
-  }
-
-  console.log(selected);
+  useEffect(() => {
+    async function get() {
+      const cursos = JSON.parse(localStorage.getItem("@COURSES_DATA"))
+      cursos.forEach(async (item) => {
+        await axios.get(`http://200.17.76.41:3333/mini/get/${item.title}`)
+          .then((response) => console.log(response.data))
+          .catch(error => console.log(error))
+      })
+    }
+    get();
+  }, [])
 
   async function handleSubmit1() {
     setErro({ erro2: false, erroTime: false });
