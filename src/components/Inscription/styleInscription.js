@@ -14,11 +14,11 @@ export const Content = styled.main`
 export const Card = styled.div`
   background-color: #682A2C;
   width: 610px;
-  height: 444px;
+  height: 344px;
   border-radius: 15px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   display: flex;
-  align-items: center;
+  padding-top: 1%;
   justify-content: center;
 `
 
@@ -27,8 +27,38 @@ export const ContentCard = styled.div`
   padding: 1em;
 `
 
-export const Confirm = styled.span`
-  color: #fff;
-  font-size: 23pt;
-  font-weight: 600;
+export const MessageTitle = styled.h2`
+color: #fff;
+font-size: large;
+font-weight: 600;
+margin-bottom: 7%;
+`
+
+export const Information = styled.div`
+  display: flex;
+  justify-content: space-around;
+  padding: 2%;
+  `
+  
+export const MiniCourseName = styled.span`
+  color: white;
+  font-weight: 500;
+  padding-bottom: 
+`
+
+export const Time = styled.span`
+  color: white;
+  font-weight: 300;
+`
+
+export const Place = styled.span`
+  color: white;
+  font-weight: 300;
+`
+
+export const WhiteStrip = styled.span`
+  display: flex;
+  positivion: absolute;
+  width: 99%;
+  border-bottom: 1px solid white;
 `
