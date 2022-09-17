@@ -31,7 +31,7 @@ export default function MiniCoursesC({ courses }) {
 
   const [selected, setSelected] = useState([]);
   const [erro, setErro] = useState({ erro2: false, erroTime: false });
-  const [cursosDB, setCursosDB] = useState(null);
+  const [cursosDB, setCursosDB] = useState([]);
 
   /*function chosen(course) {
     console.log(selected);
