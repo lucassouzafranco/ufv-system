@@ -31,7 +31,7 @@ export default function MiniCoursesC({ courses }) {
 
   const [selected, setSelected] = useState([]);
   const [erro, setErro] = useState({ erro2: false, erroTime: false });
-  const [cursos, setCursos] = useState(null);
+  const [cursosDB, setCursosDB] = useState(null);
 
   /*function chosen(course) {
     console.log(selected);
@@ -180,7 +180,7 @@ export default function MiniCoursesC({ courses }) {
       cursos.forEach(async (item) => {
         await axios.get(`http://200.17.76.41:3333/mini/get/${item.title}`)
           .then((response) => {
-            setCursos([...cursos, response.data])
+            setCursosDB([...cursosDB, response.data])
           })
           .catch(error => console.log(error))
       })
@@ -188,7 +188,7 @@ export default function MiniCoursesC({ courses }) {
     get();
   }, [])
 
-  console.log(cursos);
+  console.log(cursosDB);
 
   async function handleSubmit1() {
     setErro({ erro2: false, erroTime: false });
