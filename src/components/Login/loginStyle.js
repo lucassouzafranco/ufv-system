@@ -18,7 +18,12 @@ export const Container = styled.div`
 `
 
 export const Title = styled.h1`
-  font-weight: 300;
+  font-weight: 400;
+
+  @media (min-width: 700px) {
+    font-weight: 400;
+    margin-top: 28%;
+  }
 `
 
 export const Form = styled.form`

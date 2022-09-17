@@ -28,27 +28,35 @@ export const Box = styled.div`
   padding: 1em;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   
-  @media (max-width: 414px) {
+  @media (min-width: 360px) {
     padding: 0.2em;
     height: auto;
-    width: 70%;
+    width: 69%;
     opacity: 0.93;
   }
 
   @media (min-width: 768px) {
     padding: 0.2em;
     height: auto;
-    width: 88%;
+    width: 87%;
+    opacity: 0.93;
+  }
+
+  @media (min-width: 820px) {
+    padding: 0.2em;s
+    height: auto;
+    width: 82%;
     opacity: 0.93;
   }
 
   @media (min-width: 900px) {
     padding: 0.2em;s
     height: auto;
-    width: 58%;
+    width: 50%;
     opacity: 0.93;
   }
 `

@@ -47,7 +47,7 @@ export const Title = styled.div`
 
 export const Logo = styled.img`
   width: auto;
-  min-width: 180px;
+  min-width: 100px;
   height: 78px;
 
   @media(max-width: 767px) {
@@ -55,10 +55,10 @@ export const Logo = styled.img`
     margin-top: 2%;
   }
 
-  @media(max-width: 375px) {
-    width: 50px;
-    height: 60px;
+  @media(max-width: 414px) {
+    height: 45px;
     margin-top: 2%;
+    margin-bottom: -2%;
   }
 `
 
@@ -69,6 +69,14 @@ export const Subtitle = styled.h3`
   font-style: italic;
   font-weight: 200;
   font-size: 10pt;
+  
+  @media(max-width: 414px) {
+    width: 300px;
+    text-align: center;
+    font-size: 7pt;
+    margin-right: 6%;
+
+  }
 `
 
 export const Main = styled.main`

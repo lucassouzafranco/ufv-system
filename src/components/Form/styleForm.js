@@ -5,6 +5,11 @@ export const Form = styled.form`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  @media (max-width: 414px) {
+    margin-bottom: 20%;
+
+  }
 `
 
 export const Title = styled.h1`
