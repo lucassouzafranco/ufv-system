@@ -186,7 +186,7 @@ export default function MiniCoursesC({ courses }) {
       })
     }
     get();
-  }, [])
+  }, [cursosDB])
 
   console.log(cursosDB);
 
