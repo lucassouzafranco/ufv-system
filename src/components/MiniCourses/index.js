@@ -188,6 +188,8 @@ export default function MiniCoursesC({ courses }) {
     get();
   }, [])
 
+  console.log(cursos);
+
   async function handleSubmit1() {
     setErro({ erro2: false, erroTime: false });
     if (selected.length > 2 || selected.length < 2) {
