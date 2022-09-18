@@ -14,6 +14,8 @@ async function CreateAdmin() {
 
 }
 
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
 async function CreateMini() {
   /*for (let i = 0; i < 22; i++) {
     const data = {
@@ -37,7 +39,23 @@ async function CreateMini() {
       sala: "LAE 233",
       curso: "Biologia",
       vagas: 20,
-      horarios: ['09:30', '10:30', '11:30'],
+      horario: '09:30',
+      professor: "Marlon Correa Pereira"
+    },
+    {
+      nome: "Observação dos microrganismos do ambiente",
+      sala: "LAE 233",
+      curso: "Biologia",
+      vagas: 20,
+      horario: '10:30',
+      professor: "Marlon Correa Pereira"
+    },
+    {
+      nome: "Observação dos microrganismos do ambiente",
+      sala: "LAE 233",
+      curso: "Biologia",
+      vagas: 20,
+      horario: '11:30',
       professor: "Marlon Correa Pereira"
     },
     {
@@ -45,7 +63,23 @@ async function CreateMini() {
       sala: "LAE 233",
       curso: "Agronomia",
       vagas: 25,
-      horarios: ['09:00', '10:00', '11:00'],
+      horario: '09:00',
+      professor: "Everaldo"
+    },
+    {
+      nome: "As plantas também ficam doentes!",
+      sala: "LAE 233",
+      curso: "Agronomia",
+      vagas: 25,
+      horario: '10:00',
+      professor: "Everaldo"
+    },
+    {
+      nome: "As plantas também ficam doentes!",
+      sala: "LAE 233",
+      curso: "Agronomia",
+      vagas: 25,
+      horario: '11:00',
       professor: "Everaldo"
     },
     {
@@ -53,7 +87,47 @@ async function CreateMini() {
       sala: "LAE 137",
       curso: "Biologia",
       vagas: 25,
-      horarios: ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30'],
+      horario: '09:00',
+      professor: "Moema"
+    },
+    {
+      nome: "Visita ao laboratório de Anatomia Humana",
+      sala: "LAE 137",
+      curso: "Biologia",
+      vagas: 25,
+      horario: '09:30',
+      professor: "Moema"
+    },
+    {
+      nome: "Visita ao laboratório de Anatomia Humana",
+      sala: "LAE 137",
+      curso: "Biologia",
+      vagas: 25,
+      horario: '10:00',
+      professor: "Moema"
+    },
+    {
+      nome: "Visita ao laboratório de Anatomia Humana",
+      sala: "LAE 137",
+      curso: "Biologia",
+      vagas: 25,
+      horario: '10:30',
+      professor: "Moema"
+    },
+    {
+      nome: "Visita ao laboratório de Anatomia Humana",
+      sala: "LAE 137",
+      curso: "Biologia",
+      vagas: 25,
+      horario: '11:00',
+      professor: "Moema"
+    },
+    {
+      nome: "Visita ao laboratório de Anatomia Humana",
+      sala: "LAE 137",
+      curso: "Biologia",
+      vagas: 25,
+      horario: '11:30',
       professor: "Moema"
     },
     {
@@ -61,7 +135,23 @@ async function CreateMini() {
       sala: "LAE 242",
       curso: "Biologia",
       vagas: 20,
-      horarios: ['09:00', '09:30', '10:00'],
+      horario: '09:00',
+      professor: "Silvana"
+    },
+    {
+      nome: "Quanta vida cabe em uma gota d'água?",
+      sala: "LAE 242",
+      curso: "Biologia",
+      vagas: 20,
+      horario: '09:30',
+      professor: "Silvana"
+    },
+    {
+      nome: "Quanta vida cabe em uma gota d'água?",
+      sala: "LAE 242",
+      curso: "Biologia",
+      vagas: 20,
+      horario: '10:00',
       professor: "Silvana"
     },
     {
@@ -69,7 +159,7 @@ async function CreateMini() {
       sala: "LAE 243",
       curso: "Biologia",
       vagas: 20,
-      horarios: ['10:30', '11:00', '11:30'],
+      horario: '11:30',
       professor: "Silvana"
     },
     {
@@ -77,7 +167,23 @@ async function CreateMini() {
       sala: "LAE 244",
       curso: "Biologia",
       vagas: 25,
-      horarios: ['09:00', '10:00', '11:00'],
+      horario: '09:00',
+      professor: "Rubens Pasa e Karine Frehner Kavalco"
+    },
+    {
+      nome: "Evolução Humana",
+      sala: "LAE 244",
+      curso: "Biologia",
+      vagas: 25,
+      horario: '10:00',
+      professor: "Rubens Pasa e Karine Frehner Kavalco"
+    },
+    {
+      nome: "Evolução Humana",
+      sala: "LAE 244",
+      curso: "Biologia",
+      vagas: 25,
+      horario: '11:00',
       professor: "Rubens Pasa e Karine Frehner Kavalco"
     },
     {
@@ -85,7 +191,23 @@ async function CreateMini() {
       sala: "LAE 244",
       curso: "Biologia",
       vagas: 25,
-      horarios: ['09:30', '10:30', '11:30'],
+      horario: '09:30',
+      professor: "Karine Frehner Kavalco e Rubens Pasa"
+    },
+    {
+      nome: "Do DNA ao Cromossomo",
+      sala: "LAE 244",
+      curso: "Biologia",
+      vagas: 25,
+      horario: '10:30',
+      professor: "Karine Frehner Kavalco e Rubens Pasa"
+    },
+    {
+      nome: "Do DNA ao Cromossomo",
+      sala: "LAE 244",
+      curso: "Biologia",
+      vagas: 25,
+      horario: '11:30',
       professor: "Karine Frehner Kavalco e Rubens Pasa"
     },
     {
@@ -93,7 +215,23 @@ async function CreateMini() {
       sala: "LAE 129",
       curso: "Nutrição",
       vagas: 20,
-      horarios: ['09:00', '09:30', '10:00'],
+      horario: '09:00',
+      professor: "Monise Viana Abranches"
+    },
+    {
+      nome: "Rótulo dos alimentos: o que ele tem as nos contar?",
+      sala: "LAE 129",
+      curso: "Nutrição",
+      vagas: 20,
+      horario: '09:30',
+      professor: "Monise Viana Abranches"
+    },
+    {
+      nome: "Rótulo dos alimentos: o que ele tem as nos contar?",
+      sala: "LAE 129",
+      curso: "Nutrição",
+      vagas: 20,
+      horario: '10:00',
       professor: "Monise Viana Abranches"
     },
     {
@@ -101,7 +239,23 @@ async function CreateMini() {
       sala: "LAE 129",
       curso: "Nutrição",
       vagas: 25,
-      horarios: ['10:30', '11:00', '11:30'],
+      horario: '10:30',
+      professor: "Bruna Cristina dos Santos Cruz"
+    },
+    {
+      nome: "Conhecendo outras formas de alimentação",
+      sala: "LAE 129",
+      curso: "Nutrição",
+      vagas: 25,
+      horario: '11:00',
+      professor: "Bruna Cristina dos Santos Cruz"
+    },
+    {
+      nome: "Conhecendo outras formas de alimentação",
+      sala: "LAE 129",
+      curso: "Nutrição",
+      vagas: 25,
+      horario: '11:30',
       professor: "Bruna Cristina dos Santos Cruz"
     },
     {
@@ -109,7 +263,23 @@ async function CreateMini() {
       sala: "LAE 251",
       curso: "Nutrição",
       vagas: 25,
-      horarios: ['09:00', '10:00', '11:00'],
+      horario: '09:00',
+      professor: "Karine Gomes"
+    },
+    {
+      nome: "Como o nutricionista cuida da saúde das pessoas e de populações?",
+      sala: "LAE 251",
+      curso: "Nutrição",
+      vagas: 25,
+      horario: '10:00',
+      professor: "Karine Gomes"
+    },
+    {
+      nome: "Como o nutricionista cuida da saúde das pessoas e de populações?",
+      sala: "LAE 251",
+      curso: "Nutrição",
+      vagas: 25,
+      horario: '11:00',
       professor: "Karine Gomes"
     },
     {
@@ -117,7 +287,15 @@ async function CreateMini() {
       sala: "PVA 231",
       curso: "Nutrição",
       vagas: 25,
-      horarios: ['10:30', '11:00'],
+      horario: '10:30',
+      professor: "Regiane Lopes de Sales"
+    },
+    {
+      nome: "Nutrição na prática clínica e esportiva",
+      sala: "PVA 231",
+      curso: "Nutrição",
+      vagas: 25,
+      horario: '11:00',
       professor: "Regiane Lopes de Sales"
     },
     {
@@ -125,7 +303,47 @@ async function CreateMini() {
       sala: "PVA 227",
       curso: "Sistemas de Informação",
       vagas: 20,
-      horarios: ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30'],
+      horario: '09:00',
+      professor: "Pedro Moiśes de Sousa"
+    },
+    {
+      nome: "Introdução à programação",
+      sala: "PVA 227",
+      curso: "Sistemas de Informação",
+      vagas: 20,
+      horario: '09:30',
+      professor: "Pedro Moiśes de Sousa"
+    },
+    {
+      nome: "Introdução à programação",
+      sala: "PVA 227",
+      curso: "Sistemas de Informação",
+      vagas: 20,
+      horario: '10:00',
+      professor: "Pedro Moiśes de Sousa"
+    },
+    {
+      nome: "Introdução à programação",
+      sala: "PVA 227",
+      curso: "Sistemas de Informação",
+      vagas: 20,
+      horario: '10:30',
+      professor: "Pedro Moiśes de Sousa"
+    },
+    {
+      nome: "Introdução à programação",
+      sala: "PVA 227",
+      curso: "Sistemas de Informação",
+      vagas: 20,
+      horario: '11:00',
+      professor: "Pedro Moiśes de Sousa"
+    },
+    {
+      nome: "Introdução à programação",
+      sala: "PVA 227",
+      curso: "Sistemas de Informação",
+      vagas: 20,
+      horario: '11:30',
       professor: "Pedro Moiśes de Sousa"
     },
     {
@@ -133,7 +351,47 @@ async function CreateMini() {
       sala: "LAE 241",
       curso: "Agronomia",
       vagas: 20,
-      horarios: ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30'],
+      horario: '09:00',
+      professor: "Ézio"
+    },
+    {
+      nome: "Conhecendo os insetos",
+      sala: "LAE 241",
+      curso: "Agronomia",
+      vagas: 20,
+      horario: '09:30',
+      professor: "Ézio"
+    },
+    {
+      nome: "Conhecendo os insetos",
+      sala: "LAE 241",
+      curso: "Agronomia",
+      vagas: 20,
+      horario: '10:00',
+      professor: "Ézio"
+    },
+    {
+      nome: "Conhecendo os insetos",
+      sala: "LAE 241",
+      curso: "Agronomia",
+      vagas: 20,
+      horario: '10:30',
+      professor: "Ézio"
+    },
+    {
+      nome: "Conhecendo os insetos",
+      sala: "LAE 241",
+      curso: "Agronomia",
+      vagas: 20,
+      horario: '11:00',
+      professor: "Ézio"
+    },
+    {
+      nome: "Conhecendo os insetos",
+      sala: "LAE 241",
+      curso: "Agronomia",
+      vagas: 20,
+      horario: '11:30',
       professor: "Ézio"
     },
     {
@@ -141,7 +399,47 @@ async function CreateMini() {
       sala: "Gramado",
       curso: "Agronomia",
       vagas: 30,
-      horarios: ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30'],
+      horario: '09:00',
+      professor: "Mariana e Agro Jr"
+    },
+    {
+      nome: "Exposição dos tratores e máquinas",
+      sala: "Gramado",
+      curso: "Agronomia",
+      vagas: 30,
+      horario: '09:30',
+      professor: "Mariana e Agro Jr"
+    },
+    {
+      nome: "Exposição dos tratores e máquinas",
+      sala: "Gramado",
+      curso: "Agronomia",
+      vagas: 30,
+      horario: '10:00',
+      professor: "Mariana e Agro Jr"
+    },
+    {
+      nome: "Exposição dos tratores e máquinas",
+      sala: "Gramado",
+      curso: "Agronomia",
+      vagas: 30,
+      horario: '10:30',
+      professor: "Mariana e Agro Jr"
+    },
+    {
+      nome: "Exposição dos tratores e máquinas",
+      sala: "Gramado",
+      curso: "Agronomia",
+      vagas: 30,
+      horario: '11:00',
+      professor: "Mariana e Agro Jr"
+    },
+    {
+      nome: "Exposição dos tratores e máquinas",
+      sala: "Gramado",
+      curso: "Agronomia",
+      vagas: 30,
+      horario: '11:30',
       professor: "Mariana e Agro Jr"
     },
     {
@@ -149,7 +447,47 @@ async function CreateMini() {
       sala: "LAE 234",
       curso: "Ciências e Tecnologia de Alimentos",
       vagas: 12,
-      horarios: ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30'],
+      horario: '09:00',
+      professor: "Allan Robledo Fialho e Morais"
+    },
+    {
+      nome: "Desenvolvimento de embalagens ativas",
+      sala: "LAE 234",
+      curso: "Ciências e Tecnologia de Alimentos",
+      vagas: 12,
+      horario: '09:30',
+      professor: "Allan Robledo Fialho e Morais"
+    },
+    {
+      nome: "Desenvolvimento de embalagens ativas",
+      sala: "LAE 234",
+      curso: "Ciências e Tecnologia de Alimentos",
+      vagas: 12,
+      horario: '10:00',
+      professor: "Allan Robledo Fialho e Morais"
+    },
+    {
+      nome: "Desenvolvimento de embalagens ativas",
+      sala: "LAE 234",
+      curso: "Ciências e Tecnologia de Alimentos",
+      vagas: 12,
+      horario: '10:30',
+      professor: "Allan Robledo Fialho e Morais"
+    },
+    {
+      nome: "Desenvolvimento de embalagens ativas",
+      sala: "LAE 234",
+      curso: "Ciências e Tecnologia de Alimentos",
+      vagas: 12,
+      horario: '11:00',
+      professor: "Allan Robledo Fialho e Morais"
+    },
+    {
+      nome: "Desenvolvimento de embalagens ativas",
+      sala: "LAE 234",
+      curso: "Ciências e Tecnologia de Alimentos",
+      vagas: 12,
+      horario: '11:30',
       professor: "Allan Robledo Fialho e Morais"
     },
     {
@@ -157,7 +495,47 @@ async function CreateMini() {
       sala: "LAE 132",
       curso: "Ciências e Tecnologia de Alimentos",
       vagas: 12,
-      horarios: ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30'],
+      horario: '09:00',
+      professor: "Fabrícia Queiroz Mendes"
+    },
+    {
+      nome: "Análise Sensorial",
+      sala: "LAE 132",
+      curso: "Ciências e Tecnologia de Alimentos",
+      vagas: 12,
+      horario: '09:30',
+      professor: "Fabrícia Queiroz Mendes"
+    },
+    {
+      nome: "Análise Sensorial",
+      sala: "LAE 132",
+      curso: "Ciências e Tecnologia de Alimentos",
+      vagas: 12,
+      horario: '10:00',
+      professor: "Fabrícia Queiroz Mendes"
+    },
+    {
+      nome: "Análise Sensorial",
+      sala: "LAE 132",
+      curso: "Ciências e Tecnologia de Alimentos",
+      vagas: 12,
+      horario: '10:30',
+      professor: "Fabrícia Queiroz Mendes"
+    },
+    {
+      nome: "Análise Sensorial",
+      sala: "LAE 132",
+      curso: "Ciências e Tecnologia de Alimentos",
+      vagas: 12,
+      horario: '11:00',
+      professor: "Fabrícia Queiroz Mendes"
+    },
+    {
+      nome: "Análise Sensorial",
+      sala: "LAE 132",
+      curso: "Ciências e Tecnologia de Alimentos",
+      vagas: 12,
+      horario: '11:30',
       professor: "Fabrícia Queiroz Mendes"
     },
     {
@@ -165,7 +543,47 @@ async function CreateMini() {
       sala: "LAE 145",
       curso: "Engenharia Civil",
       vagas: 20,
-      horarios: ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30'],
+      horario: '09:00',
+      professor: "Frederico Carlos Martins de Menezes Filho"
+    },
+    {
+      nome: "Laboratório de Hidráulica",
+      sala: "LAE 145",
+      curso: "Engenharia Civil",
+      vagas: 20,
+      horario: '09:30',
+      professor: "Frederico Carlos Martins de Menezes Filho"
+    },
+    {
+      nome: "Laboratório de Hidráulica",
+      sala: "LAE 145",
+      curso: "Engenharia Civil",
+      vagas: 20,
+      horario: '10:00',
+      professor: "Frederico Carlos Martins de Menezes Filho"
+    },
+    {
+      nome: "Laboratório de Hidráulica",
+      sala: "LAE 145",
+      curso: "Engenharia Civil",
+      vagas: 20,
+      horario: '10:30',
+      professor: "Frederico Carlos Martins de Menezes Filho"
+    },
+    {
+      nome: "Laboratório de Hidráulica",
+      sala: "LAE 145",
+      curso: "Engenharia Civil",
+      vagas: 20,
+      horario: '11:00',
+      professor: "Frederico Carlos Martins de Menezes Filho"
+    },
+    {
+      nome: "Laboratório de Hidráulica",
+      sala: "LAE 145",
+      curso: "Engenharia Civil",
+      vagas: 20,
+      horario: '11:30',
       professor: "Frederico Carlos Martins de Menezes Filho"
     },
     {
@@ -173,7 +591,47 @@ async function CreateMini() {
       sala: "LAE 151",
       curso: "Engenharia Civil",
       vagas: 20,
-      horarios: ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30'],
+      horario: '09:00',
+      professor: "Markssuel Teixeira Marvila"
+    },
+    {
+      nome: "Laboratório de Materiais de Construção Civil",
+      sala: "LAE 151",
+      curso: "Engenharia Civil",
+      vagas: 20,
+      horario: '09:30',
+      professor: "Markssuel Teixeira Marvila"
+    },
+    {
+      nome: "Laboratório de Materiais de Construção Civil",
+      sala: "LAE 151",
+      curso: "Engenharia Civil",
+      vagas: 20,
+      horario: '10:00',
+      professor: "Markssuel Teixeira Marvila"
+    },
+    {
+      nome: "Laboratório de Materiais de Construção Civil",
+      sala: "LAE 151",
+      curso: "Engenharia Civil",
+      vagas: 20,
+      horario: '10:30',
+      professor: "Markssuel Teixeira Marvila"
+    },
+    {
+      nome: "Laboratório de Materiais de Construção Civil",
+      sala: "LAE 151",
+      curso: "Engenharia Civil",
+      vagas: 20,
+      horario: '11:00',
+      professor: "Markssuel Teixeira Marvila"
+    },
+    {
+      nome: "Laboratório de Materiais de Construção Civil",
+      sala: "LAE 151",
+      curso: "Engenharia Civil",
+      vagas: 20,
+      horario: '11:30',
       professor: "Markssuel Teixeira Marvila"
     },
     {
@@ -181,7 +639,47 @@ async function CreateMini() {
       sala: "LAE 144",
       curso: "Engenharia Civil",
       vagas: 15,
-      horarios: ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30'],
+      horario: '09:00',
+      professor: "Lucas Martins Guimarães"
+    },
+    {
+      nome: "Laboratório de Geotecnia e Asfalto",
+      sala: "LAE 144",
+      curso: "Engenharia Civil",
+      vagas: 15,
+      horario: '09:30',
+      professor: "Lucas Martins Guimarães"
+    },
+    {
+      nome: "Laboratório de Geotecnia e Asfalto",
+      sala: "LAE 144",
+      curso: "Engenharia Civil",
+      vagas: 15,
+      horario: '10:00',
+      professor: "Lucas Martins Guimarães"
+    },
+    {
+      nome: "Laboratório de Geotecnia e Asfalto",
+      sala: "LAE 144",
+      curso: "Engenharia Civil",
+      vagas: 15,
+      horario: '10:30',
+      professor: "Lucas Martins Guimarães"
+    },
+    {
+      nome: "Laboratório de Geotecnia e Asfalto",
+      sala: "LAE 144",
+      curso: "Engenharia Civil",
+      vagas: 15,
+      horario: '11:00',
+      professor: "Lucas Martins Guimarães"
+    },
+    {
+      nome: "Laboratório de Geotecnia e Asfalto",
+      sala: "LAE 144",
+      curso: "Engenharia Civil",
+      vagas: 15,
+      horario: '11:30',
       professor: "Lucas Martins Guimarães"
     },
     {
@@ -189,7 +687,47 @@ async function CreateMini() {
       sala: "LAE 248",
       curso: "Engenharia Civil",
       vagas: 20,
-      horarios: ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30'],
+      horario: '09:00',
+      professor: "Marcus Vinícius Sant Anna"
+    },
+    {
+      nome: "Laboratório de Modelagem em 3D",
+      sala: "LAE 248",
+      curso: "Engenharia Civil",
+      vagas: 20,
+      horario: '09:30',
+      professor: "Marcus Vinícius Sant Anna"
+    },
+    {
+      nome: "Laboratório de Modelagem em 3D",
+      sala: "LAE 248",
+      curso: "Engenharia Civil",
+      vagas: 20,
+      horario: '10:00',
+      professor: "Marcus Vinícius Sant Anna"
+    },
+    {
+      nome: "Laboratório de Modelagem em 3D",
+      sala: "LAE 248",
+      curso: "Engenharia Civil",
+      vagas: 20,
+      horario: '10:30',
+      professor: "Marcus Vinícius Sant Anna"
+    },
+    {
+      nome: "Laboratório de Modelagem em 3D",
+      sala: "LAE 248",
+      curso: "Engenharia Civil",
+      vagas: 20,
+      horario: '11:00',
+      professor: "Marcus Vinícius Sant Anna"
+    },
+    {
+      nome: "Laboratório de Modelagem em 3D",
+      sala: "LAE 248",
+      curso: "Engenharia Civil",
+      vagas: 20,
+      horario: '11:30',
       professor: "Marcus Vinícius Sant Anna"
     },
     {
@@ -197,7 +735,47 @@ async function CreateMini() {
       sala: "PVA 301",
       curso: "Engenharia de Produção",
       vagas: 20,
-      horarios: ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30'],
+      horario: '09:00',
+      professor: "Samuel"
+    },
+    {
+      nome: "Desenvolvimento de Produtos e Impressão 3D",
+      sala: "PVA 301",
+      curso: "Engenharia de Produção",
+      vagas: 20,
+      horario: '09:30',
+      professor: "Samuel"
+    },
+    {
+      nome: "Desenvolvimento de Produtos e Impressão 3D",
+      sala: "PVA 301",
+      curso: "Engenharia de Produção",
+      vagas: 20,
+      horario: '10:00',
+      professor: "Samuel"
+    },
+    {
+      nome: "Desenvolvimento de Produtos e Impressão 3D",
+      sala: "PVA 301",
+      curso: "Engenharia de Produção",
+      vagas: 20,
+      horario: '10:30',
+      professor: "Samuel"
+    },
+    {
+      nome: "Desenvolvimento de Produtos e Impressão 3D",
+      sala: "PVA 301",
+      curso: "Engenharia de Produção",
+      vagas: 20,
+      horario: '11:00',
+      professor: "Samuel"
+    },
+    {
+      nome: "Desenvolvimento de Produtos e Impressão 3D",
+      sala: "PVA 301",
+      curso: "Engenharia de Produção",
+      vagas: 20,
+      horario: '11:30',
       professor: "Samuel"
     },
     {
@@ -205,7 +783,87 @@ async function CreateMini() {
       sala: "PVA 233",
       curso: "Engenharia de Produção",
       vagas: 25,
-      horarios: ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30'],
+      horario: '09:00',
+      professor: "Thiago"
+    },
+    {
+      nome: "Oficina de Simulação Computacional e Inteligência Artificial",
+      sala: "PVA 233",
+      curso: "Engenharia de Produção",
+      vagas: 25,
+      horario: '09:30',
+      professor: "Thiago"
+    },
+    {
+      nome: "Oficina de Simulação Computacional e Inteligência Artificial",
+      sala: "PVA 233",
+      curso: "Engenharia de Produção",
+      vagas: 25,
+      horario: '10:00',
+      professor: "Thiago"
+    },
+    {
+      nome: "Oficina de Simulação Computacional e Inteligência Artificial",
+      sala: "PVA 233",
+      curso: "Engenharia de Produção",
+      vagas: 25,
+      horario: '10:30',
+      professor: "Thiago"
+    },
+    {
+      nome: "Oficina de Simulação Computacional e Inteligência Artificial",
+      sala: "PVA 233",
+      curso: "Engenharia de Produção",
+      vagas: 25,
+      horario: '11:00',
+      professor: "Thiago"
+    },
+    {
+      nome: "Oficina de Simulação Computacional e Inteligência Artificial",
+      sala: "PVA 233",
+      curso: "Engenharia de Produção",
+      vagas: 25,
+      horario: '09:00',
+      professor: "Thiago"
+    },
+    {
+      nome: "Oficina de Simulação Computacional e Inteligência Artificial",
+      sala: "PVA 233",
+      curso: "Engenharia de Produção",
+      vagas: 25,
+      horario: '09:30',
+      professor: "Thiago"
+    },
+    {
+      nome: "Oficina de Simulação Computacional e Inteligência Artificial",
+      sala: "PVA 233",
+      curso: "Engenharia de Produção",
+      vagas: 25,
+      horario: '10:00',
+      professor: "Thiago"
+    },
+    {
+      nome: "Oficina de Simulação Computacional e Inteligência Artificial",
+      sala: "PVA 233",
+      curso: "Engenharia de Produção",
+      vagas: 25,
+      horario: '10:30',
+      professor: "Thiago"
+    },
+    {
+      nome: "Oficina de Simulação Computacional e Inteligência Artificial",
+      sala: "PVA 233",
+      curso: "Engenharia de Produção",
+      vagas: 25,
+      horario: '11:00',
+      professor: "Thiago"
+    },
+    {
+      nome: "Oficina de Simulação Computacional e Inteligência Artificial",
+      sala: "PVA 233",
+      curso: "Engenharia de Produção",
+      vagas: 25,
+      horario: '11:30',
       professor: "Thiago"
     },
     {
@@ -213,15 +871,47 @@ async function CreateMini() {
       sala: "LAE 229",
       curso: "Quimica",
       vagas: 20,
-      horarios: ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30'],
+      horario: '09:00',
       professor: "Cassiano"
     },
     {
-      nome: "Experiências de Química 2",
-      sala: "LAE 231",
+      nome: "Experiências de Química",
+      sala: "LAE 229",
       curso: "Quimica",
       vagas: 20,
-      horarios: ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30'],
+      horario: '09:30',
+      professor: "Cassiano"
+    },
+    {
+      nome: "Experiências de Química",
+      sala: "LAE 229",
+      curso: "Quimica",
+      vagas: 20,
+      horario: '10:00',
+      professor: "Cassiano"
+    },
+    {
+      nome: "Experiências de Química",
+      sala: "LAE 229",
+      curso: "Quimica",
+      vagas: 20,
+      horario: '10:30',
+      professor: "Cassiano"
+    },
+    {
+      nome: "Experiências de Química",
+      sala: "LAE 229",
+      curso: "Quimica",
+      vagas: 20,
+      horario: '11:00',
+      professor: "Cassiano"
+    },
+    {
+      nome: "Experiências de Química",
+      sala: "LAE 229",
+      curso: "Quimica",
+      vagas: 20,
+      horario: '11:30',
       professor: "Cassiano"
     },
     {
@@ -229,7 +919,23 @@ async function CreateMini() {
       sala: "auditório LAE 136",
       curso: "Administração",
       vagas: 25,
-      horarios: ['09:00', '10:00', '11:00'],
+      horario: '09:00',
+      professor: "Patrícia Rosvadoski da Silva,Raquel Santos Soares Menezes, Rosália Rodrigues Alves, Rosiane Maria Lima Gonçalves"
+    },
+    {
+      nome: "Administração em jogo",
+      sala: "auditório LAE 136",
+      curso: "Administração",
+      vagas: 25,
+      horario: '10:00',
+      professor: "Patrícia Rosvadoski da Silva,Raquel Santos Soares Menezes, Rosália Rodrigues Alves, Rosiane Maria Lima Gonçalves"
+    },
+    {
+      nome: "Administração em jogo",
+      sala: "auditório LAE 136",
+      curso: "Administração",
+      vagas: 25,
+      horario: '11:00',
       professor: "Patrícia Rosvadoski da Silva,Raquel Santos Soares Menezes, Rosália Rodrigues Alves, Rosiane Maria Lima Gonçalves"
     },
     {
@@ -237,7 +943,23 @@ async function CreateMini() {
       sala: "auditório LAE 147",
       curso: "Contaveis",
       vagas: 30,
-      horarios: ['09:00', '10:00', '11:00'],
+      horario: '09:00',
+      professor: "Cleyde Cristina e Michelle Vieira"
+    },
+    {
+      nome: "Os diversos campos de atuação do contador",
+      sala: "auditório LAE 147",
+      curso: "Contaveis",
+      vagas: 30,
+      horario: '10:00',
+      professor: "Cleyde Cristina e Michelle Vieira"
+    },
+    {
+      nome: "Os diversos campos de atuação do contador",
+      sala: "auditório LAE 147",
+      curso: "Contaveis",
+      vagas: 30,
+      horario: '11:00',
       professor: "Cleyde Cristina e Michelle Vieira"
     }
   ]
@@ -247,14 +969,13 @@ async function CreateMini() {
       body: JSON.stringify(item),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlQHRlc3RlLmNvbSIsImlhdCI6MTY2MzM1OTI1MiwiZXhwIjoxNjYzNDQ1NjUyfQ.9vRWSbCPBuRvkEckDmVpP9r_fWRLBFVSpjp5nv9qLCI',
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlQHRlc3RlLmNvbSIsImlhdCI6MTY2MzUzNjcwMCwiZXhwIjoxNjYzNjIzMTAwfQ.qF6ZXde7wCp1znREz2nVTbEdFAnMZPMap-vi-S9SU8g',
       }
     })
       .then(response => response.json())
       .then(json => console.log(json))
       .catch(err => console.log(err))
-
-    setTimeout(() => { }, 3000);
+      await sleep(3000);
   })
 }
 
@@ -297,7 +1018,6 @@ async function CreateInscrisao() {
     .then(json => console.log(json))
     .catch(err => console.log(err))
 
-  setTimeout(() => { }, 3000);
 }
 
 //CreateInscrisao();

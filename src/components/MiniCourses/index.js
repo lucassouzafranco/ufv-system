@@ -31,8 +31,10 @@ export default function MiniCoursesC({ courses }) {
 
   const [selected, setSelected] = useState([]);
   const [erro, setErro] = useState({ erro2: false, erroTime: false });
-  const [cursosDB, setCursosDB] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [curso1, setCurso1] = useState([]);
+  const [curso2, setCurso2] = useState([]);
+  const [loading1, setLoading1] = useState(true);
+  const [loading2, setLoading2] = useState(true);
 
   /*function chosen(course) {
     console.log(selected);
@@ -177,20 +179,32 @@ export default function MiniCoursesC({ courses }) {
 
   useEffect(() => {
     async function get() {
-      const cursos = JSON.parse(localStorage.getItem("@COURSES_DATA"))
-      cursos.forEach(async (item) => {
-        await axios.get(`http://200.17.76.41:3333/mini/get/${item.title}`)
-          .then((response) => {
-            setCursosDB([...cursosDB, response.data])
-          })
-          .catch(error => console.log(error))
-      })
+      const cursos = await JSON.parse(localStorage.getItem("@COURSES_DATA"))
+      await axios.get(`http://200.17.76.41:3333/mini/get/${cursos[0].title}`)
+        .then((response) => {
+          setCurso1(response.data);
+        })
+        .catch(error => console.log(error))
+        .finally(() => setLoading1(false));
     }
-    setLoading(false);
+
     get();
   }, [])
 
-  console.log(cursosDB);
+  useEffect(() => {
+    async function get() {
+      const cursos = await JSON.parse(localStorage.getItem("@COURSES_DATA"))
+      await axios.get(`http://200.17.76.41:3333/mini/get/${cursos[0].title}`)
+        .then((response) => {
+          setCurso2(response.data);
+        })
+        .catch(error => console.log(error))
+        .finally(() => setLoading2(false));
+    }
+
+    get();
+  }, [])
+
 
   async function handleSubmit1() {
     setErro({ erro2: false, erroTime: false });
@@ -251,6 +265,7 @@ export default function MiniCoursesC({ courses }) {
     }
   }
 
+
   return (
     <>
       <Box>
@@ -262,34 +277,23 @@ export default function MiniCoursesC({ courses }) {
             </Title>
             <CardContainer>
               <Nav>
-                <Item>Tema</Item>
+                <Item>Horário</Item>
                 <Item>Vagas</Item>
                 <Item>Horário</Item>
                 <Item>Sala</Item>
+                <Item>Selecionar</Item>
               </Nav>
               <Form>
-                {loading ? "Carregando..." 
-                : 
-                <>
-                {cursosDB.map((item, index) => (
+                {loading1 ? "Carregando..." :
                   <>
-                    <InfosContainer key={index}>
-                      <RadioContainer>
-                        <BoxRadio>
-                          <Radio
-                            onClick={() => click(item.id)}
-                            type='checkbox'
-                          />
-                        </BoxRadio>
-                        <NameCourse>{item.nome}</NameCourse>
-                      </RadioContainer>
-                      <Spots>{item.vagas}</Spots>
-                      <Time>{item}</Time>
-                      <Room>{item.sala}</Room>
-                    </InfosContainer>
+                    {curso1.map(curso => (
+                      <>
+                        <InfosContainer>
+
+                        </InfosContainer>
+                      </>
+                    ))}
                   </>
-                ))}
-                </>
                 }
               </Form>
             </CardContainer>
@@ -307,24 +311,17 @@ export default function MiniCoursesC({ courses }) {
                 <Item>Sala</Item>
               </Nav>
               <Form>
-                {mini_courses.map((item, index) => (
+                {loading2 ? "Carregando..." :
                   <>
-                    <InfosContainer key={index}>
-                      <RadioContainer>
-                        <BoxRadio>
-                          <Radio
-                            onClick={() => click(item.id)}
-                            type='checkbox'
-                          />
-                        </BoxRadio>
-                        <NameCourse>{item.name}</NameCourse>
-                      </RadioContainer>
-                      <Spots>{item.spots}</Spots>
-                      <Time>{item.time}</Time>
-                      <Room>{item.sala}</Room>
-                    </InfosContainer>
+                    {curso2.map(curso => (
+                      <>
+                        <InfosContainer>
+
+                        </InfosContainer>
+                      </>
+                    ))}
                   </>
-                ))}
+                }
               </Form>
             </CardContainer>
           </Card>

@@ -79,7 +79,7 @@ export const Nav = styled.div`
   height: 30px;
   background-color: #682A2C;
   display: grid;
-  grid-template-columns: repeat(4, 25%);
+  grid-template-columns: repeat(5, calc(100% / 5));
   margin-top: 1em;
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
@@ -125,11 +125,14 @@ export const RadioContainer = styled.div`
 
 export const InfosContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 25%);
+  grid-template-columns: repeat(5, calc(100% / 5));
 `
 
 export const Radio = styled.input`
-
+  width: 10px;
+  height: 10px;
+  display: flex;
+  align-items: center;
 `
 
 export const NameCourse = styled.span`
@@ -139,6 +142,10 @@ export const NameCourse = styled.span`
   font-weight: 300;
   font-size: 12pt;
   color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 
   @media (max-width: 414px) {
     font-size: 20%;
@@ -167,6 +174,9 @@ export const Time = styled.span`
   @media (max-width: 414px) {
     font-size: 20%;
   }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 export const Room = styled.span`
@@ -175,6 +185,9 @@ export const Room = styled.span`
   font-weight: 300;
   font-size: 12pt;
   color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   @media (max-width: 414px) {
     font-size: 20%;
