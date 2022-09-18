@@ -16,7 +16,7 @@ const courses = [
   },
   {
     id: 4,
-    title: "Contábeis",
+    title: "Contaveis",
     src: '/assets/img/conta.png'
   },
   {
