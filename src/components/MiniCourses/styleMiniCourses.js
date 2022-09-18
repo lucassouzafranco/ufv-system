@@ -18,7 +18,7 @@ export const Container = styled.div`
 
 export const Card = styled.div`
   background-color: #D9D9D9;
-  width: 35vw;
+  width: 40vw;
   height: 90vh;
   margin-left: 2em;
   border-radius: 10px;
@@ -79,7 +79,7 @@ export const Nav = styled.div`
   height: 30px;
   background-color: #682A2C;
   display: grid;
-  grid-template-columns: repeat(5, calc(100% / 5));
+  grid-template-columns: repeat(4, calc(100% / 4));
   margin-top: 1em;
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
@@ -125,12 +125,10 @@ export const RadioContainer = styled.div`
 
 export const InfosContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, calc(100% / 5));
+  grid-template-columns: repeat(4, calc(100% / 4));
 `
 
 export const Radio = styled.input`
-  width: 10px;
-  height: 10px;
   display: flex;
   align-items: center;
 `
@@ -140,7 +138,7 @@ export const NameCourse = styled.span`
   border-bottom: 1px solid #B0B0B0; 
   padding: 6px 0;
   font-weight: 300;
-  font-size: 12pt;
+  font-size: 10pt;
   color: #111;
   display: flex;
   align-items: center;

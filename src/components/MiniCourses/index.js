@@ -194,7 +194,7 @@ export default function MiniCoursesC({ courses }) {
   useEffect(() => {
     async function get() {
       const cursos = await JSON.parse(localStorage.getItem("@COURSES_DATA"))
-      await axios.get(`http://200.17.76.41:3333/mini/get/${cursos[0].title}`)
+      await axios.get(`http://200.17.76.41:3333/mini/get/${cursos[1].title}`)
         .then((response) => {
           setCurso2(response.data);
         })
@@ -257,14 +257,25 @@ export default function MiniCoursesC({ courses }) {
   }
 
   function click(id) {
-    const curso = mini_courses.find(item => item.id === id);
-    if (disabledVerfy(curso)) {
-      setSelected(selected.filter(item => item.id !== curso.id))
-    } else {
-      setSelected([...selected, curso]);
+    const newCurso1 = curso1.find(item => item.id === id);
+    const newCurso2 = curso2.find(item => item.id === id);
+    if(newCurso1){
+      if (disabledVerfy(newCurso1)) {
+        console.log("entrou");
+        setSelected(selected.filter(item => item.id !== newCurso1.id))
+      } else {
+        setSelected([...selected, newCurso1]);
+      }
+    }else if(newCurso2){
+      if (disabledVerfy(newCurso2)) {
+        setSelected(selected.filter(item => item.id !== newCurso2.id))
+      } else {
+        setSelected([...selected, newCurso2]);
+      }
     }
   }
 
+  console.log(selected);
 
   return (
     <>
@@ -277,11 +288,10 @@ export default function MiniCoursesC({ courses }) {
             </Title>
             <CardContainer>
               <Nav>
-                <Item>Horário</Item>
+                <Item>Tema</Item>
                 <Item>Vagas</Item>
                 <Item>Horário</Item>
                 <Item>Sala</Item>
-                <Item>Selecionar</Item>
               </Nav>
               <Form>
                 {loading1 ? "Carregando..." :
@@ -289,7 +299,19 @@ export default function MiniCoursesC({ courses }) {
                     {curso1.map(curso => (
                       <>
                         <InfosContainer>
-
+                          <RadioContainer>
+                            <BoxRadio>
+                              <RadioContainer>
+                                <Radio
+                                  onClick={() => click(curso.id)}
+                                  type='checkbox' />
+                              </RadioContainer>
+                            </BoxRadio>
+                            <NameCourse>{curso.nome}</NameCourse>
+                          </RadioContainer>
+                          <Spots>{curso.vagas}</Spots>
+                          <Time>{curso.horario}</Time>
+                          <Room>{curso.sala}</Room>
                         </InfosContainer>
                       </>
                     ))}
@@ -311,12 +333,24 @@ export default function MiniCoursesC({ courses }) {
                 <Item>Sala</Item>
               </Nav>
               <Form>
-                {loading2 ? "Carregando..." :
+              {loading2 ? "Carregando..." :
                   <>
                     {curso2.map(curso => (
                       <>
                         <InfosContainer>
-
+                          <RadioContainer>
+                            <BoxRadio>
+                              <RadioContainer>
+                                <Radio 
+                                  onClick={() => click(curso.id)}
+                                  type='checkbox' />
+                              </RadioContainer>
+                            </BoxRadio>
+                            <NameCourse>{curso.nome}</NameCourse>
+                          </RadioContainer>
+                          <Spots>{curso.vagas}</Spots>
+                          <Time>{curso.horario}</Time>
+                          <Room>{curso.sala}</Room>
                         </InfosContainer>
                       </>
                     ))}
