@@ -12,6 +12,10 @@ export const Menu = styled.nav`
 export const Logo = styled.img`
   width: 150px;
   height: 50px;
+
+  @media (max-width: 414px) {
+    display: none;
+  }
 `
 
 export const ItemContainer = styled.div`
@@ -50,6 +54,10 @@ export const Header = styled.div`
   border-bottom: 2px solid #d9d9d9;
   display: flex;
   align-items: center;
+
+  @media (max-width: 414px) {
+    display: none;
+  }
 `
 
 export const HeaderTitle = styled.h1`
@@ -84,6 +92,16 @@ export const MiniCoursesCardTitle = styled.h2`
   font-size: 12pt;
   font-weight: 500;
   font-size: 17pt;
+  text-align: center;
+  
+  @media (max-width: 414px) {
+    font-size: 15pt;
+  }
+
+  @media (max-width: 414px) {
+    font-size: 13pt;
+    padding: 0 3%;
+  }
 `
 
 export const MiniCoursesCardCount = styled.span`
@@ -95,6 +113,10 @@ export const CoursesCardTitle = styled.h2`
   font-size: 12pt;
   font-weight: 500;
   font-size: 17pt;
+  
+  @media (max-width: 414px) {
+    font-size: 15pt;
+  }
 `
 
 export const CoursesCardCount = styled.span`
@@ -107,6 +129,10 @@ export const InscriptionCardTitle = styled.h2`
   font-size: 12pt;
   font-weight: 500;
   font-size: 17pt;
+
+  @media (max-width: 414px) {
+    font-size: 13pt;
+  }
 `
 
 export const InscriptionCardCount = styled.span`
@@ -168,6 +194,10 @@ export const InscriptionItem = styled.span`
   text-align: center;
   border-bottom: 1px solid #d9d9d9;
   padding: 0.7em;
+
+  @media (max-width: 414px) {
+    font-size: 5pt;
+  }
 `
 
 export const MiniCoursesItem = styled.span`
@@ -180,7 +210,6 @@ export const MiniCoursesItem = styled.span`
   padding: 0.7em;
 `
 
-
 export const InscriptionMenuItem = styled.span`
   font-weight: 400;
   color: #fff;
@@ -188,6 +217,11 @@ export const InscriptionMenuItem = styled.span`
   align-items: center;
   justify-content: center;
   font-size: 10pt;
+  text-align: center;
+
+  @media (max-width: 414px) {
+    font-size: 7pt;
+  }
 `
 
 export const  MiniCoursesTitle = styled.h1`
@@ -245,6 +279,10 @@ export const Button = styled.button`
   color: white;
   font-size: small;
   margin: 1em auto;
+
+  @media (max-width: 414px) {
+    width: 35%;
+  }
 `
 
 export const FormContainer = styled.div`
@@ -262,6 +300,12 @@ export const Form = styled.form`
   display: flex;
   align-items: center;
   flex-direction: column;
+
+  @media (max-width: 414px) {
+    margin-top: 20%;
+    width: 70%;
+    height: 50vh;
+  }
 `
 
 export const FormTitle = styled.h1`
@@ -288,6 +332,10 @@ export const Input = styled.input`
     font-weight: 400;
   }
   padding-left: 1em;
+
+  @media (max-width: 414px) {
+    width: 70%;
+  }
 `
 
 export const ButtonForm = styled.button`
@@ -304,6 +352,10 @@ export const ButtonForm = styled.button`
   color: white;
   font-size: small;
   margin: 1em auto;
+
+  @media (max-width: 414px) {
+    width: 40%;
+  }
 `
 
 export const InputContainer = styled.div`

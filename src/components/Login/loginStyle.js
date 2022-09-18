@@ -61,4 +61,8 @@ export const Button = styled.button`
   text-transform: uppercase;
   font-weight: 500;
   cursor: pointer;
+
+  @media (max-width: 414px) {
+    font-size: 55pt;
+  }
 `
