@@ -409,7 +409,7 @@ export default function MiniCoursesC({ courses }) {
           </Card>
         </Container>
         {erro.erro2 && (<Erro>Selecione no minimo 2 mini cursos</Erro>)}
-        {erro.erroTime && (<Erro>Horario inválido</Erro>)}
+        {erro.erroTime && (<Erro>Você poderá participar dos mini cursos durante 1 hora inteira. Ou seja: das 09h às 10h, das 10h às 11h ou 11h às 12h.  Por favor, escolha 2 horários que estejam dentro deste intervalo.</Erro>)}
         <Button onClick={() => handleSubmit1()}>Continuar</Button>
         {loadingIns && (<Loading>Carregando...</Loading>)}
       </Box>

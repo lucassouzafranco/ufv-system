@@ -45,8 +45,75 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Dropdown from "../Dropdown";
 import axios from 'axios';
 import { parseCookies, destroyCookie } from 'nookies';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+
 
 export default function DashBoardC() {
+
+  function relatorio(data) {
+    pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
+    const reportTitle = [
+      {
+        text: 'Lista de inscrições',
+        fontSize: 15,
+        bold: true,
+        margin: [15, 20, 0, 45]
+      },
+      
+    ];
+
+    const dados = data.map(item => {
+      return [
+        {text: item.nome, style: 'tableHeader', fontSize: 9, margin: [0,2,0,2]},
+        {text: item.cidade, style: 'tableHeader', fontSize: 9, margin: [0,2,0,2]},
+        {text: item.email, style: 'tableHeader', fontSize: 9, margin: [0,2,0,2]},
+        {text: item.telefone, style: 'tableHeader', fontSize: 9, margin: [0,2,0,2]},
+        {text: item.escola, style: 'tableHeader', fontSize: 9, margin: [0,2,0,2]},
+        {text: item.PCD, style: 'tableHeader', fontSize: 9, margin: [0,2,0,2]},
+        {text: item.curso, style: 'tableHeader', fontSize: 9, margin: [0,2,0,2]},
+        {text: item.nome_mini_curso, style: 'tableHeader', fontSize: 9, margin: [0,2,0,2]},
+        {text: item.horario, style: 'tableHeader', fontSize: 9, margin: [0,2,0,2]},
+        {text: item.data, style: 'tableHeader', fontSize: 9, margin: [0,2,0,2]},
+        {text: item.sala, style: 'tableHeader', fontSize: 9, margin: [0,2,0,2]}
+      ]
+    })
+    const detalhes = [
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
+          body: [
+            [
+              {text: 'Nome', style: 'tableHeader', fontSize: 10},
+              {text: 'Cidade', style: 'tableHeader', fontSize: 10},
+              {text: 'Email', style: 'tableHeader', fontSize: 10},
+              {text: 'Telefone', style: 'tableHeader', fontSize: 10},
+              {text: 'Escola', style: 'tableHeader', fontSize: 10},
+              {text: 'PCD', style: 'tableHeader', fontSize: 10},
+              {text: 'Curso', style: 'tableHeader', fontSize: 10},
+              {text: 'Mini Curso', style: 'tableHeader', fontSize: 10},
+              {text: 'Horario', style: 'tableHeader', fontSize: 10},
+              {text: 'Data', style: 'tableHeader', fontSize: 10},
+              {text: 'Sala', style: 'tableHeader', fontSize: 10}
+            ],
+            ...dados
+          ]
+        }
+      }
+    ];
+    const footer = [];
+
+    const doc = {
+      pageSize: 'A1',
+      pageMargins: [15, 50, 14, 40],
+      header: [reportTitle],
+      content: [detalhes],
+      footer: [footer]
+    }
+    pdfMake.createPdf(doc).download();
+  }
 
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -124,7 +191,12 @@ export default function DashBoardC() {
                     nome: item.nome,
                     escola: item.escola,
                     cidade: item.cidade,
+                    email: item.email,
+                    telefone: item.telefone,
+                    horario: itemM.horario,
+                    PCD: item.PCD,
                     curso: itemM.curso,
+                    sala: itemM.sala,
                     nome_mini_curso: itemM.nome_mini_curso,
                     data: item.data,
                   })
@@ -266,7 +338,7 @@ export default function DashBoardC() {
               </ItemsContainer>
             </InscriptionCard>
           </InscriptionContainer>
-          <Button>Gerar relatorio completo</Button>
+          <Button onClick={() => relatorio(insc)}>Gerar relatorio completo</Button>
         </>)}
         {pathname === "/admin/painel/cadastrar" && (
           <>
