@@ -31,7 +31,7 @@ import { useNavigate } from 'react-router-dom';
 export default function MiniCoursesC({ courses }) {
 
   const [selected, setSelected] = useState([]);
-  const [erro, setErro] = useState({ erro2: false, erroTime: false });
+  const [erro, setErro] = useState({ erro2: false, erroTime: false, erroMail: false });
   const [curso1, setCurso1] = useState([]);
   const [curso2, setCurso2] = useState([]);
   const [loading1, setLoading1] = useState(true);
@@ -219,7 +219,7 @@ export default function MiniCoursesC({ courses }) {
 
   async function handleSubmit1() {
 
-    setErro({ erro2: false, erroTime: false });
+    setErro({ erro2: false, erroTime: false, erroMail: false });
     if (selected.length > 2 || selected.length < 2) {
       setErro({ erro2: true });
       return;
@@ -289,6 +289,10 @@ export default function MiniCoursesC({ courses }) {
     }
     await axios.post('http://200.17.76.41:3333/inscricao', data)
       .then(response => {
+        if(response.data.result === 'Email error'){
+          setErro({erroMail: true});
+          return;
+        }
         localStorage.removeItem("@USER_DATA");
         localStorage.removeItem("@COURSES_DATA");
         navigate(`/inscricao/${response.data.id}`)
@@ -409,6 +413,7 @@ export default function MiniCoursesC({ courses }) {
           </Card>
         </Container>
         {erro.erro2 && (<Erro>Selecione no minimo 2 mini cursos</Erro>)}
+        {erro.erroMail && (<Erro>Este email informado já fez uma inscrição</Erro>)}
         {erro.erroTime && (<Erro>Você poderá participar dos mini cursos durante 1 hora inteira. Ou seja: das 09h às 10h, das 10h às 11h ou 11h às 12h.  Por favor, escolha 2 horários que estejam dentro deste intervalo.</Erro>)}
         <Button onClick={() => handleSubmit1()}>Continuar</Button>
         {loadingIns && (<Loading>Carregando...</Loading>)}
