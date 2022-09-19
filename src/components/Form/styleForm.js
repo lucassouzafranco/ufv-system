@@ -41,6 +41,9 @@ export const Input = styled.input`
 `
 
 export const InputCheck = styled.input`
+  margin-right: 58%;
+  margin-bottom: 1%;
+
 `
 
 export const SelectContainer = styled.select`
@@ -59,13 +62,34 @@ export const Label = styled.span`
   color: #FFFFFF;
   font-weight: 300;
   font-size: medium;
-  margin-top: 7%;
   width: 67%;
   padding: 1%;
   border-radius: 12px;
   background: #682A2C;
   padding-left: 3%;
   opacity: 0.92; 
+`
+export const PcdContainer = styled.div`
+  margin-top: 5%;
+  background: #682A2C;
+  padding: 2%;
+  width: 65%;
+  border-radius: 8px;
+  color: white;
+  opacity: 0.92;
+  p{
+    text-align: center;
+  }
+
+  margin-bottom: 3%;
+`
+
+export const InputPCD = styled.input `
+margin-left: 2%;
+`
+
+export const LabelPCD = styled.label`
+  margin-left: 19%;
 `
 
 export const Error = styled.span`

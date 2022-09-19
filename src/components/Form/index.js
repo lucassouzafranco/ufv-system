@@ -7,10 +7,11 @@ import {
   Form as FormC,
   Input,
   InputContainer,
-  InputCheck,
   Title,
   Icon,
-  Label,
+  PcdContainer,
+  InputPCD,
+  LabelPCD,
   Error
 } from './styleForm';
 
@@ -162,12 +163,24 @@ const Form = () => {
             placeholder='Escola'
           />
         </InputContainer>
-        <Label>Você é portador de necessidades especiais? Se sim, qual?</Label>
-        <InputCheck
-          onChange={event => setPCD(event.target.value)}
-          value={PCD}
-          type='checkbox'
-        />
+        <PcdContainer>
+          <p>Você é portador de necessidades especiais?</p>
+          <LabelPCD>Sim</LabelPCD>
+          <InputPCD
+            onChange={event => setSchool(event.target.value)}
+            required
+            value={PCD}
+            type='checkbox'
+          />
+          <LabelPCD>Não</LabelPCD>
+          <InputPCD
+            onChange={event => setSchool(event.target.value)}
+            required
+            value={PCD}
+            type='checkbox'
+          />
+        </PcdContainer>
+        
         <Button type='submit'>Cadastrar</Button>
       </FormC>
     </Fragment>
