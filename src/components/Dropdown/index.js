@@ -23,10 +23,13 @@ const Dropdown = ({ selected, setSelected }) => {
   }
 
   function findCitysByName(event) {
-    if(filter){
+    if (filter) {
       setFilter(null);
     }
-    setFilter(citys.filter(city => city.nome.includes(event.target.value)));
+    let a = event.target.value;
+    const fraseFinal = a.replace(/(^\w{1})|(\s+\w{1})/g, letra => letra.toUpperCase());
+    console.log(fraseFinal);
+    setFilter(citys.filter(city => city.nome.includes(fraseFinal)));
   }
 
   useEffect(() => {
@@ -62,8 +65,8 @@ const Dropdown = ({ selected, setSelected }) => {
                     <Item
                       key={city.id}
                       onClick={() => {
-                      setSelected(city.nome);
-                      setIsActive(false);
+                        setSelected(city.nome);
+                        setIsActive(false);
                       }}
                     >{city.nome}</Item>
                   ))
@@ -73,8 +76,8 @@ const Dropdown = ({ selected, setSelected }) => {
                       <Item
                         key={city.id}
                         onClick={() => {
-                        setSelected(city.nome);
-                        setIsActive(false);
+                          setSelected(city.nome);
+                          setIsActive(false);
                         }}
                       >{city.nome}</Item>
                     ))}
