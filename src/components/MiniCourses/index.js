@@ -186,7 +186,14 @@ export default function MiniCoursesC({ courses }) {
       const cursos = await JSON.parse(localStorage.getItem("@COURSES_DATA"))
       await axios.get(`http://200.17.76.41:3333/mini/get/${cursos[0].title}`)
         .then((response) => {
-          setCurso1(response.data);
+          const res = response.data.sort((a,b) => {
+            if(a.horario < b.horario){
+              return -1
+            }else{
+              return true;
+            }
+          })
+          setCurso1(res);
         })
         .catch(error => console.log(error))
         .finally(() => setLoading1(false));
@@ -200,7 +207,14 @@ export default function MiniCoursesC({ courses }) {
       const cursos = await JSON.parse(localStorage.getItem("@COURSES_DATA"))
       await axios.get(`http://200.17.76.41:3333/mini/get/${cursos[1].title}`)
         .then((response) => {
-          setCurso2(response.data);
+          const res = response.data.sort((a,b) => {
+            if(a.horario < b.horario){
+              return -1
+            }else{
+              return true;
+            }
+          })
+          setCurso2(res);
         })
         .catch(error => console.log(error))
         .finally(() => setLoading2(false));
