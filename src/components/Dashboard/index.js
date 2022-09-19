@@ -44,11 +44,12 @@ import { AiOutlineLogout } from 'react-icons/ai';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Dropdown from "../Dropdown";
 import axios from 'axios';
-import { parseCookies } from 'nookies';
+import { parseCookies, destroyCookie } from 'nookies';
 
 export default function DashBoardC() {
 
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
@@ -63,7 +64,6 @@ export default function DashBoardC() {
   const [countInsc, setCountInsc] = useState(0);
   const [miniC, setMiniC] = useState(null);
   const [insc, setInsc] = useState(null);
-  const [miniCC, setMiniCC] = useState([]);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -109,19 +109,17 @@ export default function DashBoardC() {
       if (pathname === '/admin/painel') {
         await axios.get('http://200.17.76.41:3333/inscricao/all')
           .then(response => {
-            let list = [];
-            let aux;
+            let aux = [];
             response.data.forEach(item => {
-            })
-            console.log(list);
-            list.forEach(item => {
-              aux.push({
-                nome: response.data[0].nome,
-                escola: response.data[0].escola,
-                cidade: response.data[0].cidade,
-                curso: item.curso,
-                nome_mini_curso: item.nome_mini_curso,
-                data: response.data[0].data,
+              item.mini_cursos.forEach(itemM => {
+                aux.push({
+                  nome: item.nome,
+                  escola: item.escola,
+                  cidade: item.cidade,
+                  curso: itemM.curso,
+                  nome_mini_curso: itemM.nome_mini_curso,
+                  data: item.data,
+                })
               })
             })
             setInsc(aux);
@@ -148,6 +146,11 @@ export default function DashBoardC() {
     getMini();
   }, []);
 
+  async function Logout(){
+    destroyCookie(null, 'react_auth_token');
+    navigate('/admin');
+  }
+
   return (
     <>
       <Menu>
@@ -167,7 +170,7 @@ export default function DashBoardC() {
           </Link>
         </ItemContainer>
         <UserContainer>
-          <AiOutlineLogout style={{ fontSize: '20pt', marginRight: '0.5em', color: '#fff' }} />
+          <AiOutlineLogout onClick={() => Logout()} style={{ fontSize: '20pt', marginRight: '0.5em', color: '#fff', cursor: 'pointer' }} />
           <Avatar />
         </UserContainer>
       </Menu>

@@ -41,6 +41,8 @@ const Form = () => {
     }
   );
   const [dpSelected, setDpSelected] = useState('Escolha uma cidade');
+  const [disabled1, setDisabled1] = useState(false);
+  const [disabled2, setDisabled2] = useState(false);
 
   const navigate = useNavigate();
 
@@ -76,7 +78,7 @@ const Form = () => {
     const emailData = email.trim();
     const telData = '+55 ' + tel.trim();
     const schoolData = school.trim();
-    const pcdData = PCD.trim();
+    const pcdData = PCD;
 
     if (!(regExpEmail.test(emailData))) {
       setErro({ erroMail: true });
@@ -103,7 +105,7 @@ const Form = () => {
       email: emailData,
       tel: telData,
       school: schoolData,
-      pcd: pcdData ? 'SIM' : 'NAO'
+      pcd: pcdData
     }
 
     await localStorage.setItem("@USER_DATA", JSON.stringify(data));
@@ -167,16 +169,24 @@ const Form = () => {
           <p>Você é portador de necessidades especiais?</p>
           <LabelPCD>Sim</LabelPCD>
           <InputPCD
-            onChange={event => setSchool(event.target.value)}
+            onClick={event => {
+              setPCD(event.target.value)
+              setDisabled2(!disabled2)
+            }}
             required
-            value={PCD}
+            disabled={disabled1}
+            value="SIM"
             type='checkbox'
           />
           <LabelPCD>Não</LabelPCD>
           <InputPCD
-            onChange={event => setSchool(event.target.value)}
+            onClick={event => {
+              setPCD(event.target.value)
+              setDisabled1(!disabled1)
+            }}
             required
-            value={PCD}
+            disabled={disabled2}
+            value="NAO"
             type='checkbox'
           />
         </PcdContainer>
