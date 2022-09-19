@@ -20,7 +20,7 @@ const MyRoutes = () => {
           <Route path='/admin' element={<Auth />} />;
           <Route path='/admin/painel' element={<DashBoard />} />;
           <Route path='/admin/painel/cadastrar' element={<DashBoard />} />;
-          <Route path='/inscricao' element={<Subscription />} />;
+          <Route path='/inscricao/:id' element={<Subscription />} />;
         </Routes>
       </Router>
     </Fragment>

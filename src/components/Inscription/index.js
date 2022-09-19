@@ -1,18 +1,41 @@
-import React from "react";
-import { 
-  Card, 
-  MessageTitle, 
-  Content, 
-  ContentCard, 
-  Information, 
-  MiniCourseName, 
-  Time, 
+import React, { useEffect, useState } from "react";
+import {
+  Card,
+  MessageTitle,
+  Content,
+  ContentCard,
+  Information,
+  MiniCourseName,
+  Time,
   Place,
-  WhiteStrip} from './styleInscription';
+  WhiteStrip
+} from './styleInscription';
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 export default function InscriptionC() {
 
-  document.title = "Mostra de profissões - Inscrisão"
+  document.title = "Mostra de profissões - Inscrisão";
+  const [insc, setInsc] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const { id } = useParams();
+  console.log(id);
+  
+  useEffect(() => {
+    async function getInsc() {
+      if (id) {
+        await axios.get(`http://200.17.76.41:3333/inscricao/get/${id}`)
+          .then(response => {
+            console.log(response.data);
+            setInsc(response.data);
+          })
+          .catch(error => console.log(error))
+          .finally(() => setLoading(false));
+      }
+    }
+    getInsc();
+  }, [])
 
   return (
     <>
@@ -21,17 +44,22 @@ export default function InscriptionC() {
           <ContentCard>
             <MessageTitle><h2>Parabéns! Você concluiu
               sua inscrição na mostra de profissões!</h2></MessageTitle>
-            <Information>
-              <MiniCourseName>Título teste de mini curso</MiniCourseName>
-              <Time>09:00</Time>
-              <Place>LAE 001</Place>
-            </Information>
-            <WhiteStrip />
-            <Information>
-              <MiniCourseName>Título teste de mini curso</MiniCourseName>
-              <Time>09:00</Time>
-              <Place>LAE 001</Place>
-            </Information>
+            {loading ?
+              "Carregando... "
+              :
+              <>
+                {insc.mini_cursos.map(item => (
+                  <>
+                    <Information>
+                      <MiniCourseName>{item.nome_mini_curso}</MiniCourseName>
+                      <Time>{item.horario}</Time>
+                      <Place>{item.sala}</Place>
+                    </Information>
+                    <WhiteStrip />
+                  </>
+                ))}
+              </>
+            }
           </ContentCard>
         </Card>
       </Content>

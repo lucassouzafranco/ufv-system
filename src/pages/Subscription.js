@@ -4,10 +4,11 @@ import Menu from '../components/Menu/';
 import InscriptionC from "../components/Inscription";
 
 const Subscription = () => {
-  return(
+  
+  return (
     <Fragment>
-      <Menu variant='confirm'/>
-      <InscriptionC/>
+      <Menu variant='confirm' />
+      <InscriptionC />
     </Fragment>
   )
 }

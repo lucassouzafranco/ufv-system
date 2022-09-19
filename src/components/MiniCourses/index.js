@@ -19,10 +19,11 @@ import {
   BoxRadio,
   Box,
   Button,
-  Erro
+  Erro,
+  Loading
 } from './styleMiniCourses';
-import { mini_courses } from '../../utils/mini-courses';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 //let disabled = [];
 //let selected = [];
@@ -35,6 +36,9 @@ export default function MiniCoursesC({ courses }) {
   const [curso2, setCurso2] = useState([]);
   const [loading1, setLoading1] = useState(true);
   const [loading2, setLoading2] = useState(true);
+  const [loadingIns, setLoadingIns] = useState(false);
+
+  const navigate = useNavigate();
 
   /*function chosen(course) {
     console.log(selected);
@@ -205,46 +209,92 @@ export default function MiniCoursesC({ courses }) {
     get();
   }, [])
 
+  function getDate() {
+    const date = new Date();
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth()).padStart(2, '0');
+    const year = String(date.getFullYear());
+    return `${day}/${month}/${year}`;
+  }
 
   async function handleSubmit1() {
+
     setErro({ erro2: false, erroTime: false });
     if (selected.length > 2 || selected.length < 2) {
       setErro({ erro2: true });
       return;
     }
-    if (selected[0].time === '09:00') {
-      if (selected[1].time === '10:00' || selected[1].time === '10:30' || selected[1].time === '11:00' || selected[1].time === '11:30') {
+    if (selected[0].horario === '09:00') {
+      if (selected[1].horario === '10:00' || selected[1].horario === '10:30' || selected[1].horario === '11:00' || selected[1].horario === '11:30') {
         setErro({ erroTime: true });
         return;
       }
-    } else if (selected[0].time === '09:30') {
-      if (selected[1].time === '10:30' || selected[1].time === '11:00' || selected[1].time === '11:30') {
+    } else if (selected[0].horario === '09:30') {
+      if (selected[1].horario === '10:30' || selected[1].horario === '11:00' || selected[1].horario === '11:30') {
         setErro({ erroTime: true });
         return;
       }
-    } else if (selected[0].time === '10:00') {
-      if (selected[1].time === '09:30' || selected[1].time === '09:00' || selected[1].time === '11:00' || selected[1].time === '11:30') {
+    } else if (selected[0].horario === '10:00') {
+      if (selected[1].horario === '09:30' || selected[1].horario === '09:00' || selected[1].horario === '11:00' || selected[1].horario === '11:30') {
         setErro({ erroTime: true });
         return;
       }
       return;
-    } else if (selected[0].time === '10:30') {
-      if (selected[1].time === '11:00' || selected[1].time === '11:30' || selected[1].time === '09:30' || selected[1].time === '10:00' || selected[1].time === '09:00') {
+    } else if (selected[0].horario === '10:30') {
+      if (selected[1].horario === '11:00' || selected[1].horario === '11:30' || selected[1].horario === '09:30' || selected[1].horario === '10:00' || selected[1].horario === '09:00') {
         setErro({ erroTime: true });
         return;
       }
-    } else if (selected[0].time === '11:00') {
-      if (selected[1].time === '09:00' || selected[1].time === '09:30' || selected[1].time === '10:00' || selected[1].time === '10:30') {
+    } else if (selected[0].horario === '11:00') {
+      if (selected[1].horario === '09:00' || selected[1].horario === '09:30' || selected[1].horario === '10:00' || selected[1].horario === '10:30') {
         setErro({ erroTime: true });
         return;
       }
-    } else if (selected[0].time === '11:30') {
-      if (selected[1].time === '09:00' || selected[1].time === '09:30' || selected[1].time === '10:00' || selected[1].time === '10:30') {
+    } else if (selected[0].horario === '11:30') {
+      if (selected[1].horario === '09:00' || selected[1].horario === '09:30' || selected[1].horario === '10:00' || selected[1].horario === '10:30') {
         setErro({ erroTime: true });
         return;
       }
     }
-    console.log("Passou");
+    setLoadingIns(true);
+    const user = await JSON.parse(localStorage.getItem("@USER_DATA"));
+
+    const data =
+    {
+      nome: user.name,
+      cidade: user.city,
+      email: user.email,
+      telefone: user.tel,
+      escola: user.school,
+      PCD: user.pcd,
+      data: getDate(),
+      mini_cursos: [
+        {
+          id: selected[0].id,
+          nome_mini_curso: selected[0].nome,
+          sala: selected[0].sala,
+          curso: selected[0].curso,
+          horario: selected[0].horario,
+          professor: selected[0].professor
+        },
+        {
+          id: selected[1].id,
+          nome_mini_curso: selected[1].nome,
+          sala: selected[1].sala,
+          curso: selected[1].curso,
+          horario: selected[1].horario,
+          professor: selected[1].professor
+        }
+      ]
+    }
+    await axios.post('http://200.17.76.41:3333/inscricao', data)
+      .then(response => {
+        localStorage.removeItem("@USER_DATA");
+        localStorage.removeItem("@COURSES_DATA");
+        navigate(`/inscricao/${response.data.id}`)
+      })
+      .catch(error => console.log(error))
+      .finally(() => setLoadingIns(false));
   }
 
   function disabledVerfy(object) {
@@ -259,14 +309,14 @@ export default function MiniCoursesC({ courses }) {
   function click(id) {
     const newCurso1 = curso1.find(item => item.id === id);
     const newCurso2 = curso2.find(item => item.id === id);
-    if(newCurso1){
+    if (newCurso1) {
       if (disabledVerfy(newCurso1)) {
         console.log("entrou");
         setSelected(selected.filter(item => item.id !== newCurso1.id))
       } else {
         setSelected([...selected, newCurso1]);
       }
-    }else if(newCurso2){
+    } else if (newCurso2) {
       if (disabledVerfy(newCurso2)) {
         setSelected(selected.filter(item => item.id !== newCurso2.id))
       } else {
@@ -274,8 +324,6 @@ export default function MiniCoursesC({ courses }) {
       }
     }
   }
-
-  console.log(selected);
 
   return (
     <>
@@ -333,7 +381,7 @@ export default function MiniCoursesC({ courses }) {
                 <Item>Sala</Item>
               </Nav>
               <Form>
-              {loading2 ? "Carregando..." :
+                {loading2 ? "Carregando..." :
                   <>
                     {curso2.map(curso => (
                       <>
@@ -341,7 +389,7 @@ export default function MiniCoursesC({ courses }) {
                           <RadioContainer>
                             <BoxRadio>
                               <RadioContainer>
-                                <Radio 
+                                <Radio
                                   onClick={() => click(curso.id)}
                                   type='checkbox' />
                               </RadioContainer>
@@ -363,6 +411,7 @@ export default function MiniCoursesC({ courses }) {
         {erro.erro2 && (<Erro>Selecione no minimo 2 mini cursos</Erro>)}
         {erro.erroTime && (<Erro>Horario inválido</Erro>)}
         <Button onClick={() => handleSubmit1()}>Continuar</Button>
+        {loadingIns && (<Loading>Carregando...</Loading>)}
       </Box>
     </>
   )

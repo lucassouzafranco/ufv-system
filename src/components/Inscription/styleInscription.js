@@ -35,15 +35,18 @@ margin-bottom: 7%;
 `
 
 export const Information = styled.div`
-  display: flex;
-  justify-content: space-around;
-  padding: 2%;
-  `
+  display: grid;
+  grid-template-columns: repeat(3, calc(100% / 3));
+  padding: 0.5em;
+`
   
 export const MiniCourseName = styled.span`
   color: white;
   font-weight: 500;
-  padding-bottom: 
+  padding-bottom: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 export const Time = styled.span`
