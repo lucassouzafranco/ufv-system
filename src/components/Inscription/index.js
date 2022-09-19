@@ -10,6 +10,7 @@ import {
   Place,
   WhiteStrip
 } from './styleInscription';
+import DevelopedBy from "../DevelopedBy";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
@@ -62,6 +63,7 @@ export default function InscriptionC() {
             }
           </ContentCard>
         </Card>
+        <DevelopedBy />
       </Content>
     </>
   )

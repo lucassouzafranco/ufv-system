@@ -4,6 +4,7 @@ import LogoPNG from '../../assets/img/logodaamostra.png';
 import Form from '../Form';
 import { Layout, Box, Title, Logo, Main, Subtitle} from './styleRegister';
 import Footer from '../Footer/footer';
+import DevelopedBy from '../DevelopedBy/index';
 
 const Register = () => {
   return(
@@ -17,6 +18,7 @@ const Register = () => {
         <Main>
           <Form/>
           <Footer />
+          <DevelopedBy />
         </Main>
       </Layout>
     </Fragment>

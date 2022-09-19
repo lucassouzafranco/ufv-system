@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Content = styled.main`
-  height: 100vh;
+  height: 88vh;
   background-image: url('/assets/img/alunos.png');
   background-repeat: no-repeat;
   background-position: center;

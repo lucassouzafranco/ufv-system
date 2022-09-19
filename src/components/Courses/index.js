@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Main, Box, Button, Card, Title, Img, Fundo } from './styleCourses';
 import { courses } from '../../utils/courses';
 import { useNavigate } from 'react-router-dom';
+import DevelopedBy from '../DevelopedBy';
 
 export default function CoursesC() {
 
@@ -80,6 +81,7 @@ export default function CoursesC() {
           ))}
         </Box>
         <Button onClick={() => saveLocal()} disabled={buttonActive}>Continuar</Button>
+        <DevelopedBy />
       </Main>
     </>
   )
