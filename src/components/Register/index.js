@@ -12,7 +12,7 @@ const Register = () => {
         <Box>
           <Title><h1>Sejam muito bem vindos à</h1></Title>
           <Logo src={LogoPNG} alt='logo da amostra de profissões'/>
-          <Subtitle>26 de outubro de 2022</Subtitle>
+          <Subtitle>22 de outubro de 2022</Subtitle>
         </Box>
         <Main>
           <Form/>
