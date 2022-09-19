@@ -42,7 +42,6 @@ import {
   from './dashboardStyle';
 import { AiOutlineLogout } from 'react-icons/ai';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { inscrisoes, mini_cursos } from '../../utils/dashboardtest';
 import Dropdown from "../Dropdown";
 import axios from 'axios';
 import { parseCookies } from 'nookies';
@@ -50,7 +49,6 @@ import { parseCookies } from 'nookies';
 export default function DashBoardC() {
 
   const { pathname } = useLocation();
-  const navigate = useNavigate();
 
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
@@ -65,6 +63,7 @@ export default function DashBoardC() {
   const [countInsc, setCountInsc] = useState(0);
   const [miniC, setMiniC] = useState(null);
   const [insc, setInsc] = useState(null);
+  const [miniCC, setMiniCC] = useState([]);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -110,7 +109,22 @@ export default function DashBoardC() {
       if (pathname === '/admin/painel') {
         await axios.get('http://200.17.76.41:3333/inscricao/all')
           .then(response => {
-            setInsc(response.data);
+            let list = [];
+            let aux;
+            response.data.forEach(item => {
+            })
+            console.log(list);
+            list.forEach(item => {
+              aux.push({
+                nome: response.data[0].nome,
+                escola: response.data[0].escola,
+                cidade: response.data[0].cidade,
+                curso: item.curso,
+                nome_mini_curso: item.nome_mini_curso,
+                data: response.data[0].data,
+              })
+            })
+            setInsc(aux);
           })
           .catch(error => console.log(error))
           .finally(() => setLoadingIns(false));
@@ -118,6 +132,7 @@ export default function DashBoardC() {
     }
     getInscricoes();
   }, [pathname]);
+
 
   useEffect(() => {
     async function getMini() {
@@ -131,7 +146,7 @@ export default function DashBoardC() {
       }
     }
     getMini();
-  }, [])
+  }, []);
 
   return (
     <>
@@ -214,14 +229,16 @@ export default function DashBoardC() {
                 <InscriptionMenuItem>Data</InscriptionMenuItem>
               </InscriptionMenu>
               <ItemsContainer>
-                {loadingIns ? "Carregando" : 
+                {loadingIns ? "Carregando" :
                   <>
-                    {insc.map(item =>(
+                    {insc.map(ins => (
                       <>
-                        <InscriptionItem>{item.nome}</InscriptionItem>
-                        <InscriptionItem>{item.escola}</InscriptionItem>
-                        <InscriptionItem>{item.cidade}</InscriptionItem>
-                        <InscriptionItem>{item.create_at}</InscriptionItem>
+                        <InscriptionItem>{ins.nome}</InscriptionItem>
+                        <InscriptionItem>{ins.curso}</InscriptionItem>
+                        <InscriptionItem>{ins.nome_mini_curso}</InscriptionItem>
+                        <InscriptionItem>{ins.escola}</InscriptionItem>
+                        <InscriptionItem>{ins.cidade}</InscriptionItem>
+                        <InscriptionItem>{ins.data}</InscriptionItem>
                       </>
                     ))}
                   </>
