@@ -92,6 +92,13 @@ export default function DashBoardC() {
       if (pathname === '/admin/painel') {
         await axios.get('http://200.17.76.41:3333/mini/dados')
           .then(response => {
+            const insc = response.data.inscrisoes;
+            const { dados } = response.data;
+            if (dados) {
+              setCountInsc(insc);
+              setCountMini(dados);
+              return;
+            }
             const { mini_cursos } = response.data;
             const { inscrisoes } = response.data;
             setCountInsc(inscrisoes);
@@ -110,19 +117,21 @@ export default function DashBoardC() {
         await axios.get('http://200.17.76.41:3333/inscricao/all')
           .then(response => {
             let aux = [];
-            response.data.forEach(item => {
-              item.mini_cursos.forEach(itemM => {
-                aux.push({
-                  nome: item.nome,
-                  escola: item.escola,
-                  cidade: item.cidade,
-                  curso: itemM.curso,
-                  nome_mini_curso: itemM.nome_mini_curso,
-                  data: item.data,
+            if (response.data.result !== 'Error') {
+              response.data.forEach(item => {
+                item.mini_cursos.forEach(itemM => {
+                  aux.push({
+                    nome: item.nome,
+                    escola: item.escola,
+                    cidade: item.cidade,
+                    curso: itemM.curso,
+                    nome_mini_curso: itemM.nome_mini_curso,
+                    data: item.data,
+                  })
                 })
               })
-            })
-            setInsc(aux);
+              setInsc(aux);
+            }
           })
           .catch(error => console.log(error))
           .finally(() => setLoadingIns(false));
@@ -146,7 +155,7 @@ export default function DashBoardC() {
     getMini();
   }, []);
 
-  async function Logout(){
+  async function Logout() {
     destroyCookie(null, 'react_auth_token');
     navigate('/admin');
   }
@@ -234,16 +243,24 @@ export default function DashBoardC() {
               <ItemsContainer>
                 {loadingIns ? "Carregando" :
                   <>
-                    {insc.map(ins => (
+                    {insc ?
                       <>
-                        <InscriptionItem>{ins.nome}</InscriptionItem>
-                        <InscriptionItem>{ins.curso}</InscriptionItem>
-                        <InscriptionItem>{ins.nome_mini_curso}</InscriptionItem>
-                        <InscriptionItem>{ins.escola}</InscriptionItem>
-                        <InscriptionItem>{ins.cidade}</InscriptionItem>
-                        <InscriptionItem>{ins.data}</InscriptionItem>
+                        {insc.map(ins => (
+                          <>
+                            <InscriptionItem>{ins.nome}</InscriptionItem>
+                            <InscriptionItem>{ins.curso}</InscriptionItem>
+                            <InscriptionItem>{ins.nome_mini_curso}</InscriptionItem>
+                            <InscriptionItem>{ins.escola}</InscriptionItem>
+                            <InscriptionItem>{ins.cidade}</InscriptionItem>
+                            <InscriptionItem>{ins.data}</InscriptionItem>
+                          </>
+                        ))}
                       </>
-                    ))}
+                      :
+                      <>
+                        <InscriptionItem>AINDA NÃO POSSUE INSCRIÇÕES</InscriptionItem>
+                      </>
+                    }
                   </>
                 }
               </ItemsContainer>
