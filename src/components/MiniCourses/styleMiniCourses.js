@@ -14,6 +14,10 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+ 
+  @media (max-width: 414px) {
+    flex-wrap: wrap;
+  }
 `
 
 export const Card = styled.div`
@@ -28,7 +32,7 @@ export const Card = styled.div`
   z-index: 0;
 
   @media (max-width: 414px) {
-    width: 45vw;
+    width: 90%;
   }
 `
 
@@ -207,6 +211,9 @@ export const Button = styled.button`
   font-size: medium;
   margin: 1em auto;
   margin-bottom: 0;
+  @media (max-width: 414px) {
+    width: 30%;
+  }
 `
 
 export const Erro = styled.span`
