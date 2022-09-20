@@ -11,12 +11,12 @@ const courses = [
   },
   {
     id: 3,
-    title: "Biologia",
+    title: "Ciências Biologicas",
     src: '/assets/img/bio.png'
   },
   {
     id: 4,
-    title: "Contaveis",
+    title: "Ciências Contábeis",
     src: '/assets/img/conta.png'
   },
   {

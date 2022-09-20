@@ -183,14 +183,22 @@ export default function MiniCoursesC({ courses }) {
 
   useEffect(() => {
     async function get() {
-      const cursos = await JSON.parse(localStorage.getItem("@COURSES_DATA"))
-      await axios.get(`http://200.17.76.41:3333/mini/get/${cursos[0].title}`)
+      const cursos = await JSON.parse(localStorage.getItem("@COURSES_DATA"));
+      let aux = '';
+      if(cursos[0].title === 'Ciências Contábeis'){
+        aux = 'Contaveis';
+      }else if (cursos[0].title === 'Ciências Biologicas'){
+        aux = 'Biologia';
+      }else {
+        aux = cursos[0].title;
+      }
+      await axios.get(`http://200.17.76.41:3333/mini/get/${aux}`)
         .then((response) => {
           const res = response.data.sort((a,b) => {
             if(a.horario < b.horario){
               return -1
             }else{
-              return true;
+              return true; 
             }
           })
           setCurso1(res);
@@ -204,8 +212,16 @@ export default function MiniCoursesC({ courses }) {
 
   useEffect(() => {
     async function get() {
-      const cursos = await JSON.parse(localStorage.getItem("@COURSES_DATA"))
-      await axios.get(`http://200.17.76.41:3333/mini/get/${cursos[1].title}`)
+      const cursos = await JSON.parse(localStorage.getItem("@COURSES_DATA"));
+      let aux = '';
+      if(cursos[1].title === 'Ciências Contábeis'){
+        aux = 'Contaveis';
+      }else if (cursos[1].title === 'Ciências Biologicas'){
+        aux = 'Biologia';
+      }else {
+        aux = cursos[1].title;
+      }
+      await axios.get(`http://200.17.76.41:3333/mini/get/${aux}`)
         .then((response) => {
           const res = response.data.sort((a,b) => {
             if(a.horario < b.horario){
