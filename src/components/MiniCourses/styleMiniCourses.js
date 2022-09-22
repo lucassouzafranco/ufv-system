@@ -218,7 +218,7 @@ export const Button = styled.button`
 
 export const Erro = styled.span`
   font-weight: 600;
-  font-size: 14pt;
+  font-size: 12pt;
   color: #fff;
   background: #682A2C;
   padding: 0.5em;

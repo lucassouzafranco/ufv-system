@@ -444,7 +444,7 @@ export default function MiniCoursesC({ courses }) {
         </Container>
         {erro.erro2 && (<Erro>Selecione no minimo 2 mini cursos</Erro>)}
         {erro.erroMail && (<Erro>Este email informado já fez uma inscrição</Erro>)}
-        {erro.erroTime && (<Erro>Você poderá participar dos mini cursos durante 1 hora inteira. Ou seja: das 09h às 10h, das 10h às 11h ou 11h às 12h.  Por favor, escolha 2 horários que estejam dentro deste intervalo.</Erro>)}
+        {erro.erroTime && (<Erro>Você poderá participar de 2 mini cursos de 30 minutos durante 1 hora inteira. Por exemplo, escolhendo um mini curso no horário das 09:00, você poderá escolher apenas os mini cursos que comecem às 09:30.</Erro>)}
         <Button onClick={() => handleSubmit1()}>Continuar</Button>
         {loadingIns && (<Loading>Carregando...</Loading>)}
       </Box>
