@@ -159,7 +159,7 @@ export const NameCourse = styled.span`
   border-bottom: 1px solid #B0B0B0; 
   padding: 6px 0;
   font-weight: 300;
-  font-size: 10pt;
+  font-size: 9pt;
   color: #111;
   display: flex;
   align-items: center;
@@ -175,7 +175,7 @@ export const Spots = styled.span`
   border-bottom: 1px solid #B0B0B0; 
   padding: 6px 0;
   font-weight: 300;
-  font-size: 12pt;
+  font-size: 9pt;
   color: #111;
   @media screen and (max-width: 974px) {
     font-size: 7px;
@@ -186,7 +186,7 @@ export const Time = styled.span`
   border-bottom: 1px solid #B0B0B0; 
   padding: 6px 0;
   font-weight: 300;
-  font-size: 12pt;
+  font-size: 9pt;
   color: #111;
 
   @media screen and (max-width: 974px) {
@@ -201,7 +201,7 @@ export const Room = styled.span`
   border-bottom: 1px solid #B0B0B0; 
   padding: 6px 0;
   font-weight: 300;
-  font-size: 12pt;
+  font-size: 9pt;
   color: #111;
   display: flex;
   align-items: center;
