@@ -15,7 +15,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
  
-  @media (max-width: 414px) {
+  @media screen and (max-width:612px) {
     flex-wrap: wrap;
   }
 `
@@ -34,9 +34,6 @@ export const Card = styled.div`
   @media (max-width: 414px) {
     width: 90%;
   }
-  @media (min-width: 514px) {
-    width: 100%;
-  }
 `
 
 export const CardContainer = styled.div`
@@ -44,10 +41,10 @@ export const CardContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  @media (min-width: 514px) {
+  @media (max-width: 516px) {
     width: 100%;
   }
-  @media (min-width: 416px) {
+  @media (max-width: 416px) {
     font-size: 50%;
   }
 `
@@ -66,7 +63,6 @@ export const Title = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
 `
 
 export const Name = styled.span`
@@ -76,11 +72,8 @@ export const Name = styled.span`
   font-weight: 800;
   font-size: 15pt;
   text-transform: uppercase;
-  @media (min-width: 514px) {
-    font-size: 50%;
-  }
-  @media (min-width: 416px) {
-    font-size: 50%;
+  @media screen and (max-width: 974px) {
+    font-size: 60%;
   }
 `
 
@@ -112,15 +105,10 @@ export const Item = styled.span`
   align-items: center;
   justify-content: center;
 
-  @media (max-width: 414px) {
-    font-size: 20%;
-  }
-  @media (min-width: 514px) {
+  @media screen and (max-width: 974px) {
     font-size: 60%;
   }
-  @media (min-width: 416px) {
-    font-size: 50%;
-  }
+  
 `
 
 export const Form = styled.div`
@@ -152,24 +140,17 @@ export const RadioContainer = styled.div`
 export const InfosContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, calc(100% / 4));
-  @media (min-width: 514px) {
+  @media screen and (max-width: 974px) {
     font-size: 60%;
-  }
-  @media (min-width: 416px) {
-    font-size: 10px;
   }
 `
 
 export const Radio = styled.input`
   display: flex;
   align-items: center;
-  @media (min-width: 514px) {
-    width: 8px;
-    height: 8px;
-  }
-  @media (min-width: 416px) {
-    width: 8px;
-    height: 8px;
+  @media screen and (max-width: 974px) {
+    width: 10px;
+    height: 10px;
   }
 `
 
@@ -185,14 +166,8 @@ export const NameCourse = styled.span`
   justify-content: center;
   text-align: center;
 
-  @media (max-width: 414px) {
-    font-size: 20%;
-  }
-  @media (min-width: 514px) {
-    font-size: 60%;
-  }
-  @media (min-width: 416px) {
-    font-size: 4px;
+  @media screen and (max-width: 974px) {
+    font-size: 8px;
   }
 `
 
@@ -202,15 +177,8 @@ export const Spots = styled.span`
   font-weight: 300;
   font-size: 12pt;
   color: #111;
-
-  @media (max-width: 414px) {
-    font-size: 20%;
-  }
-  @media (min-width: 514px) {
-    font-size: 60%;
-  }
-  @media (min-width: 416px) {
-    font-size: 4px;
+  @media screen and (max-width: 974px) {
+    font-size: 7px;
   }
 `
 
@@ -221,14 +189,8 @@ export const Time = styled.span`
   font-size: 12pt;
   color: #111;
 
-  @media (max-width: 414px) {
-    font-size: 20%;
-  }
-  @media (min-width: 514px) {
-    font-size: 60%;
-  }
-  @media (min-width: 416px) {
-    font-size: 4px;
+  @media screen and (max-width: 974px) {
+    font-size: 6px;
   }
   display: flex;
   align-items: center;
@@ -245,14 +207,8 @@ export const Room = styled.span`
   align-items: center;
   justify-content: center;
 
-  @media (max-width: 414px) {
-    font-size: 20%;
-  }
-  @media (min-width: 514px) {
-    font-size: 60%;
-  }
-  @media (min-width: 416px) {
-    font-size: 4px;
+  @media screen and (max-width: 974px) {
+    font-size: 7px;
   }
 `
 
@@ -271,14 +227,8 @@ export const Button = styled.button`
   font-size: medium;
   margin: 1em auto;
   margin-bottom: 0;
-  @media (max-width: 414px) {
-    width: 30%;
-  }
-  @media (min-width: 514px) {
+  @media screen and (max-width: 974px) {
     width: 40%;
-  }
-  @media (min-width: 416px){
-    width: 50%;
   }
 `
 
