@@ -166,7 +166,7 @@ const Form = () => {
           />
         </InputContainer>
         <PcdContainer>
-          <p>Você é portador de necessidades especiais?</p>
+          <p>Necessita de algum recurso ou adaptação para participar do evento?</p>
           <LabelPCD>Sim</LabelPCD>
           <InputPCD
             onClick={event => {
