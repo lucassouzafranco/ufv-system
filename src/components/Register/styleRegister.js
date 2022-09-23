@@ -75,7 +75,6 @@ export const Subtitle = styled.h3`
     text-align: center;
     font-size: 7pt;
     margin-right: 6%;
-
   }
 `
 
@@ -97,4 +96,12 @@ export const Main = styled.main`
   @media(max-width: 767px) {
     width: 100%;
   }
+`
+
+export const Manu = styled.h1`
+  color: #fff;
+  padding: 1em;
+  background-color: #682A2C;
+  border-radius: 20px;
+  font-size: 14pt;
 `
