@@ -8,7 +8,7 @@ import DevelopedBy from '../DevelopedBy/index';
 
 const Register = () => {
 
-  const manu = true;
+  const manu = false;
 
   useEffect(() => {
     if(manu){
