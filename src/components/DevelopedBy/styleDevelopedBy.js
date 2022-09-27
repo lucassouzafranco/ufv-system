@@ -5,4 +5,8 @@ export const Credits = styled.p`
   position: absolute;
   font-size: 10pt;
   bottom: 8px;
+
+  @media (max-width: 414px) {
+    display: none;
+  }
 `
