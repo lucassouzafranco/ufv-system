@@ -47,14 +47,14 @@ export const Box = styled.div`
   }
 
   @media (min-width: 820px) {
-    padding: 0.2em;s
+    padding: 0.2em;
     height: auto;
     width: 82%;
     opacity: 0.93;
   }
 
   @media (min-width: 900px) {
-    padding: 0.2em;s
+    padding: 0.2em;
     height: auto;
     width: 50%;
     opacity: 0.93;

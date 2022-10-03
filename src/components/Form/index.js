@@ -12,7 +12,8 @@ import {
   PcdContainer,
   InputPCD,
   LabelPCD,
-  Error
+  Error,
+  ButtonOutline
 } from './styleForm';
 
 /* Icones */
@@ -192,6 +193,7 @@ const Form = () => {
         </PcdContainer>
         
         <Button type='submit'>Cadastrar</Button>
+        <ButtonOutline>Ver minha inscrição</ButtonOutline>
       </FormC>
     </Fragment>
   )

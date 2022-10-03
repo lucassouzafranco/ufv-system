@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 
 import LogoPNG from '../../assets/img/logodaamostra.png';
 import Form from '../Form';
-import { Layout, Box, Title, Logo, Main, Subtitle, Manu } from './styleRegister';
+import { Layout, Box, Title, Logo, Main, Subtitle, Manu, ButtonOutline } from './styleRegister';
 import Footer from '../Footer/footer';
 import DevelopedBy from '../DevelopedBy/index';
 

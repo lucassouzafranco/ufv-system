@@ -61,7 +61,7 @@ export const Place = styled.span`
 
 export const WhiteStrip = styled.span`
   display: flex;
-  positivion: absolute;
+  //position: absolute;
   width: 99%;
   border-bottom: 1px solid white;
 `

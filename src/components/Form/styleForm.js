@@ -97,3 +97,20 @@ export const Error = styled.span`
   font-size: 12pt;
   color: #ad1515;
 `
+
+export const ButtonOutline = styled.button`
+  outline: none;
+  cursor: pointer;
+  //border: 2px solid #682A2C;
+  border: none;
+  width: 29%;
+  height: 38px;
+  background: none;
+  //box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  //border-radius: 11px;
+  font-weight: 600;
+  color: white;
+  font-size: 10pt;
+  margin: 0.8em 0;
+  color: #111;
+`
