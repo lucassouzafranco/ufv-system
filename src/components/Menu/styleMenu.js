@@ -12,12 +12,13 @@ export const Nav = styled.nav`
 
   `
   
-  export const Title = styled.h1`
-    text-transform: uppercase;
-    color: #fff;
-    @media (max-width: 414px) {
+export const Title = styled.h1`
+  text-transform: uppercase;
+  color: #fff;
+
+  @media (max-width: 414px) {
     margin-right: 8%;
-    }
+  }
 `
 
 export const Button = styled.button`

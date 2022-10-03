@@ -30,9 +30,10 @@ export const Card = styled.div`
   flex-direction: column;
   position: relative;
   z-index: 0;
+  margin-bottom: 5%;
 
   @media (max-width: 414px) {
-    width: 90%;
+    width: 85%;
   }
 `
 
