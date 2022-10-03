@@ -368,3 +368,21 @@ export const InputContainer = styled.div`
   align-items: center;
   justify-content: space-between;
 `
+
+export const ContainerTitle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+`
+
+export const Search = styled.input`
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #111;
+  font-weight: 400;
+  padding: 0.3em;
+  //background-color: #d3d3d3;
+  background: none;
+  width: 100%;
+`

@@ -37,12 +37,15 @@ import {
   FormTitle,
   Input,
   ButtonForm,
-  InputContainer
+  InputContainer,
+  ContainerTitle,
+  Search
 }
   from './dashboardStyle';
 import { AiOutlineLogout } from 'react-icons/ai';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Dropdown from "../Dropdown";
+import { AiOutlineSearch } from 'react-icons/ai';
 import axios from 'axios';
 import { parseCookies, destroyCookie } from 'nookies';
 import pdfMake from 'pdfmake/build/pdfmake';
@@ -61,22 +64,22 @@ export default function DashBoardC() {
         bold: true,
         margin: [15, 20, 0, 45]
       },
-      
+
     ];
 
     const dados = data.map(item => {
       return [
-        {text: item.nome, style: 'tableHeader', fontSize: 9, margin: [0,2,0,2]},
-        {text: item.cidade, style: 'tableHeader', fontSize: 9, margin: [0,2,0,2]},
-        {text: item.email, style: 'tableHeader', fontSize: 9, margin: [0,2,0,2]},
-        {text: item.telefone, style: 'tableHeader', fontSize: 9, margin: [0,2,0,2]},
-        {text: item.escola, style: 'tableHeader', fontSize: 9, margin: [0,2,0,2]},
-        {text: item.PCD, style: 'tableHeader', fontSize: 9, margin: [0,2,0,2]},
-        {text: item.curso, style: 'tableHeader', fontSize: 9, margin: [0,2,0,2]},
-        {text: item.nome_mini_curso, style: 'tableHeader', fontSize: 9, margin: [0,2,0,2]},
-        {text: item.horario, style: 'tableHeader', fontSize: 9, margin: [0,2,0,2]},
-        {text: item.data, style: 'tableHeader', fontSize: 9, margin: [0,2,0,2]},
-        {text: item.sala, style: 'tableHeader', fontSize: 9, margin: [0,2,0,2]}
+        { text: item.nome, style: 'tableHeader', fontSize: 9, margin: [0, 2, 0, 2] },
+        { text: item.cidade, style: 'tableHeader', fontSize: 9, margin: [0, 2, 0, 2] },
+        { text: item.email, style: 'tableHeader', fontSize: 9, margin: [0, 2, 0, 2] },
+        { text: item.telefone, style: 'tableHeader', fontSize: 9, margin: [0, 2, 0, 2] },
+        { text: item.escola, style: 'tableHeader', fontSize: 9, margin: [0, 2, 0, 2] },
+        { text: item.PCD, style: 'tableHeader', fontSize: 9, margin: [0, 2, 0, 2] },
+        { text: item.curso, style: 'tableHeader', fontSize: 9, margin: [0, 2, 0, 2] },
+        { text: item.nome_mini_curso, style: 'tableHeader', fontSize: 9, margin: [0, 2, 0, 2] },
+        { text: item.horario, style: 'tableHeader', fontSize: 9, margin: [0, 2, 0, 2] },
+        { text: item.data, style: 'tableHeader', fontSize: 9, margin: [0, 2, 0, 2] },
+        { text: item.sala, style: 'tableHeader', fontSize: 9, margin: [0, 2, 0, 2] }
       ]
     })
     const detalhes = [
@@ -86,17 +89,17 @@ export default function DashBoardC() {
           widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
           body: [
             [
-              {text: 'Nome', style: 'tableHeader', fontSize: 10},
-              {text: 'Cidade', style: 'tableHeader', fontSize: 10},
-              {text: 'Email', style: 'tableHeader', fontSize: 10},
-              {text: 'Telefone', style: 'tableHeader', fontSize: 10},
-              {text: 'Escola', style: 'tableHeader', fontSize: 10},
-              {text: 'PCD', style: 'tableHeader', fontSize: 10},
-              {text: 'Curso', style: 'tableHeader', fontSize: 10},
-              {text: 'Mini Curso', style: 'tableHeader', fontSize: 10},
-              {text: 'Horario', style: 'tableHeader', fontSize: 10},
-              {text: 'Data', style: 'tableHeader', fontSize: 10},
-              {text: 'Sala', style: 'tableHeader', fontSize: 10}
+              { text: 'Nome', style: 'tableHeader', fontSize: 10 },
+              { text: 'Cidade', style: 'tableHeader', fontSize: 10 },
+              { text: 'Email', style: 'tableHeader', fontSize: 10 },
+              { text: 'Telefone', style: 'tableHeader', fontSize: 10 },
+              { text: 'Escola', style: 'tableHeader', fontSize: 10 },
+              { text: 'PCD', style: 'tableHeader', fontSize: 10 },
+              { text: 'Curso', style: 'tableHeader', fontSize: 10 },
+              { text: 'Mini Curso', style: 'tableHeader', fontSize: 10 },
+              { text: 'Horario', style: 'tableHeader', fontSize: 10 },
+              { text: 'Data', style: 'tableHeader', fontSize: 10 },
+              { text: 'Sala', style: 'tableHeader', fontSize: 10 }
             ],
             ...dados
           ]
@@ -131,6 +134,7 @@ export default function DashBoardC() {
   const [countInsc, setCountInsc] = useState(0);
   const [miniC, setMiniC] = useState(null);
   const [insc, setInsc] = useState(null);
+  const [filter, setFilter] = useState(null);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -177,6 +181,28 @@ export default function DashBoardC() {
     }
     getDados();
   }, [pathname]);
+
+  /* Orderna a lista de inscrições da ultima inscrição até a primeira.
+  function orderData(list){
+    list.sort((a,b) => {
+      if(a.data > b.data){
+        return true;
+      }else{
+        return true;
+      }
+    })
+    return list;
+  }*/
+
+  function filterName(event) {
+    if (filter) {
+      setFilter(null);
+    }
+
+    setFilter(insc.filter(item => item.nome.includes(event.target.value)));
+  }
+
+  console.log(filter);
 
   useEffect(() => {
     async function getInscricoes() {
@@ -225,7 +251,7 @@ export default function DashBoardC() {
       }
     }
     getMini();
-  }, []);
+  }, [pathname]);
 
   async function Logout() {
     destroyCookie(null, 'react_auth_token');
@@ -301,7 +327,29 @@ export default function DashBoardC() {
               </ItemsContainerMini>
             </MiniCoursesCard>
           </MiniCoursesContainer>
-          <InscriptionTitle>Inscrições</InscriptionTitle>
+          <ContainerTitle>
+            <InscriptionTitle>Inscrições</InscriptionTitle>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                position: 'absolute',
+                right: '20%',
+                bottom: 0
+              }}
+            >
+              <AiOutlineSearch
+                style={{
+                  marginRight: '0.5em'
+                }}
+              />
+              <Search
+                type='text'
+                placeholder='Pesquisar'
+                onChange={filterName}
+              />
+            </div>
+          </ContainerTitle>
           <InscriptionContainer>
             <InscriptionCard>
               <InscriptionMenu>
@@ -313,26 +361,44 @@ export default function DashBoardC() {
                 <InscriptionMenuItem>Data</InscriptionMenuItem>
               </InscriptionMenu>
               <ItemsContainer>
-                {loadingIns ? "Carregando" :
+                {loadingIns ? "Carregando..." :
                   <>
-                    {insc ?
+                    {filter ?
                       <>
-                        {insc.map(ins => (
+                        {filter.map(item => (
                           <>
-                            <InscriptionItem>{ins.nome}</InscriptionItem>
-                            <InscriptionItem>{ins.curso}</InscriptionItem>
-                            <InscriptionItem>{ins.nome_mini_curso}</InscriptionItem>
-                            <InscriptionItem>{ins.escola}</InscriptionItem>
-                            <InscriptionItem>{ins.cidade}</InscriptionItem>
-                            <InscriptionItem>{ins.data}</InscriptionItem>
+                            <InscriptionItem>{item.nome}</InscriptionItem>
+                            <InscriptionItem>{item.curso}</InscriptionItem>
+                            <InscriptionItem>{item.nome_mini_curso}</InscriptionItem>
+                            <InscriptionItem>{item.escola}</InscriptionItem>
+                            <InscriptionItem>{item.cidade}</InscriptionItem>
+                            <InscriptionItem>{item.data}</InscriptionItem>
                           </>
                         ))}
                       </>
                       :
                       <>
-                        <InscriptionItem>AINDA NÃO POSSUE INSCRIÇÕES</InscriptionItem>
+                        {insc ?
+                          <>
+                            {insc.map(ins => (
+                              <>
+                                <InscriptionItem>{ins.nome}</InscriptionItem>
+                                <InscriptionItem>{ins.curso}</InscriptionItem>
+                                <InscriptionItem>{ins.nome_mini_curso}</InscriptionItem>
+                                <InscriptionItem>{ins.escola}</InscriptionItem>
+                                <InscriptionItem>{ins.cidade}</InscriptionItem>
+                                <InscriptionItem>{ins.data}</InscriptionItem>
+                              </>
+                            ))}
+                          </>
+                          :
+                          <>
+                            <InscriptionItem>AINDA NÃO POSSUE INSCRIÇÕES</InscriptionItem>
+                          </>
+                        }
                       </>
                     }
+
                   </>
                 }
               </ItemsContainer>
