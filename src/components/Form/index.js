@@ -25,8 +25,11 @@ import IconEscola from '../../assets/icons/escola.png';
 
 const Form = () => {
 
+  const navigate = useNavigate();
+
   const regExpTel = /^\+?\d{2}?\s*\(\d{2}\)?\s*\d{4,5}\-?\d{4}$/g;
   const regExpEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -45,7 +48,6 @@ const Form = () => {
   const [disabled1, setDisabled1] = useState(false);
   const [disabled2, setDisabled2] = useState(false);
 
-  const navigate = useNavigate();
 
   useEffect(() => {
     function validation() {
@@ -193,7 +195,7 @@ const Form = () => {
         </PcdContainer>
         
         <Button type='submit'>Cadastrar</Button>
-        <ButtonOutline>Ver minha inscrição</ButtonOutline>
+        <ButtonOutline onClick={() => navigate('/verificar')} type='button'>Ver minha inscrição</ButtonOutline>
       </FormC>
     </Fragment>
   )
