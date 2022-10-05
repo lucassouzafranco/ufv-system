@@ -192,7 +192,7 @@ export default function MiniCoursesC({ courses }) {
       }else {
         aux = cursos[0].title;
       }
-      await axios.get(`http://200.17.76.41:3333/mini/get/${aux}`)
+      await axios.get(`https://api.mostra.crp.ufv.br/mini/get/${aux}`)
         .then((response) => {
           const res = response.data.sort((a,b) => {
             if(a.horario < b.horario){
@@ -221,7 +221,7 @@ export default function MiniCoursesC({ courses }) {
       }else {
         aux = cursos[1].title;
       }
-      await axios.get(`http://200.17.76.41:3333/mini/get/${aux}`)
+      await axios.get(`https://api.mostra.crp.ufv.br/mini/get/${aux}`)
         .then((response) => {
           const res = response.data.sort((a,b) => {
             if(a.horario < b.horario){
@@ -317,7 +317,7 @@ export default function MiniCoursesC({ courses }) {
         }
       ]
     }
-    await axios.post('http://200.17.76.41:3333/inscricao', data)
+    await axios.post('https://api.mostra.crp.ufv.br/inscricao', data)
       .then(response => {
         if(response.data.result === 'Email error'){
           setErro({erroMail: true});

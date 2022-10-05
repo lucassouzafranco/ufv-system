@@ -17,7 +17,7 @@ export default function Login() {
       email: email.trim(),
       senha: password.trim()
     }
-    await axios.post('http://200.17.76.41:3333/auth', data)
+    await axios.post('https://api.mostra.crp.ufv.br/auth', data)
       .then(response => {
         const { token } = response.data;
         if(token){

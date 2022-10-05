@@ -52,7 +52,7 @@ export default function Verificar() {
       setErro({ erroMail: true });
       return;
     }
-    axios.post('http://200.17.76.41:3333/inscricao/verificar', { email: emailData })
+    axios.post('https://api.mostra.crp.ufv.br/inscricao/verificar', { email: emailData })
       .then((response) => {
         const { status } = response.data;
         const { result } = response.data;

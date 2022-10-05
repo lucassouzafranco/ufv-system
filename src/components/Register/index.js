@@ -14,7 +14,7 @@ const Register = () => {
     if(manu){
       localStorage.clear();
     }
-  }, [])
+  }, [manu])
 
   return (
     <Fragment>

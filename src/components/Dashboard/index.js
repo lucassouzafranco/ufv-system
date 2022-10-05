@@ -147,7 +147,7 @@ export default function DashBoardC() {
       horario: time.trim()
     }
 
-    await axios.post('http://200.17.76.41:3333/mini/create', data, {
+    await axios.post('https://api.mostra.crp.ufv.br/mini/create', data, {
       headers: {
         'Authorization': `Basic ${react_auth_token}`
       }
@@ -161,7 +161,7 @@ export default function DashBoardC() {
   useEffect(() => {
     async function getDados() {
       if (pathname === '/admin/painel') {
-        await axios.get('http://200.17.76.41:3333/mini/dados')
+        await axios.get('https://api.mostra.crp.ufv.br/mini/dados')
           .then(response => {
             const insc = response.data.inscrisoes;
             const { dados } = response.data;
@@ -207,7 +207,7 @@ export default function DashBoardC() {
   useEffect(() => {
     async function getInscricoes() {
       if (pathname === '/admin/painel') {
-        await axios.get('http://200.17.76.41:3333/inscricao/all')
+        await axios.get('https://api.mostra.crp.ufv.br/inscricao/all')
           .then(response => {
             let aux = [];
             if (response.data.result !== 'Error') {
@@ -242,7 +242,7 @@ export default function DashBoardC() {
   useEffect(() => {
     async function getMini() {
       if (pathname === '/admin/painel') {
-        await axios.get('http://200.17.76.41:3333/mini/all')
+        await axios.get('https://api.mostra.crp.ufv.br/mini/all')
           .then(response => {
             setMiniC(response.data);
           })
