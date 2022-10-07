@@ -268,13 +268,17 @@ export default function DashBoardC() {
               active={pathname === "/admin/painel" ? true : false}
             >Dashboard</Item>
           </Link>
-          <Link style={{ textDecoration: 'none' }} to='/admin/painel/cadastrar'>
-            <Item
-              active={pathname === "/admin/painel/cadastrar" ? true : false}
-            >
-              Cadastrar
-            </Item>
-          </Link>
+          {
+            /*
+              <Link style={{ textDecoration: 'none' }} to='/admin/painel/cadastrar'>
+                <Item
+                  active={pathname === "/admin/painel/cadastrar" ? true : false}
+                >
+                  Cadastrar
+                </Item>
+              </Link>
+            */
+          }
         </ItemContainer>
         <UserContainer>
           <AiOutlineLogout onClick={() => Logout()} style={{ fontSize: '20pt', marginRight: '0.5em', color: '#fff', cursor: 'pointer' }} />
