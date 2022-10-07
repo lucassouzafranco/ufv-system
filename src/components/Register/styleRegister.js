@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import ufv from '../../assets/img/ufv.jpg';
+import ufv from '../../assets/img/ufv.png';
 
 export const Layout = styled.div`
   display: flex;
