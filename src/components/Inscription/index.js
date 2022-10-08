@@ -26,7 +26,7 @@ export default function InscriptionC() {
   useEffect(() => {
     async function getInsc() {
       if (id) {
-        await axios.get(`http://200.17.76.41:3333/inscricao/get/${id}`)
+        await axios.get(`https://api.mostra.crp.ufv.br/inscricao/get/${id}`)
           .then(response => {
             console.log(response.data);
             setInsc(response.data);
