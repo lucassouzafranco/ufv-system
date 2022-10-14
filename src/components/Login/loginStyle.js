@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Content = styled.main`
   height: 100vh;
+  position: relative;
   background-image: url('/assets/img/alunos.png');
   background-position: center;
   background-size: cover;
@@ -62,7 +63,23 @@ export const Button = styled.button`
   font-weight: 500;
   cursor: pointer;
 
-  @media (max-width: 414px) {
-    font-size: 55pt;
+  @media (max-width: 518px){
+    font-size: 10pt;
+  }
+`
+
+export const Footer = styled.footer`
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 1em;
+`
+
+export const Credits = styled.span`
+  color: #fff;
+  font-size: 10pt;
+  bottom: 1px;
+  font-weight: 600;
+  @media (max-width: 518px) {
+    color: #111;
   }
 `

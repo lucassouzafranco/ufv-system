@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Content, Title, Form, Input, Button } from './loginStyle';
+import { Container, Content, Title, Form, Input, Button, Footer, Credits } from './loginStyle';
 import axios from "axios";
 import { setCookie } from 'nookies';
 import { useNavigate } from 'react-router-dom';
@@ -20,7 +20,7 @@ export default function Login() {
     await axios.post('https://api.mostra.crp.ufv.br/auth', data)
       .then(response => {
         const { token } = response.data;
-        if(token){
+        if (token) {
           setCookie(null, 'react_auth_token', token, {
             maxAge: 86400 * 1
           })
@@ -54,6 +54,10 @@ export default function Login() {
             />
             <Button type="submit">Entrar</Button>
           </Form>
+          <Footer>
+            <Credits>Desenvolvido com ❤️ por <a style={{ textDecoration: 'none', color: '#114977', fontWeight: 'bold' }} href="https://infoalto.com.br/" target='_blank' rel="noreferrer">InfoAlto Empresa Júnior.</a>
+            </Credits>
+          </Footer>
         </Container>
       </Content>
     </>

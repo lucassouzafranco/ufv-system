@@ -202,7 +202,6 @@ export default function DashBoardC() {
     setFilter(insc.filter(item => item.nome.includes(event.target.value)));
   }
 
-  console.log(filter);
 
   useEffect(() => {
     async function getInscricoes() {

@@ -7,14 +7,22 @@ export const Menu = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media (max-width: 518px){
+    display: grid;
+    grid-template-columns: repeat(3, calc(100% / 3));
+  }
 `
 
 export const Logo = styled.img`
   width: 150px;
   height: 50px;
-
-  @media (max-width: 414px) {
-    display: none;
+  @media (max-width: 518px){
+    width: 40%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
   }
 `
 
@@ -22,6 +30,7 @@ export const ItemContainer = styled.div`
   display: flex;
   align-items: center;
   margin-left: 1em;
+
 `
 
 export const Item = styled.li`
@@ -33,6 +42,9 @@ export const Item = styled.li`
   background-color: ${props => props.active ?  '#973d409d': 'none' };
   padding: 0.4em;
   border-radius: 10px;
+  @media (max-width: 518px){
+    font-size: 10pt;
+  }
 `
 
 export const UserContainer = styled.div`
