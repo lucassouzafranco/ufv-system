@@ -269,7 +269,6 @@ export default function MiniCoursesC({ courses }) {
         setErro({ erroTime: true });
         return;
       }
-      return;
     } else if (selected[0].horario === '10:30') {
       if (selected[1].horario === '11:00' || selected[1].horario === '11:30' || selected[1].horario === '09:30' || selected[1].horario === '10:00' || selected[1].horario === '09:00' || selected[1].horario === '10:30') {
         setErro({ erroTime: true });
