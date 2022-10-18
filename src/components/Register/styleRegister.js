@@ -105,3 +105,25 @@ export const Manu = styled.h1`
   border-radius: 20px;
   font-size: 14pt;
 `
+
+export const FinishContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  flex-direction: column;
+`
+
+export const Finish = styled.h1`
+  color: #fff;
+  padding: 1em;
+  background-color: #682A2C;
+  border-radius: 20px;
+  font-size: 14pt;
+`
+
+export const Go = styled.span`
+  text-align: center;
+  margin-top: 0.5em;
+  font-weight: 600;
+  cursor: pointer;
+`
