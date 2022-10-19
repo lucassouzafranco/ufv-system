@@ -54,20 +54,123 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 
 export default function DashBoardC() {
 
-  function relatorio(data) {
+  let aux = [];
+
+  async function relatorio(data) {
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
-    const reportTitle = [
-      {
-        text: 'Lista de inscrições',
-        fontSize: 15,
-        bold: true,
-        margin: [15, 20, 0, 45]
-      },
+    await axios.get('https://api.mostra.crp.ufv.br/mini/all')
+      .then(response => {
+        response.data.forEach((item, index) => {
+          if (!aux.some(auxItem => item.nome === auxItem.nome)) {
+            aux.push({
+              id: item.id,
+              nome: item.nome
+            })
+          }
+        })
+        aux.sort((a, b) => {
+          if (a.nome < b.nome) {
+            return -1;
+          } else {
+            return true;
+          }
+        });
+        console.log(aux);
+      })
+      .catch(error => console.log(error));
 
-    ];
+    const reportTitle = [];
 
-    const dados = data.map(item => {
+    /* Análise Sensorial */
+    const curso1 = data.filter(item => item.nome_mini_curso === 'Análise Sensorial')
+
+    /* As plantas também ficam doentes! */
+    const curso2 = data.filter(item => item.nome_mini_curso === 'As plantas também ficam doentes!');
+
+    /* Como o nutricionista cuida da saúde das pessoas e de populações? */
+    const curso3 = data.filter(item => item.nome_mini_curso === 'Como o nutricionista cuida da saúde das pessoas e de populações?');
+
+    /* Conhecendo os insetos */
+    const curso4 = data.filter(item => item.nome_mini_curso === 'Conhecendo os insetos');
+
+    /* Conhecendo outras formas de alimentação */
+    const curso5 = data.filter(item => item.nome_mini_curso === 'Conhecendo outras formas de alimentação');
+
+    /* Desenvolvimento de Produtos e Impressão 3D */
+    const curso6 = data.filter(item => item.nome_mini_curso === 'Desenvolvimento de Produtos e Impressão 3D');
+
+    /* Desenvolvimento de embalagens ativas */
+    const curso7 = data.filter(item => item.nome_mini_curso === 'Desenvolvimento de embalagens ativas');
+
+    /* Do DNA ao Cromossomo */
+    const curso8 = data.filter(item => item.nome_mini_curso === 'Do DNA ao Cromossomo');
+
+    /* Evolução Humana */
+    const curso9 = data.filter(item => item.nome_mini_curso === 'Evolução Humana');
+
+    /* Experiências de Química */
+    const curso10 = data.filter(item => item.nome_mini_curso === 'Experiências de Química');
+
+    /* Exposição dos tratores e máquinas */
+    const curso11 = data.filter(item => item.nome_mini_curso === 'Exposição dos tratores e máquinas');
+
+    /* Introdução à programação */
+    const curso12 = data.filter(item => item.nome_mini_curso === 'Introdução à programação');
+
+    /* Laboratório de Geotecnia e Asfalto */
+    const curso13 = data.filter(item => item.nome_mini_curso === 'Laboratório de Geotecnia e Asfalto');
+
+    /* Laboratório de Hidráulica */
+    const curso14 = data.filter(item => item.nome_mini_curso === 'Laboratório de Hidráulica');
+
+    /* Laboratório de Materiais de Construção Civil */
+    const curso15 = data.filter(item => item.nome_mini_curso === 'Laboratório de Materiais de Construção Civil');
+
+    /* Laboratório de Modelagem em 3D */
+    const curso16 = data.filter(item => item.nome_mini_curso === 'Laboratório de Modelagem em 3D');
+
+    /* Nutrição na prática clínica e esportiva */
+    const curso17 = data.filter(item => item.nome_mini_curso === 'Nutrição na prática clínica e esportiva');
+
+    /* O mundo secreto das plantas  */
+    const curso18 = data.filter(item => item.nome_mini_curso === 'O mundo secreto das plantas');
+
+    /* Observação dos microrganismos do ambiente */
+    const curso19 = data.filter(item => item.nome_mini_curso === 'Observação dos microrganismos do ambiente');
+
+    /* Oficina de Simulação Computacional e Inteligência Artificial */
+    const curso20 = data.filter(item => item.nome_mini_curso === 'Oficina de Simulação Computacional e Inteligência Artificial');
+
+    /* Os diversos campos de atuação do contador */
+    const curso21 = data.filter(item => item.nome_mini_curso === 'Os diversos campos de atuação do contador');
+
+    /* Quanta vida cabe em uma gota d'água? */
+    const curso22 = data.filter(item => item.nome_mini_curso === `Quanta vida cabe em uma gota d'água?`);
+
+    /* Rótulo dos alimentos: o que ele tem as nos contar? */
+    const curso23 = data.filter(item => item.nome_mini_curso === 'Rótulo dos alimentos: o que ele tem as nos contar?');
+
+    /* Visita ao laboratório de Anatomia Humana */
+    const curso24 = data.filter(item => item.nome_mini_curso === 'Visita ao laboratório de Anatomia Humana');
+
+    const dados1 = curso1.map(item => {
+      return [
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.cidade, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.email, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.telefone, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.escola, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.PCD, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.nome_mini_curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.data, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] }
+      ]
+    });
+
+    const dados2 = curso2.map(item => {
       return [
         { text: item.nome, style: 'tableHeader', fontSize: 9, margin: [0, 2, 0, 2] },
         { text: item.cidade, style: 'tableHeader', fontSize: 9, margin: [0, 2, 0, 2] },
@@ -81,41 +184,1026 @@ export default function DashBoardC() {
         { text: item.data, style: 'tableHeader', fontSize: 9, margin: [0, 2, 0, 2] },
         { text: item.sala, style: 'tableHeader', fontSize: 9, margin: [0, 2, 0, 2] }
       ]
-    })
-    const detalhes = [
+    });
+
+    const dados3 = curso3.map(item => {
+      return [
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.cidade, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.email, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.telefone, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.escola, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.PCD, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.nome_mini_curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.data, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] }
+      ]
+    });
+
+    const dados4 = curso4.map(item => {
+      return [
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.cidade, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.email, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.telefone, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.escola, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.PCD, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.nome_mini_curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.data, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] }
+      ]
+    });
+
+    const dados5 = curso5.map(item => {
+      return [
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.cidade, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.email, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.telefone, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.escola, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.PCD, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.nome_mini_curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.data, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] }
+      ]
+    });
+
+    const dados6 = curso6.map(item => {
+      return [
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.cidade, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.email, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.telefone, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.escola, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.PCD, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.nome_mini_curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.data, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] }
+      ]
+    });
+
+    const dados7 = curso7.map(item => {
+      return [
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.cidade, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.email, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.telefone, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.escola, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.PCD, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.nome_mini_curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.data, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] }
+      ]
+    });
+
+    const dados8 = curso8.map(item => {
+      return [
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.cidade, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.email, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.telefone, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.escola, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.PCD, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.nome_mini_curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.data, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] }
+      ]
+    });
+
+    const dados9 = curso9.map(item => {
+      return [
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.cidade, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.email, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.telefone, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.escola, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.PCD, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.nome_mini_curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.data, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] }
+      ]
+    });
+
+    const dados10 = curso10.map(item => {
+      return [
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.cidade, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.email, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.telefone, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.escola, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.PCD, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.nome_mini_curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.data, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] }
+      ]
+    });
+
+    const dados11 = curso11.map(item => {
+      return [
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.cidade, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.email, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.telefone, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.escola, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.PCD, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.nome_mini_curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.data, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] }
+      ]
+    });
+
+    const dados12 = curso12.map(item => {
+      return [
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.cidade, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.email, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.telefone, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.escola, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.PCD, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.nome_mini_curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.data, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] }
+      ]
+    });
+
+    const dados13 = curso13.map(item => {
+      return [
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.cidade, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.email, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.telefone, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.escola, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.PCD, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.nome_mini_curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.data, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] }
+      ]
+    });
+
+    const dados14 = curso14.map(item => {
+      return [
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.cidade, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.email, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.telefone, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.escola, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.PCD, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.nome_mini_curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.data, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] }
+      ]
+    });
+
+    const dados15 = curso15.map(item => {
+      return [
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.cidade, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.email, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.telefone, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.escola, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.PCD, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.nome_mini_curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.data, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] }
+      ]
+    });
+
+    const dados16 = curso16.map(item => {
+      return [
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.cidade, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.email, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.telefone, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.escola, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.PCD, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.nome_mini_curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.data, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] }
+      ]
+    });
+
+    const dados17 = curso17.map(item => {
+      return [
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.cidade, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.email, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.telefone, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.escola, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.PCD, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.nome_mini_curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.data, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] }
+      ]
+    });
+
+    const dados18 = curso18.map(item => {
+      return [
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.cidade, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.email, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.telefone, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.escola, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.PCD, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.nome_mini_curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.data, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] }
+      ]
+    });
+
+    const dados19 = curso19.map(item => {
+      return [
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.cidade, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.email, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.telefone, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.escola, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.PCD, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.nome_mini_curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.data, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] }
+      ]
+    });
+
+    const dados20 = curso20.map(item => {
+      return [
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.cidade, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.email, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.telefone, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.escola, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.PCD, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.nome_mini_curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.data, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] }
+      ]
+    });
+
+    const dados21 = curso21.map(item => {
+      return [
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.cidade, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.email, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.telefone, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.escola, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.PCD, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.nome_mini_curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.data, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] }
+      ]
+    });
+
+    const dados22 = curso22.map(item => {
+      return [
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.cidade, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.email, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.telefone, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.escola, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.PCD, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.nome_mini_curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.data, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] }
+      ]
+    });
+
+    const dados23 = curso23.map(item => {
+      return [
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.cidade, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.email, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.telefone, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.escola, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.PCD, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.nome_mini_curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.data, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] }
+      ]
+    });
+
+    const dados24 = curso24.map(item => {
+      return [
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.cidade, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.email, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.telefone, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.escola, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.PCD, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.nome_mini_curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.data, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2] }
+      ]
+    });
+
+    const detalhes1 = [
+      { text: `Análise Sensorial`, style: 'header' },
       {
         table: {
           headerRows: 1,
           widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
           body: [
             [
-              { text: 'Nome', style: 'tableHeader', fontSize: 10 },
-              { text: 'Cidade', style: 'tableHeader', fontSize: 10 },
-              { text: 'Email', style: 'tableHeader', fontSize: 10 },
-              { text: 'Telefone', style: 'tableHeader', fontSize: 10 },
-              { text: 'Escola', style: 'tableHeader', fontSize: 10 },
-              { text: 'PCD', style: 'tableHeader', fontSize: 10 },
-              { text: 'Curso', style: 'tableHeader', fontSize: 10 },
-              { text: 'Mini Curso', style: 'tableHeader', fontSize: 10 },
-              { text: 'Horario', style: 'tableHeader', fontSize: 10 },
-              { text: 'Data', style: 'tableHeader', fontSize: 10 },
-              { text: 'Sala', style: 'tableHeader', fontSize: 10 }
+              { text: 'Nome', style: 'tableHeader', fontSize: 11 },
+              { text: 'Cidade', style: 'tableHeader', fontSize: 11 },
+              { text: 'Email', style: 'tableHeader', fontSize: 11 },
+              { text: 'Telefone', style: 'tableHeader', fontSize: 11 },
+              { text: 'Escola', style: 'tableHeader', fontSize: 11 },
+              { text: 'PCD', style: 'tableHeader', fontSize: 11 },
+              { text: 'Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Mini Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Horario', style: 'tableHeader', fontSize: 11 },
+              { text: 'Data', style: 'tableHeader', fontSize: 11 },
+              { text: 'Sala', style: 'tableHeader', fontSize: 11 }
             ],
-            ...dados
+            ...dados1
           ]
         }
       }
     ];
+
+    const detalhes2 = [
+      { text: `As plantas também ficam doentes!`, style: 'header' },
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Nome', style: 'tableHeader', fontSize: 11 },
+              { text: 'Cidade', style: 'tableHeader', fontSize: 11 },
+              { text: 'Email', style: 'tableHeader', fontSize: 11 },
+              { text: 'Telefone', style: 'tableHeader', fontSize: 11 },
+              { text: 'Escola', style: 'tableHeader', fontSize: 11 },
+              { text: 'PCD', style: 'tableHeader', fontSize: 11 },
+              { text: 'Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Mini Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Horario', style: 'tableHeader', fontSize: 11 },
+              { text: 'Data', style: 'tableHeader', fontSize: 11 },
+              { text: 'Sala', style: 'tableHeader', fontSize: 11 }
+            ],
+            ...dados2
+          ]
+        }
+      }
+    ];
+
+    const detalhes3 = [
+      { text: `Como o nutricionista cuida da saúde das pessoas e de populações?!`, style: 'header' },
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Nome', style: 'tableHeader', fontSize: 11 },
+              { text: 'Cidade', style: 'tableHeader', fontSize: 11 },
+              { text: 'Email', style: 'tableHeader', fontSize: 11 },
+              { text: 'Telefone', style: 'tableHeader', fontSize: 11 },
+              { text: 'Escola', style: 'tableHeader', fontSize: 11 },
+              { text: 'PCD', style: 'tableHeader', fontSize: 11 },
+              { text: 'Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Mini Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Horario', style: 'tableHeader', fontSize: 11 },
+              { text: 'Data', style: 'tableHeader', fontSize: 11 },
+              { text: 'Sala', style: 'tableHeader', fontSize: 11 }
+            ],
+            ...dados3
+          ]
+        }
+      }
+    ];
+
+    const detalhes4 = [
+      { text: `Conhecendo os insetos`, style: 'header' },
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Nome', style: 'tableHeader', fontSize: 11 },
+              { text: 'Cidade', style: 'tableHeader', fontSize: 11 },
+              { text: 'Email', style: 'tableHeader', fontSize: 11 },
+              { text: 'Telefone', style: 'tableHeader', fontSize: 11 },
+              { text: 'Escola', style: 'tableHeader', fontSize: 11 },
+              { text: 'PCD', style: 'tableHeader', fontSize: 11 },
+              { text: 'Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Mini Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Horario', style: 'tableHeader', fontSize: 11 },
+              { text: 'Data', style: 'tableHeader', fontSize: 11 },
+              { text: 'Sala', style: 'tableHeader', fontSize: 11 }
+            ],
+            ...dados4
+          ]
+        }
+      }
+    ];
+
+    const detalhes5 = [
+      { text: `Conhecendo outras formas de alimentação`, style: 'header' },
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Nome', style: 'tableHeader', fontSize: 11 },
+              { text: 'Cidade', style: 'tableHeader', fontSize: 11 },
+              { text: 'Email', style: 'tableHeader', fontSize: 11 },
+              { text: 'Telefone', style: 'tableHeader', fontSize: 11 },
+              { text: 'Escola', style: 'tableHeader', fontSize: 11 },
+              { text: 'PCD', style: 'tableHeader', fontSize: 11 },
+              { text: 'Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Mini Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Horario', style: 'tableHeader', fontSize: 11 },
+              { text: 'Data', style: 'tableHeader', fontSize: 11 },
+              { text: 'Sala', style: 'tableHeader', fontSize: 11 }
+            ],
+            ...dados5
+          ]
+        }
+      }
+    ];
+
+    const detalhes6 = [
+      { text: `Desenvolvimento de Produtos e Impressão 3D`, style: 'header' },
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Nome', style: 'tableHeader', fontSize: 11 },
+              { text: 'Cidade', style: 'tableHeader', fontSize: 11 },
+              { text: 'Email', style: 'tableHeader', fontSize: 11 },
+              { text: 'Telefone', style: 'tableHeader', fontSize: 11 },
+              { text: 'Escola', style: 'tableHeader', fontSize: 11 },
+              { text: 'PCD', style: 'tableHeader', fontSize: 11 },
+              { text: 'Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Mini Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Horario', style: 'tableHeader', fontSize: 11 },
+              { text: 'Data', style: 'tableHeader', fontSize: 11 },
+              { text: 'Sala', style: 'tableHeader', fontSize: 11 }
+            ],
+            ...dados6
+          ]
+        }
+      }
+    ];
+
+    const detalhes7 = [
+      { text: `Desenvolvimento de embalagens ativas`, style: 'header' },
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Nome', style: 'tableHeader', fontSize: 11 },
+              { text: 'Cidade', style: 'tableHeader', fontSize: 11 },
+              { text: 'Email', style: 'tableHeader', fontSize: 11 },
+              { text: 'Telefone', style: 'tableHeader', fontSize: 11 },
+              { text: 'Escola', style: 'tableHeader', fontSize: 11 },
+              { text: 'PCD', style: 'tableHeader', fontSize: 11 },
+              { text: 'Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Mini Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Horario', style: 'tableHeader', fontSize: 11 },
+              { text: 'Data', style: 'tableHeader', fontSize: 11 },
+              { text: 'Sala', style: 'tableHeader', fontSize: 11 }
+            ],
+            ...dados7
+          ]
+        }
+      }
+    ];
+
+    const detalhes8 = [
+      { text: `Do DNA ao Cromossomo`, style: 'header' },
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Nome', style: 'tableHeader', fontSize: 11 },
+              { text: 'Cidade', style: 'tableHeader', fontSize: 11 },
+              { text: 'Email', style: 'tableHeader', fontSize: 11 },
+              { text: 'Telefone', style: 'tableHeader', fontSize: 11 },
+              { text: 'Escola', style: 'tableHeader', fontSize: 11 },
+              { text: 'PCD', style: 'tableHeader', fontSize: 11 },
+              { text: 'Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Mini Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Horario', style: 'tableHeader', fontSize: 11 },
+              { text: 'Data', style: 'tableHeader', fontSize: 11 },
+              { text: 'Sala', style: 'tableHeader', fontSize: 11 }
+            ],
+            ...dados8
+          ]
+        }
+      }
+    ];
+
+    const detalhes9 = [
+      { text: `Evolução Humana`, style: 'header' },
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Nome', style: 'tableHeader', fontSize: 11 },
+              { text: 'Cidade', style: 'tableHeader', fontSize: 11 },
+              { text: 'Email', style: 'tableHeader', fontSize: 11 },
+              { text: 'Telefone', style: 'tableHeader', fontSize: 11 },
+              { text: 'Escola', style: 'tableHeader', fontSize: 11 },
+              { text: 'PCD', style: 'tableHeader', fontSize: 11 },
+              { text: 'Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Mini Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Horario', style: 'tableHeader', fontSize: 11 },
+              { text: 'Data', style: 'tableHeader', fontSize: 11 },
+              { text: 'Sala', style: 'tableHeader', fontSize: 11 }
+            ],
+            ...dados9
+          ]
+        }
+      }
+    ];
+
+    const detalhes10 = [
+      { text: `Experiências de Química`, style: 'header' },
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Nome', style: 'tableHeader', fontSize: 11 },
+              { text: 'Cidade', style: 'tableHeader', fontSize: 11 },
+              { text: 'Email', style: 'tableHeader', fontSize: 11 },
+              { text: 'Telefone', style: 'tableHeader', fontSize: 11 },
+              { text: 'Escola', style: 'tableHeader', fontSize: 11 },
+              { text: 'PCD', style: 'tableHeader', fontSize: 11 },
+              { text: 'Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Mini Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Horario', style: 'tableHeader', fontSize: 11 },
+              { text: 'Data', style: 'tableHeader', fontSize: 11 },
+              { text: 'Sala', style: 'tableHeader', fontSize: 11 }
+            ],
+            ...dados10
+          ]
+        }
+      }
+    ];
+
+    const detalhes11 = [
+      { text: `Exposição dos tratores e máquinas`, style: 'header' },
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Nome', style: 'tableHeader', fontSize: 11 },
+              { text: 'Cidade', style: 'tableHeader', fontSize: 11 },
+              { text: 'Email', style: 'tableHeader', fontSize: 11 },
+              { text: 'Telefone', style: 'tableHeader', fontSize: 11 },
+              { text: 'Escola', style: 'tableHeader', fontSize: 11 },
+              { text: 'PCD', style: 'tableHeader', fontSize: 11 },
+              { text: 'Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Mini Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Horario', style: 'tableHeader', fontSize: 11 },
+              { text: 'Data', style: 'tableHeader', fontSize: 11 },
+              { text: 'Sala', style: 'tableHeader', fontSize: 11 }
+            ],
+            ...dados11
+          ]
+        }
+      }
+    ];
+
+    const detalhes12 = [
+      { text: `Introdução à programação`, style: 'header' },
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Nome', style: 'tableHeader', fontSize: 11 },
+              { text: 'Cidade', style: 'tableHeader', fontSize: 11 },
+              { text: 'Email', style: 'tableHeader', fontSize: 11 },
+              { text: 'Telefone', style: 'tableHeader', fontSize: 11 },
+              { text: 'Escola', style: 'tableHeader', fontSize: 11 },
+              { text: 'PCD', style: 'tableHeader', fontSize: 11 },
+              { text: 'Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Mini Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Horario', style: 'tableHeader', fontSize: 11 },
+              { text: 'Data', style: 'tableHeader', fontSize: 11 },
+              { text: 'Sala', style: 'tableHeader', fontSize: 11 }
+            ],
+            ...dados12
+          ]
+        }
+      }
+    ];
+
+    const detalhes13 = [
+      { text: `Laboratório de Geotecnia e Asfalto`, style: 'header' },
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Nome', style: 'tableHeader', fontSize: 11 },
+              { text: 'Cidade', style: 'tableHeader', fontSize: 11 },
+              { text: 'Email', style: 'tableHeader', fontSize: 11 },
+              { text: 'Telefone', style: 'tableHeader', fontSize: 11 },
+              { text: 'Escola', style: 'tableHeader', fontSize: 11 },
+              { text: 'PCD', style: 'tableHeader', fontSize: 11 },
+              { text: 'Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Mini Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Horario', style: 'tableHeader', fontSize: 11 },
+              { text: 'Data', style: 'tableHeader', fontSize: 11 },
+              { text: 'Sala', style: 'tableHeader', fontSize: 11 }
+            ],
+            ...dados13
+          ]
+        }
+      }
+    ];
+
+    const detalhes14 = [
+      { text: `Laboratório de Hidráulica`, style: 'header' },
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Nome', style: 'tableHeader', fontSize: 11 },
+              { text: 'Cidade', style: 'tableHeader', fontSize: 11 },
+              { text: 'Email', style: 'tableHeader', fontSize: 11 },
+              { text: 'Telefone', style: 'tableHeader', fontSize: 11 },
+              { text: 'Escola', style: 'tableHeader', fontSize: 11 },
+              { text: 'PCD', style: 'tableHeader', fontSize: 11 },
+              { text: 'Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Mini Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Horario', style: 'tableHeader', fontSize: 11 },
+              { text: 'Data', style: 'tableHeader', fontSize: 11 },
+              { text: 'Sala', style: 'tableHeader', fontSize: 11 }
+            ],
+            ...dados14
+          ]
+        }
+      }
+    ];
+
+    const detalhes15 = [
+      { text: `Laboratório de Materiais de Construção Civil`, style: 'header' },
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Nome', style: 'tableHeader', fontSize: 11 },
+              { text: 'Cidade', style: 'tableHeader', fontSize: 11 },
+              { text: 'Email', style: 'tableHeader', fontSize: 11 },
+              { text: 'Telefone', style: 'tableHeader', fontSize: 11 },
+              { text: 'Escola', style: 'tableHeader', fontSize: 11 },
+              { text: 'PCD', style: 'tableHeader', fontSize: 11 },
+              { text: 'Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Mini Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Horario', style: 'tableHeader', fontSize: 11 },
+              { text: 'Data', style: 'tableHeader', fontSize: 11 },
+              { text: 'Sala', style: 'tableHeader', fontSize: 11 }
+            ],
+            ...dados15
+          ]
+        }
+      }
+    ];
+
+    const detalhes16 = [
+      { text: `Laboratório de Modelagem em 3D`, style: 'header' },
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Nome', style: 'tableHeader', fontSize: 11 },
+              { text: 'Cidade', style: 'tableHeader', fontSize: 11 },
+              { text: 'Email', style: 'tableHeader', fontSize: 11 },
+              { text: 'Telefone', style: 'tableHeader', fontSize: 11 },
+              { text: 'Escola', style: 'tableHeader', fontSize: 11 },
+              { text: 'PCD', style: 'tableHeader', fontSize: 11 },
+              { text: 'Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Mini Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Horario', style: 'tableHeader', fontSize: 11 },
+              { text: 'Data', style: 'tableHeader', fontSize: 11 },
+              { text: 'Sala', style: 'tableHeader', fontSize: 11 }
+            ],
+            ...dados16
+          ]
+        }
+      }
+    ];
+
+    const detalhes17 = [
+      { text: `Nutrição na prática clínica e esportiva`, style: 'header' },
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Nome', style: 'tableHeader', fontSize: 11 },
+              { text: 'Cidade', style: 'tableHeader', fontSize: 11 },
+              { text: 'Email', style: 'tableHeader', fontSize: 11 },
+              { text: 'Telefone', style: 'tableHeader', fontSize: 11 },
+              { text: 'Escola', style: 'tableHeader', fontSize: 11 },
+              { text: 'PCD', style: 'tableHeader', fontSize: 11 },
+              { text: 'Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Mini Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Horario', style: 'tableHeader', fontSize: 11 },
+              { text: 'Data', style: 'tableHeader', fontSize: 11 },
+              { text: 'Sala', style: 'tableHeader', fontSize: 11 }
+            ],
+            ...dados17
+          ]
+        }
+      }
+    ];
+
+    const detalhes18 = [
+      { text: `O mundo secreto das plantas`, style: 'header' },
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Nome', style: 'tableHeader', fontSize: 11 },
+              { text: 'Cidade', style: 'tableHeader', fontSize: 11 },
+              { text: 'Email', style: 'tableHeader', fontSize: 11 },
+              { text: 'Telefone', style: 'tableHeader', fontSize: 11 },
+              { text: 'Escola', style: 'tableHeader', fontSize: 11 },
+              { text: 'PCD', style: 'tableHeader', fontSize: 11 },
+              { text: 'Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Mini Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Horario', style: 'tableHeader', fontSize: 11 },
+              { text: 'Data', style: 'tableHeader', fontSize: 11 },
+              { text: 'Sala', style: 'tableHeader', fontSize: 11 }
+            ],
+            ...dados18
+          ]
+        }
+      }
+    ];
+
+    const detalhes19 = [
+      { text: `Observação dos microrganismos do ambiente`, style: 'header' },
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Nome', style: 'tableHeader', fontSize: 11 },
+              { text: 'Cidade', style: 'tableHeader', fontSize: 11 },
+              { text: 'Email', style: 'tableHeader', fontSize: 11 },
+              { text: 'Telefone', style: 'tableHeader', fontSize: 11 },
+              { text: 'Escola', style: 'tableHeader', fontSize: 11 },
+              { text: 'PCD', style: 'tableHeader', fontSize: 11 },
+              { text: 'Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Mini Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Horario', style: 'tableHeader', fontSize: 11 },
+              { text: 'Data', style: 'tableHeader', fontSize: 11 },
+              { text: 'Sala', style: 'tableHeader', fontSize: 11 }
+            ],
+            ...dados19
+          ]
+        }
+      }
+    ];
+
+    const detalhes20 = [
+      { text: `Oficina de Simulação Computacional e Inteligência Artificial`, style: 'header' },
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Nome', style: 'tableHeader', fontSize: 11 },
+              { text: 'Cidade', style: 'tableHeader', fontSize: 11 },
+              { text: 'Email', style: 'tableHeader', fontSize: 11 },
+              { text: 'Telefone', style: 'tableHeader', fontSize: 11 },
+              { text: 'Escola', style: 'tableHeader', fontSize: 11 },
+              { text: 'PCD', style: 'tableHeader', fontSize: 11 },
+              { text: 'Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Mini Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Horario', style: 'tableHeader', fontSize: 11 },
+              { text: 'Data', style: 'tableHeader', fontSize: 11 },
+              { text: 'Sala', style: 'tableHeader', fontSize: 11 }
+            ],
+            ...dados20
+          ]
+        }
+      }
+    ];
+
+    const detalhes21 = [
+      { text: `Os diversos campos de atuação do contador`, style: 'header' },
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Nome', style: 'tableHeader', fontSize: 11 },
+              { text: 'Cidade', style: 'tableHeader', fontSize: 11 },
+              { text: 'Email', style: 'tableHeader', fontSize: 11 },
+              { text: 'Telefone', style: 'tableHeader', fontSize: 11 },
+              { text: 'Escola', style: 'tableHeader', fontSize: 11 },
+              { text: 'PCD', style: 'tableHeader', fontSize: 11 },
+              { text: 'Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Mini Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Horario', style: 'tableHeader', fontSize: 11 },
+              { text: 'Data', style: 'tableHeader', fontSize: 11 },
+              { text: 'Sala', style: 'tableHeader', fontSize: 11 }
+            ],
+            ...dados21
+          ]
+        }
+      }
+    ];
+
+    const detalhes22 = [
+      { text: `Quanta vida cabe em uma gota d'água?`, style: 'header' },
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Nome', style: 'tableHeader', fontSize: 11 },
+              { text: 'Cidade', style: 'tableHeader', fontSize: 11 },
+              { text: 'Email', style: 'tableHeader', fontSize: 11 },
+              { text: 'Telefone', style: 'tableHeader', fontSize: 11 },
+              { text: 'Escola', style: 'tableHeader', fontSize: 11 },
+              { text: 'PCD', style: 'tableHeader', fontSize: 11 },
+              { text: 'Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Mini Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Horario', style: 'tableHeader', fontSize: 11 },
+              { text: 'Data', style: 'tableHeader', fontSize: 11 },
+              { text: 'Sala', style: 'tableHeader', fontSize: 11 }
+            ],
+            ...dados22
+          ]
+        }
+      }
+    ];
+
+    const detalhes23 = [
+      { text: `Rótulo dos alimentos: o que ele tem as nos contar?`, style: 'header' },
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Nome', style: 'tableHeader', fontSize: 11 },
+              { text: 'Cidade', style: 'tableHeader', fontSize: 11 },
+              { text: 'Email', style: 'tableHeader', fontSize: 11 },
+              { text: 'Telefone', style: 'tableHeader', fontSize: 11 },
+              { text: 'Escola', style: 'tableHeader', fontSize: 11 },
+              { text: 'PCD', style: 'tableHeader', fontSize: 11 },
+              { text: 'Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Mini Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Horario', style: 'tableHeader', fontSize: 11 },
+              { text: 'Data', style: 'tableHeader', fontSize: 11 },
+              { text: 'Sala', style: 'tableHeader', fontSize: 11 }
+            ],
+            ...dados23
+          ]
+        }
+      }
+    ];
+
+    const detalhes24 = [
+      { text: `Visita ao laboratório de Anatomia Humana`, style: 'header' },
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Nome', style: 'tableHeader', fontSize: 11 },
+              { text: 'Cidade', style: 'tableHeader', fontSize: 11 },
+              { text: 'Email', style: 'tableHeader', fontSize: 11 },
+              { text: 'Telefone', style: 'tableHeader', fontSize: 11 },
+              { text: 'Escola', style: 'tableHeader', fontSize: 11 },
+              { text: 'PCD', style: 'tableHeader', fontSize: 11 },
+              { text: 'Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Mini Curso', style: 'tableHeader', fontSize: 11 },
+              { text: 'Horario', style: 'tableHeader', fontSize: 11 },
+              { text: 'Data', style: 'tableHeader', fontSize: 11 },
+              { text: 'Sala', style: 'tableHeader', fontSize: 11 }
+            ],
+            ...dados24
+          ]
+        }
+      }
+    ];
+
     const footer = [];
 
     const doc = {
-      pageSize: 'A1',
+      pageSize: 'A0',
       pageMargins: [15, 50, 14, 40],
       header: [reportTitle],
-      content: [detalhes],
-      footer: [footer]
+      content: [
+        detalhes1,
+        detalhes2,
+        detalhes3,
+        detalhes4,
+        detalhes5,
+        detalhes6,
+        detalhes7,
+        detalhes8,
+        detalhes9,
+        detalhes10,
+        detalhes11,
+        detalhes12,
+        detalhes13,
+        detalhes14,
+        detalhes15,
+        detalhes16,
+        detalhes17,
+        detalhes18,
+        detalhes19,
+        detalhes20,
+        detalhes21,
+        detalhes22,
+        detalhes23,
+        detalhes24
+      ],
+      footer: [footer],
+      styles: {
+        header: {
+          fontSize: 18,
+          bold: true,
+          margin: [15, 20, 0, 10]
+        },
+      }
     }
-    pdfMake.createPdf(doc).download();
+    pdfMake.createPdf(doc).download('Relatorio Completo');
   }
 
   const { pathname } = useLocation();
