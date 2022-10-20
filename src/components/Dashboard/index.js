@@ -1159,7 +1159,8 @@ export default function DashBoardC() {
             ...dados24
           ]
         }
-      }
+      },
+      { text: `Relatório gerado em ${new Date()}`, style: 'footer' },
     ];
 
     const footer = [];
@@ -1201,6 +1202,11 @@ export default function DashBoardC() {
           bold: true,
           margin: [15, 20, 0, 10]
         },
+        footer: {
+          fontSize: 10,
+          bold: true,
+          margin: [15, 20, 0, 10]
+        }
       }
     }
     pdfMake.createPdf(doc).download('Relatorio Completo');
