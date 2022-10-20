@@ -185,20 +185,20 @@ export default function MiniCoursesC({ courses }) {
     async function get() {
       const cursos = await JSON.parse(localStorage.getItem("@COURSES_DATA"));
       let aux = '';
-      if(cursos[0].title === 'Ciências Contábeis'){
+      if (cursos[0].title === 'Ciências Contábeis') {
         aux = 'Contaveis';
-      }else if (cursos[0].title === 'Ciências Biologicas'){
+      } else if (cursos[0].title === 'Ciências Biologicas') {
         aux = 'Biologia';
-      }else {
+      } else {
         aux = cursos[0].title;
       }
       await axios.get(`https://api.mostra.crp.ufv.br/mini/get/${aux}`)
         .then((response) => {
-          const res = response.data.sort((a,b) => {
-            if(a.horario < b.horario){
+          const res = response.data.sort((a, b) => {
+            if (a.horario < b.horario) {
               return -1
-            }else{
-              return true; 
+            } else {
+              return true;
             }
           })
           setCurso1(res);
@@ -214,19 +214,19 @@ export default function MiniCoursesC({ courses }) {
     async function get() {
       const cursos = await JSON.parse(localStorage.getItem("@COURSES_DATA"));
       let aux = '';
-      if(cursos[1].title === 'Ciências Contábeis'){
+      if (cursos[1].title === 'Ciências Contábeis') {
         aux = 'Contaveis';
-      }else if (cursos[1].title === 'Ciências Biologicas'){
+      } else if (cursos[1].title === 'Ciências Biologicas') {
         aux = 'Biologia';
-      }else {
+      } else {
         aux = cursos[1].title;
       }
       await axios.get(`https://api.mostra.crp.ufv.br/mini/get/${aux}`)
         .then((response) => {
-          const res = response.data.sort((a,b) => {
-            if(a.horario < b.horario){
+          const res = response.data.sort((a, b) => {
+            if (a.horario < b.horario) {
               return -1
-            }else{
+            } else {
               return true;
             }
           })
@@ -270,7 +270,7 @@ export default function MiniCoursesC({ courses }) {
         return;
       }
     } else if (selected[0].horario === '10:30') {
-      if (selected[1].horario === '11:00' || selected[1].horario === '11:30' || selected[1].horario === '09:30' || selected[1].horario === '10:00' || selected[1].horario === '09:00' || selected[1].horario === '10:30') {
+      if (selected[1].horario === '11:00' || selected[1].horario === '11:30' || selected[1].horario === '09:30' || selected[1].horario === '09:00' || selected[1].horario === '10:30') {
         setErro({ erroTime: true });
         return;
       }
@@ -318,8 +318,8 @@ export default function MiniCoursesC({ courses }) {
     }
     await axios.post('https://api.mostra.crp.ufv.br/inscricao', data)
       .then(response => {
-        if(response.data.result === 'Email error'){
-          setErro({erroMail: true});
+        if (response.data.result === 'Email error') {
+          setErro({ erroMail: true });
           return;
         }
         localStorage.removeItem("@USER_DATA");
