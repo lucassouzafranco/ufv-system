@@ -27,7 +27,7 @@ const Register = () => {
       const month = String(date.getMonth() + 1).padStart(2, '0');
       const year = String(date.getFullYear());
       const newDate = `${day}/${month}/${year}`;
-      if (newDate === '22/10/2022') {
+      if (newDate === '23/10/2022') {
         setFinish(true);
         localStorage.removeItem("@COURSES_DATA");
         localStorage.removeItem("@USER_DATA");

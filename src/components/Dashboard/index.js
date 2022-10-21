@@ -1393,6 +1393,176 @@ export default function DashBoardC() {
     pdfMake.createPdf(docDefination).download('Relatorio-Horario');
   }
 
+  async function RelatorioGeral() {
+    pdfMake.vfs = pdfFonts.pdfMake.vfs;
+    let all = [];
+    await axios.get('https://api.mostra.crp.ufv.br/inscricao/all')
+      .then(response => {
+        if (response.data.result !== 'Error') {
+          response.data.forEach(item => {
+            item.mini_cursos.forEach(itemM => {
+              all.push({
+                nome: item.nome,
+                escola: item.escola,
+                cidade: item.cidade,
+                email: item.email,
+                telefone: item.telefone,
+                horario: itemM.horario,
+                PCD: item.PCD,
+                curso: itemM.curso,
+                sala: itemM.sala,
+                nome_mini_curso: itemM.nome_mini_curso,
+                data: item.data,
+              })
+            })
+          })
+        }
+      })
+      .catch(error => console.log(error));
+
+    const dados = all.map(item => {
+      return [
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.cidade, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.email, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.telefone, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.escola, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.PCD, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.nome_mini_curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.data, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' }
+      ]
+    });
+
+    const detalhes = [
+      { text: `Relatorio Geral`, style: 'header' },
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Nome', style: 'tableHeader', fontSize: 11, alignment: 'center', bold: true },
+              { text: 'Cidade', style: 'tableHeader', fontSize: 11, alignment: 'center', bold: true },
+              { text: 'Email', style: 'tableHeader', fontSize: 11, alignment: 'center', bold: true },
+              { text: 'Telefone', style: 'tableHeader', fontSize: 11, alignment: 'center', bold: true },
+              { text: 'Escola', style: 'tableHeader', fontSize: 11, alignment: 'center', bold: true },
+              { text: 'PCD', style: 'tableHeader', fontSize: 11, alignment: 'center', bold: true },
+              { text: 'Curso', style: 'tableHeader', fontSize: 11, alignment: 'center', bold: true },
+              { text: 'Mini Curso', style: 'tableHeader', fontSize: 11, alignment: 'center', bold: true },
+              { text: 'Horario', style: 'tableHeader', fontSize: 11, alignment: 'center', bold: true },
+              { text: 'Data', style: 'tableHeader', fontSize: 11, alignment: 'center', bold: true },
+              { text: 'Sala', style: 'tableHeader', fontSize: 11, alignment: 'center', bold: true }
+            ],
+            ...dados
+          ]
+        }
+      },
+      { text: `Relatório gerado em ${new Date()}`, style: 'footer' },
+    ];
+
+    const footer = [];
+    const title = [];
+
+    let docDefination = {
+      pageSize: 'A0',
+      pageMargins: [15, 50, 14, 40],
+      content: [detalhes],
+      header: [title],
+      footer: [footer],
+      styles: {
+        header: {
+          fontSize: 18,
+          bold: true,
+          margin: [15, 20, 0, 10]
+        },
+        footer: {
+          fontSize: 10,
+          bold: true,
+          margin: [15, 20, 0, 10]
+        }
+      }
+    }
+    pdfMake.createPdf(docDefination).download('Relatorio-Geral');
+  }
+
+  async function RelatorioVagasRestantes() {
+    let mini = [];
+    await axios.get('https://api.mostra.crp.ufv.br/mini/full')
+      .then(response => {
+        response.data.forEach(item => {
+          if (item.vagas > 0) {
+            mini.push(item);
+          }
+        })
+        mini = mini.sort((a, b) => {
+          if (a.horario < b.horario) {
+            return -1;
+          } else {
+            return true;
+          }
+        });
+        const dados = mini.map(item => {
+          return [
+            { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+            { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+            { text: item.curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+            { text: item.vagas, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+            { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+            { text: item.professor, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' }
+          ]
+        });
+        const detalhes = [
+          { text: `Relatorio Geral - Vagas Restantes`, style: 'header' },
+
+          {
+            table: {
+              headerRows: 1,
+              widths: ['*', '*', '*', '*', '*', '*'],
+              body: [
+                [
+                  { text: 'Nome', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+                  { text: 'Sala', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+                  { text: 'Curso', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+                  { text: 'Vagas', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+                  { text: 'Horario', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+                  { text: 'Professor', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true }
+                ],
+                ...dados
+              ]
+            }
+          },
+          { text: `Relatório gerado em ${new Date()}`, style: 'footer' },
+        ];
+        const footer = [];
+        const title = [];
+
+        let docDefination = {
+          pageSize: 'A4',
+          pageMargins: [15, 50, 14, 40],
+          content: [detalhes],
+          header: [title],
+          footer: [footer],
+          styles: {
+            header: {
+              fontSize: 18,
+              bold: true,
+              margin: [15, 20, 0, 10]
+            },
+            footer: {
+              fontSize: 10,
+              bold: true,
+              margin: [15, 20, 0, 10]
+            }
+          }
+        }
+        pdfMake.createPdf(docDefination).download('Relatorio-Vagas-Restantes');
+      })
+      .catch(error => console.log(error));
+  }
+
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -1682,9 +1852,11 @@ export default function DashBoardC() {
               </ItemsContainer>
             </InscriptionCard>
           </InscriptionContainer>
-          <Button onClick={() => relatorio(insc)}>Gerar relatorio completo</Button>
+          <Button onClick={() => RelatorioGeral()}>Relatório Geral</Button>
+          { /*<Button onClick={() => relatorio(insc)}>Gerar relatorio completo</Button>*/}
           <Button onClick={() => RelatorioProfessor()}>Gerar relatorio Professor</Button>
           <Button onClick={() => RelatorioPorHorario()}>Gerar relatório por Horario</Button>
+          <Button onClick={() => RelatorioVagasRestantes()}>Gerar relatório de vagas restantes</Button>
         </>)}
         {pathname === "/admin/painel/cadastrar" && (
           <>
