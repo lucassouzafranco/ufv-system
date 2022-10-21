@@ -1331,7 +1331,7 @@ export default function DashBoardC() {
       })
       .catch(error => console.log(error))
     minis = minis.sort((a, b) => {
-      if (a.horario < b.horario) {
+      if (a.nome < b.nome) {
         return -1;
       } else {
         return true;
