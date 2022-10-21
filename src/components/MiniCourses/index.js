@@ -316,7 +316,7 @@ export default function MiniCoursesC({ courses }) {
         }
       ]
     }
-    /*await axios.post('https://api.mostra.crp.ufv.br/inscricao', data)
+    await axios.post('https://api.mostra.crp.ufv.br/inscricao', data)
       .then(response => {
         if (response.data.result === 'Email error') {
           setErro({ erroMail: true });
@@ -327,10 +327,7 @@ export default function MiniCoursesC({ courses }) {
         navigate(`/inscricao/${response.data.id}`)
       })
       .catch(error => console.log(error))
-      .finally(() => setLoadingIns(false));*/
-      console.log("Data = ", data);
-      console.log(selected);
-      console.log("Passou");
+      .finally(() => setLoadingIns(false));
   }
 
   function disabledVerfy(object) {
