@@ -1212,6 +1212,108 @@ export default function DashBoardC() {
     pdfMake.createPdf(doc).download('Relatorio Completo');
   }
 
+  async function RelatorioProfessor() {
+    pdfMake.vfs = pdfFonts.pdfMake.vfs;
+    let aux = [];
+    let rooms = [];
+    let rooms_count = [];
+    await axios.get('https://api.mostra.crp.ufv.br/mini/full')
+      .then(response => {
+        response.data.forEach(item => {
+          rooms.push({
+            sala: item.sala,
+            horario: item.horario,
+            nome: item.nome
+          })
+        })
+      })
+    //console.log(rooms);
+
+    await axios.get('https://api.mostra.crp.ufv.br/inscricao/all')
+      .then(response => {
+        response.data.map(item => {
+          item.mini_cursos.map(itemM => {
+            aux.push({
+              nome_mini_curso: itemM.nome_mini_curso,
+              sala: itemM.sala,
+              horario: itemM.horario
+            });
+          });
+        });
+        //console.log(aux);
+      })
+      .catch(error => console.log(error));
+
+    rooms.forEach(room => {
+      rooms_count.push({
+        sala: room.sala,
+        count: aux.filter(a => a.sala === room.sala && a.horario === room.horario && a.nome_mini_curso === room.nome).length,
+        horario: room.horario,
+        nome_mini_curso: room.nome
+      })
+    })
+    rooms_count = rooms_count.sort((a, b) => {
+      if (a.nome_mini_curso < b.nome_mini_curso) {
+        return -1;
+      } else {
+        return true;
+      }
+    })
+
+    const dados = rooms_count.map(item => {
+      return [
+        { text: item.count, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2],alignment: 'center'},
+        { text: item.nome_mini_curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center'},
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' }
+      ]
+    });
+    const detalhes = [
+      { text: `Relatorio Geral - Professor`, style: 'header' },
+  
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Quantidade', style: 'tableHeader', fontSize: 11 },
+              { text: 'Nome', style: 'tableHeader', fontSize: 11 },
+              { text: 'Horario', style: 'tableHeader', fontSize: 11 },
+              { text: 'Sala', style: 'tableHeader', fontSize: 11 },
+            ],
+            ...dados
+          ]
+        }
+      },
+      { text: `Relatório gerado em ${new Date()}`, style: 'footer' },
+    ];
+  
+    const footer = [];
+    const title = [];
+  
+    let docDefination = {
+      pageSize: 'A4',
+      pageMargins: [15, 50, 14, 40],
+      content: [detalhes],
+      header: [title],
+      footer: [footer],
+      styles: {
+        header: {
+          fontSize: 18,
+          bold: true,
+          margin: [15, 20, 0, 10]
+        },
+        footer: {
+          fontSize: 10,
+          bold: true,
+          margin: [15, 20, 0, 10]
+        }
+      }
+    }
+    pdfMake.createPdf(docDefination).download('Relatorio-Professor');
+  }
+
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -1502,6 +1604,7 @@ export default function DashBoardC() {
             </InscriptionCard>
           </InscriptionContainer>
           <Button onClick={() => relatorio(insc)}>Gerar relatorio completo</Button>
+          <Button onClick={() => RelatorioProfessor()}>Gerar relatorio Professor</Button>
         </>)}
         {pathname === "/admin/painel/cadastrar" && (
           <>
