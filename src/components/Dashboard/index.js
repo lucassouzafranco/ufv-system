@@ -1359,7 +1359,7 @@ export default function DashBoardC() {
               { text: 'Numero', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
               { text: 'Nome', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
               { text: 'Email', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
-              { text: 'Telefone', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+              { text: 'Horario', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
             ],
             ...dados
           ]
