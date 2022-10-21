@@ -1262,15 +1262,15 @@ export default function DashBoardC() {
 
     const dados = rooms_count.map(item => {
       return [
-        { text: item.count, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2],alignment: 'center'},
+        { text: item.count, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
         { text: item.nome_mini_curso, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
-        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center'},
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
         { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' }
       ]
     });
     const detalhes = [
       { text: `Relatorio Geral - Professor`, style: 'header' },
-  
+
       {
         table: {
           headerRows: 1,
@@ -1288,10 +1288,10 @@ export default function DashBoardC() {
       },
       { text: `Relatório gerado em ${new Date()}`, style: 'footer' },
     ];
-  
+
     const footer = [];
     const title = [];
-  
+
     let docDefination = {
       pageSize: 'A4',
       pageMargins: [15, 50, 14, 40],
@@ -1312,6 +1312,85 @@ export default function DashBoardC() {
       }
     }
     pdfMake.createPdf(docDefination).download('Relatorio-Professor');
+  }
+
+  async function RelatorioPorHorario() {
+    pdfMake.vfs = pdfFonts.pdfMake.vfs;
+    let minis = [];
+    await axios.get('https://api.mostra.crp.ufv.br/inscricao/all')
+      .then(response => {
+        response.data.forEach(item => {
+          item.mini_cursos.forEach(mini => {
+            minis.push({
+              nome: item.nome,
+              sala: mini.sala,
+              horario: mini.horario,
+            })
+          })
+        })
+      })
+      .catch(error => console.log(error))
+    minis = minis.sort((a, b) => {
+      if (a.horario < b.horario) {
+        return -1;
+      } else {
+        return true;
+      }
+    })
+
+    const dados = minis.map((item, index) => {
+      return [
+        { text: `${index + 1}`, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' }
+      ]
+    });
+
+    const detalhes = [
+      { text: `Relatorio Geral - HORARIO`, style: 'header' },
+
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Numero', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+              { text: 'Nome', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+              { text: 'Email', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+              { text: 'Telefone', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+            ],
+            ...dados
+          ]
+        }
+      },
+      { text: `Relatório gerado em ${new Date()}`, style: 'footer' },
+    ];
+
+    const footer = [];
+    const title = [];
+
+    let docDefination = {
+      pageSize: 'A3',
+      pageMargins: [15, 50, 14, 40],
+      content: [detalhes],
+      header: [title],
+      footer: [footer],
+      styles: {
+        header: {
+          fontSize: 18,
+          bold: true,
+          margin: [15, 20, 0, 10]
+        },
+        footer: {
+          fontSize: 10,
+          bold: true,
+          margin: [15, 20, 0, 10]
+        }
+      }
+    }
+    pdfMake.createPdf(docDefination).download('Relatorio-Horario');
   }
 
   const { pathname } = useLocation();
@@ -1605,6 +1684,7 @@ export default function DashBoardC() {
           </InscriptionContainer>
           <Button onClick={() => relatorio(insc)}>Gerar relatorio completo</Button>
           <Button onClick={() => RelatorioProfessor()}>Gerar relatorio Professor</Button>
+          <Button onClick={() => RelatorioPorHorario()}>Gerar relatório por Horario</Button>
         </>)}
         {pathname === "/admin/painel/cadastrar" && (
           <>
