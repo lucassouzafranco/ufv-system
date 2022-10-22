@@ -1329,16 +1329,52 @@ export default function DashBoardC() {
           })
         })
       })
-      .catch(error => console.log(error))
-    minis = minis.sort((a, b) => {
+      .catch(error => console.log(error));
+
+    const Nove = minis.filter(item => item.horario === '09:00').sort((a, b) => {
       if (a.nome < b.nome) {
-        return -1;
+        return -1
       } else {
         return true;
       }
-    })
+    });
+    const NoveEMeia = minis.filter(item => item.horario === '09:30').sort((a, b) => {
+      if (a.nome < b.nome) {
+        return -1
+      } else {
+        return true;
+      }
+    });;
+    const Dez = minis.filter(item => item.horario === '10:00').sort((a, b) => {
+      if (a.nome < b.nome) {
+        return -1
+      } else {
+        return true;
+      }
+    });;
+    const DezEMeia = minis.filter(item => item.horario === '10:30').sort((a, b) => {
+      if (a.nome < b.nome) {
+        return -1
+      } else {
+        return true;
+      }
+    });;
+    const Onze = minis.filter(item => item.horario === '11:00').sort((a, b) => {
+      if (a.nome < b.nome) {
+        return -1
+      } else {
+        return true;
+      }
+    });;
+    const OnzeEMeia = minis.filter(item => item.horario === '11:30').sort((a, b) => {
+      if (a.nome < b.nome) {
+        return -1
+      } else {
+        return true;
+      }
+    });;
 
-    const dados = minis.map((item, index) => {
+    const dadosNove = Nove.map((item, index) => {
       return [
         { text: `${index + 1}`, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
         { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
@@ -1347,8 +1383,53 @@ export default function DashBoardC() {
       ]
     });
 
-    const detalhes = [
-      { text: `Relatorio Geral - HORARIO`, style: 'header' },
+    const dadosNoveEMeia = NoveEMeia.map((item, index) => {
+      return [
+        { text: `${(Nove.length) + (index + 1)}`, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' }
+      ]
+    });
+
+    const dadosDez = Dez.map((item, index) => {
+      return [
+        { text: `${(NoveEMeia.length) + (index + 1)}`, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' }
+      ]
+    });
+
+    const dadosDezEMeia = DezEMeia.map((item, index) => {
+      return [
+        { text: `${(Dez.length) + (index + 1)}`, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' }
+      ]
+    });
+
+    const dadosOnze = Onze.map((item, index) => {
+      return [
+        { text: `${(DezEMeia.length) + (index + 1)}`, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' }
+      ]
+    });
+
+    const dadosOnzeEMeia = OnzeEMeia.map((item, index) => {
+      return [
+        { text: `${(Onze.length) + (index + 1)}`, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' }
+      ]
+    });
+
+    const detalhesNove = [
+      { text: `Relatorio Geral - 09:00`, style: 'header' },
 
       {
         table: {
@@ -1361,7 +1442,107 @@ export default function DashBoardC() {
               { text: 'Email', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
               { text: 'Horario', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
             ],
-            ...dados
+            ...dadosNove
+          ]
+        }
+      },
+    ];
+
+    const detalhesNoveEMeia = [
+      { text: `Relatorio Geral - 09:30`, style: 'header' },
+
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Numero', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+              { text: 'Nome', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+              { text: 'Email', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+              { text: 'Horario', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+            ],
+            ...dadosNoveEMeia
+          ]
+        }
+      },
+    ];
+
+    const detalhesDez = [
+      { text: `Relatorio Geral - 10:00`, style: 'header' },
+
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Numero', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+              { text: 'Nome', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+              { text: 'Email', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+              { text: 'Horario', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+            ],
+            ...dadosDez
+          ]
+        }
+      },
+    ];
+
+    const detalhesDezEMeia = [
+      { text: `Relatorio Geral - 10:30`, style: 'header' },
+
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Numero', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+              { text: 'Nome', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+              { text: 'Email', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+              { text: 'Horario', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+            ],
+            ...dadosDezEMeia
+          ]
+        }
+      },
+    ];
+
+    const detalhesOnze = [
+      { text: `Relatorio Geral - 11:00`, style: 'header' },
+
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Numero', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+              { text: 'Nome', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+              { text: 'Email', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+              { text: 'Horario', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+            ],
+            ...dadosOnze
+          ]
+        }
+      },
+    ];
+
+    const detalhesOnzeEMeia = [
+      { text: `Relatorio Geral - 11:30`, style: 'header' },
+
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', '*', '*', '*'],
+          body: [
+            [
+              { text: 'Numero', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+              { text: 'Nome', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+              { text: 'Email', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+              { text: 'Horario', style: 'tableHeader', fontSize: 12, alignment: 'center', bold: true },
+            ],
+            ...dadosOnzeEMeia
           ]
         }
       },
@@ -1374,7 +1555,7 @@ export default function DashBoardC() {
     let docDefination = {
       pageSize: 'A3',
       pageMargins: [15, 50, 14, 40],
-      content: [detalhes],
+      content: [detalhesNove, detalhesNoveEMeia, detalhesDez, detalhesDezEMeia, detalhesOnze, detalhesOnzeEMeia],
       header: [title],
       footer: [footer],
       styles: {
