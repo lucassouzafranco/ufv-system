@@ -1394,7 +1394,7 @@ export default function DashBoardC() {
 
     const dadosDez = Dez.map((item, index) => {
       return [
-        { text: `${(NoveEMeia.length) + (index + 1)}`, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: `${(NoveEMeia.length) + (Nove.length) + (index + 1)}`, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
         { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
         { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
         { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' }
@@ -1403,7 +1403,7 @@ export default function DashBoardC() {
 
     const dadosDezEMeia = DezEMeia.map((item, index) => {
       return [
-        { text: `${(Dez.length) + (index + 1)}`, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: `${(Dez.length) + (NoveEMeia.length) + (Nove.length)+ (index + 1)}`, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
         { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
         { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
         { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' }
@@ -1412,7 +1412,7 @@ export default function DashBoardC() {
 
     const dadosOnze = Onze.map((item, index) => {
       return [
-        { text: `${(DezEMeia.length) + (index + 1)}`, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: `${(DezEMeia.length) + (Dez.length) + (NoveEMeia.length) + (Nove.length)  + (index + 1)}`, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
         { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
         { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
         { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' }
@@ -1421,7 +1421,7 @@ export default function DashBoardC() {
 
     const dadosOnzeEMeia = OnzeEMeia.map((item, index) => {
       return [
-        { text: `${(Onze.length) + (index + 1)}`, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
+        { text: `${(Onze.length) + (Dez.length) + (DezEMeia.length) + (NoveEMeia.length) + (Nove.length) + (index + 1)}`, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
         { text: item.nome, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
         { text: item.sala, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' },
         { text: item.horario, style: 'tableHeader', fontSize: 10, margin: [0, 2, 0, 2], alignment: 'center' }
